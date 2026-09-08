@@ -134,6 +134,9 @@ npm run preview  # Previsualiza la compilación
 
 ## Estructura del proyecto
 
+La separación de responsabilidades del backend está documentada en
+[`docs/BACKEND_ARCHITECTURE.md`](docs/BACKEND_ARCHITECTURE.md).
+
 ```text
 isocal/
 ├── backend/            # API y conexión con PostgreSQL
