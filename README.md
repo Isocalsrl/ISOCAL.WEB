@@ -63,16 +63,21 @@ repositorio.
 
 ## Ejecución local
 
-Desde la raíz del proyecto, inicia PostgreSQL:
-
-```bash
-docker compose up -d
-```
-
-Después, abre una terminal para ejecutar el backend:
+Con Docker Desktop abierto, desde la carpeta `backend` inicia PostgreSQL y
+aplica las migraciones pendientes:
 
 ```bash
 cd backend
+npm run db:init
+```
+
+Este comando crea el contenedor y el volumen `postgres_data` si todavía no
+existen. Las siguientes ejecuciones conservan los datos y solo aplican las
+migraciones que aún no estén registradas en la tabla `schema_migrations`.
+
+Después, ejecuta el backend:
+
+```bash
 npm run dev
 ```
 
@@ -114,6 +119,7 @@ Si la API y PostgreSQL están disponibles, la respuesta será:
 npm run dev       # Ejecuta la API en modo desarrollo
 npm run build     # Compila TypeScript
 npm start         # Ejecuta la versión compilada
+npm run db:init   # Inicia PostgreSQL y aplica migraciones pendientes
 npm run test:run  # Ejecuta las pruebas una vez
 ```
 
@@ -133,7 +139,11 @@ isocal/
 ├── backend/            # API y conexión con PostgreSQL
 │   └── src/
 │       ├── config/     # Variables de entorno
-│       └── database/   # Configuración de la base de datos
+│       └── database/
+│           ├── db.ts        # Pool de conexiones
+│           ├── init.ts      # Punto de entrada de la inicialización
+│           ├── migrations/  # Cambios SQL ordenados
+│           └── scripts/     # Lectura y ejecución de migraciones
 ├── frontend/           # Aplicación React
 │   └── src/
 └── docker-compose.yml  # PostgreSQL para desarrollo local
