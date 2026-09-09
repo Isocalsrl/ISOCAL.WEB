@@ -4,6 +4,7 @@ import { db } from "./database/db.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 import { productsRouter } from "./modules/products/products.routes.js";
 import { categoriesRouter } from "./modules/categories/categories.routes.js";
+import authRouter from "./modules/auth/auth.routes.js";
 
 const app = express();
 
@@ -34,6 +35,11 @@ app.use(
 app.use(
     "/api/categories",
     categoriesRouter,
+);
+
+app.use(
+    "/api/admin/auth",
+    authRouter,
 );
 
 app.use(errorMiddleware);
