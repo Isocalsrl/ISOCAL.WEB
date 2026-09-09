@@ -3,6 +3,7 @@ import express from "express";
 import { db } from "./database/db.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 import { productsRouter } from "./modules/products/products.routes.js";
+import { categoriesRouter } from "./modules/categories/categories.routes.js";
 
 const app = express();
 
@@ -25,7 +26,15 @@ app.get("/health", async (_req, res) => {
     }
 });
 
-app.use("/api/products", productsRouter);
+app.use(
+    "/api/products",
+    productsRouter,
+);
+
+app.use(
+    "/api/categories",
+    categoriesRouter,
+);
 
 app.use(errorMiddleware);
 
