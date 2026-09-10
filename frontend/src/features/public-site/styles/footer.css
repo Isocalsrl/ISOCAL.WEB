@@ -1,0 +1,96 @@
+/* Pie de página público. */
+
+.public-footer {
+    color: var(--color-surface);
+    background: #111111;
+}
+
+.public-footer-grid {
+    display: grid;
+    padding: 4.5rem 0;
+    grid-template-columns:
+        minmax(0, 1.3fr)
+        minmax(10rem, 0.6fr)
+        minmax(14rem, 0.75fr);
+    gap:
+        clamp(
+            2.5rem,
+            7vw,
+            6rem
+        );
+}
+
+.public-footer
+.brand-chevrons {
+    color: #ff3652;
+}
+
+.public-footer-brand > p,
+.public-footer-column > p {
+    max-width: 23rem;
+    margin: 1.3rem 0 0;
+    color:
+        rgba(255, 255, 255, 0.58);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.public-footer-column h2 {
+    margin: 0 0 1.25rem;
+    color:
+        rgba(255, 255, 255, 0.48);
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.public-footer-column nav {
+    display: grid;
+    justify-items: start;
+    gap: 0.8rem;
+}
+
+.public-footer-column a {
+    color:
+        rgba(255, 255, 255, 0.78);
+    font-size: 0.78rem;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.public-footer-column a:hover {
+    color: var(--color-surface);
+}
+
+.public-footer-column
+.public-footer-highlight {
+    display: inline-flex;
+    margin-top: 1.25rem;
+    color: #ff526a;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.public-footer-bottom {
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+}
+
+.public-footer-bottom-content {
+    display: flex;
+    min-height: 4.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+.public-footer-bottom p {
+    margin: 0;
+    color:
+        rgba(255, 255, 255, 0.42);
+    font-size: 0.68rem;
+}

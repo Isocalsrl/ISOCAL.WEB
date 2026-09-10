@@ -6,13 +6,12 @@
     justify-items: center;
     color: #5b5b5b;
     text-align: center;
-    background: #f5f5f5;
+    background: var(--color-page-background);
 }
-
 .full-page-feedback h1 {
     max-width: 34rem;
     margin: 1.25rem 0 0.5rem;
-    color: #1b1b1b;
+    color: var(--color-ink);
     font-size: clamp(
         1.9rem,
         5vw,
@@ -31,10 +30,10 @@
 .full-page-feedback button {
     min-height: 2.9rem;
     padding: 0.7rem 1.2rem;
-    border: 2px solid #1b1b1b;
+    border: 2px solid var(--color-ink);
     border-radius: 0.1rem;
-    color: #ffffff;
-    background: #1b1b1b;
+    color: var(--color-surface);
+    background: var(--color-ink);
     cursor: pointer;
     font-size: 0.75rem;
     font-weight: 850;
@@ -45,8 +44,8 @@
 .full-page-feedback button:hover:not(
     :disabled
 ) {
-    border-color: #c9001c;
-    background: #c9001c;
+    border-color: var(--color-brand);
+    background: var(--color-brand);
 }
 
 .full-page-feedback button:disabled {
@@ -59,7 +58,7 @@
     height: 2.35rem;
     border: 3px solid
         rgba(201, 0, 28, 0.18);
-    border-top-color: #c9001c;
+    border-top-color: var(--color-brand);
     border-radius: 50%;
     animation: feedback-spin
         700ms linear infinite;
@@ -71,8 +70,8 @@
     height: 3rem;
     border-radius: 0.1rem;
     place-items: center;
-    color: #ffffff;
-    background: #c9001c;
+    color: var(--color-surface);
+    background: var(--color-brand);
     font-weight: 900;
 }
 
@@ -94,7 +93,7 @@
     height: 1.25rem;
     flex: 0 0 auto;
     place-items: center;
-    color: #ffffff;
+    color: var(--color-surface);
     font-size: 0.72rem;
     font-weight: 900;
 }
@@ -107,7 +106,7 @@
 
 .inline-alert-error
 .inline-alert-icon {
-    background: #c9001c;
+    background: var(--color-brand);
 }
 
 .inline-alert-success {

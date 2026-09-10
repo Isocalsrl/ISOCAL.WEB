@@ -1,0 +1,213 @@
+/* Ajustes responsive reunidos para localizar rápidamente cada breakpoint. */
+
+@media (
+    max-width: 900px
+) {
+    .public-home-hero-grid {
+        min-height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .public-home-hero-panel {
+        min-height: 26rem;
+    }
+
+    .public-section-heading,
+    .public-story-grid,
+    .public-catalog-placeholder {
+        grid-template-columns: 1fr;
+    }
+
+    .public-service-card {
+        grid-template-columns:
+            4rem
+            minmax(0, 1fr);
+    }
+
+    .public-service-detail {
+        grid-column: 2;
+    }
+
+    .public-footer-grid {
+        grid-template-columns:
+            minmax(0, 1.2fr)
+            minmax(10rem, 0.8fr);
+    }
+
+    .public-footer-column:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (
+    max-width: 760px
+) {
+    .public-container {
+        width: min(
+            calc(100% - 2rem),
+            74rem
+        );
+    }
+
+    .public-header-content {
+        min-height: 4.8rem;
+    }
+
+    .public-header
+    .brand-word {
+        font-size: 1.5rem;
+    }
+
+    .public-menu-button {
+        display: grid;
+    }
+
+    .public-navigation {
+        position: absolute;
+        top: 100%;
+        right: -1rem;
+        left: -1rem;
+        display: none;
+        padding:
+            0.75rem
+            1rem
+            1rem;
+        border-top:
+            1px solid
+            var(--color-border);
+        border-bottom:
+            1px solid
+            var(--color-border);
+        align-items: stretch;
+        background: var(--color-surface);
+        box-shadow:
+            0 1rem 2rem
+            rgba(0, 0, 0, 0.1);
+    }
+
+    .public-navigation-open {
+        display: grid;
+    }
+
+    .public-navigation-link {
+        min-height: 3.25rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .public-navigation-link::after {
+        top: 0.65rem;
+        right: auto;
+        bottom: 0.65rem;
+        left: 0;
+        width: 0.25rem;
+        height: auto;
+        transform: scaleY(0);
+    }
+
+    .public-navigation-link:hover::after,
+    .public-navigation-link-active::after {
+        transform: scaleY(1);
+    }
+
+    .public-home-hero-copy h1,
+    .public-page-hero h1 {
+        font-size:
+            clamp(
+                2.8rem,
+                14vw,
+                4.5rem
+            );
+    }
+
+    .public-value-grid,
+    .public-principles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .public-value-card {
+        min-height: 13rem;
+    }
+
+    .public-value-card h3 {
+        margin-top: 2.5rem;
+    }
+
+    .public-contrast-content,
+    .public-callout {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .public-story-marker {
+        min-height: 22rem;
+    }
+
+    .public-service-card {
+        grid-template-columns:
+            3rem
+            minmax(0, 1fr);
+    }
+
+    .public-service-number {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .public-footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .public-footer-column:last-child {
+        grid-column: auto;
+    }
+}
+
+@media (
+    max-width: 520px
+) {
+    .public-actions,
+    .public-actions
+    .ui-button,
+    .public-callout
+    .ui-button,
+    .public-contrast-content
+    .ui-button {
+        width: 100%;
+    }
+
+    .public-home-hero-panel {
+        min-height: 22rem;
+    }
+
+    .public-home-hero-panel strong {
+        font-size: 2.65rem;
+    }
+
+    .public-service-card {
+        grid-template-columns: 1fr;
+    }
+
+    .public-service-detail {
+        grid-column: auto;
+    }
+
+    .public-footer-bottom-content {
+        padding: 1.25rem 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+    .public-site-shell *,
+    .public-site-shell *::before,
+    .public-site-shell *::after {
+        scroll-behavior:
+            auto !important;
+        transition-duration:
+            0.01ms !important;
+    }
+}

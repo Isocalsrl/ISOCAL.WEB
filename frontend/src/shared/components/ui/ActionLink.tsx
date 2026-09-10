@@ -11,7 +11,11 @@ import "./ui.css";
 interface ActionLinkProps {
     children: ReactNode;
     to: string;
-    variant?: "primary" | "dark" | "secondary";
+    variant?:
+        | "primary"
+        | "dark"
+        | "secondary"
+        | "light";
 }
 
 export function ActionLink({

@@ -21,8 +21,8 @@ import {
 } from "../../features/admin/components/AdminLayout";
 
 import {
-    AdminLoginPage,
-} from "../../features/auth/pages/AdminLoginPage";
+    LoginPage,
+} from "../../features/auth/pages/LoginPage";
 
 import {
     LoginHistoryPage,
@@ -42,17 +42,48 @@ import {
 
 import {
     PublicCatalogPage,
-} from "../../pages/PublicCatalogPage";
+} from "../../features/products/pages/PublicCatalogPage";
+
+import {
+    PublicLayout,
+} from "../../features/public-site/components/PublicLayout";
+
+import {
+    AboutPage,
+} from "../../features/public-site/pages/AboutPage";
+
+import {
+    HomePage,
+} from "../../features/public-site/pages/HomePage";
+
+import {
+    ServicesPage,
+} from "../../features/public-site/pages/ServicesPage";
 
 export function AppRouter() {
     return (
         <Routes>
-            <Route
-                path="/"
-                element={
-                    <PublicCatalogPage />
-                }
-            />
+            <Route element={<PublicLayout />}>
+                <Route
+                    index
+                    element={<HomePage />}
+                />
+
+                <Route
+                    path="nosotros"
+                    element={<AboutPage />}
+                />
+
+                <Route
+                    path="servicios"
+                    element={<ServicesPage />}
+                />
+
+                <Route
+                    path="productos"
+                    element={<PublicCatalogPage />}
+                />
+            </Route>
 
             <Route
                 element={
@@ -62,7 +93,7 @@ export function AppRouter() {
                 <Route
                     path="/admin/login"
                     element={
-                        <AdminLoginPage />
+                        <LoginPage />
                     }
                 />
             </Route>

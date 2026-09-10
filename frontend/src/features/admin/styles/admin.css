@@ -3,10 +3,9 @@
     min-height: 100vh;
     grid-template-columns:
         17.5rem minmax(0, 1fr);
-    color: #1b1b1b;
-    background: #f3f3f3;
+    color: var(--color-ink);
+    background: var(--color-surface-muted);
 }
-
 .admin-sidebar {
     position: sticky;
     top: 0;
@@ -14,7 +13,7 @@
     height: 100vh;
     padding: 2.25rem 1.75rem;
     flex-direction: column;
-    color: #ffffff;
+    color: var(--color-surface);
     background:
         linear-gradient(
             rgba(255, 255, 255, 0.035)
@@ -22,7 +21,7 @@
             transparent 1px
         )
         0 0 / 100% 4rem,
-        #1b1b1b;
+        var(--color-ink);
 }
 
 .admin-sidebar::before {
@@ -31,7 +30,7 @@
     right: 0;
     left: 0;
     height: 0.45rem;
-    background: #c9001c;
+    background: var(--color-brand);
     content: "";
 }
 
@@ -83,13 +82,13 @@
 
 .admin-navigation-link:hover,
 .admin-navigation-link-active {
-    color: #ffffff;
-    background: #c9001c;
+    color: var(--color-surface);
+    background: var(--color-brand);
 }
 
 .admin-navigation-link-active > span,
 .admin-navigation-link:hover > span {
-    color: #ffffff;
+    color: var(--color-surface);
 }
 
 .admin-sidebar-footer {
@@ -116,11 +115,11 @@
             4vw,
             3.5rem
         );
-    border-bottom: 1px solid #d8d8d8;
+    border-bottom: 1px solid var(--color-border);
     align-items: center;
     justify-content: flex-end;
     gap: 1.25rem;
-    background: #ffffff;
+    background: var(--color-surface);
 }
 
 .admin-identity {
@@ -158,7 +157,7 @@
 .admin-content {
     width: min(
         100%,
-        100rem
+        var(--layout-admin-width)
     );
     margin: 0 auto;
     padding:
@@ -182,7 +181,7 @@
 .management-header {
     display: flex;
     padding-bottom: 1.8rem;
-    border-bottom: 3px solid #1b1b1b;
+    border-bottom: 3px solid var(--color-ink);
     align-items: flex-end;
     justify-content: space-between;
     gap: 2rem;
@@ -190,7 +189,7 @@
 
 .management-header h1 {
     margin: 0;
-    color: #1b1b1b;
+    color: var(--color-ink);
     font-size: clamp(
         2.4rem,
         5vw,
@@ -222,7 +221,7 @@ p:last-child {
 
 .management-count {
     margin: 0;
-    color: #626262;
+    color: var(--color-text-muted);
     font-size: 0.78rem;
     font-weight: 750;
     letter-spacing: 0.045em;
@@ -230,14 +229,14 @@ p:last-child {
 }
 
 .management-count strong {
-    color: #c9001c;
+    color: var(--color-brand);
     font-size: 1rem;
 }
 
 .data-panel {
     overflow: hidden;
     border: 1px solid #d7d7d7;
-    background: #ffffff;
+    background: var(--color-surface);
 }
 
 .data-table {
@@ -247,8 +246,8 @@ p:last-child {
 
 .data-table th {
     padding: 0.9rem 1rem;
-    color: #ffffff;
-    background: #1b1b1b;
+    color: var(--color-surface);
+    background: var(--color-ink);
     font-size: 0.64rem;
     font-weight: 850;
     letter-spacing: 0.075em;
@@ -259,7 +258,7 @@ p:last-child {
 .data-table td {
     padding: 1.15rem 1rem;
     border-bottom: 1px solid #e3e3e3;
-    color: #555555;
+    color: var(--color-text);
     font-size: 0.83rem;
     vertical-align: middle;
 }
@@ -278,7 +277,7 @@ p:last-child {
 }
 
 .data-primary strong {
-    color: #1b1b1b;
+    color: var(--color-ink);
     font-size: 0.9rem;
 }
 
@@ -344,7 +343,7 @@ p:last-child {
     display: inline-flex;
     padding: 0.35rem 0.5rem;
     border-left: 3px solid #7b7b7b;
-    color: #555555;
+    color: var(--color-text);
     background: #eeeeee;
     font-size: 0.61rem;
     font-weight: 850;
@@ -354,14 +353,14 @@ p:last-child {
 }
 
 .access-outcome-success {
-    border-left-color: #238347;
+    border-left-color: var(--color-success);
     color: #1d6736;
     background: #edf7f0;
 }
 
 .access-outcome-invalid_credentials,
 .access-outcome-inactive_account {
-    border-left-color: #c9001c;
+    border-left-color: var(--color-brand);
     color: #9b0016;
     background: #fff0f2;
 }
@@ -382,8 +381,8 @@ p:last-child {
         2.5rem
     );
     border: 1px solid #d7d7d7;
-    border-top: 0.45rem solid #c9001c;
-    background: #ffffff;
+    border-top: 0.45rem solid var(--color-brand);
+    background: var(--color-surface);
 }
 
 .management-form {
@@ -423,8 +422,8 @@ p:last-child {
     padding: 1.1rem 1.25rem;
     align-items: center;
     justify-content: space-between;
-    color: #ffffff;
-    background: #1b1b1b;
+    color: var(--color-surface);
+    background: var(--color-ink);
 }
 
 .category-list-heading h2 {
@@ -440,8 +439,8 @@ p:last-child {
     width: 1.75rem;
     height: 1.75rem;
     place-items: center;
-    color: #ffffff;
-    background: #c9001c;
+    color: var(--color-surface);
+    background: var(--color-brand);
     font-size: 0.7rem;
     font-weight: 900;
 }
@@ -470,7 +469,7 @@ p:last-child {
 }
 
 .category-item strong {
-    color: #1b1b1b;
+    color: var(--color-ink);
     font-size: 0.9rem;
 }
 
@@ -511,7 +510,7 @@ p:last-child {
 
 .category-editor h2 {
     margin: 0;
-    color: #1b1b1b;
+    color: var(--color-ink);
     font-size: 1.5rem;
     font-weight: 900;
     letter-spacing: -0.035em;

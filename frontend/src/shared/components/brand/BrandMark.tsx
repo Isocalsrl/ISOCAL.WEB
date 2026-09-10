@@ -6,16 +6,19 @@ import "./brand.css";
 
 interface BrandMarkProps {
     to?: string;
+    onNavigate?: () => void;
 }
 
 export function BrandMark({
     to = "/",
+    onNavigate,
 }: BrandMarkProps) {
     return (
         <Link
             className="brand-mark"
             to={to}
             aria-label="Ir al inicio de ISOCAL"
+            onClick={onNavigate}
         >
             <span className="brand-word">
                 ISOCAL

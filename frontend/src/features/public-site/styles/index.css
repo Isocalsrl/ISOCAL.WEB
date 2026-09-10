@@ -1,0 +1,10 @@
+/* Punto de entrada: el orden conserva la cascada del sitio público. */
+@import "./layout.css";
+@import "./components.css";
+@import "./header.css";
+@import "./home.css";
+@import "./about.css";
+@import "./services.css";
+@import "./catalog.css";
+@import "./footer.css";
+@import "./responsive.css";
