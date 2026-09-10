@@ -1,0 +1,67 @@
+/* Contenido exclusivo de la página Nosotros. */
+
+.public-story-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(18rem, 0.75fr)
+        minmax(0, 1.25fr);
+    align-items: stretch;
+    gap:
+        clamp(
+            2rem,
+            7vw,
+            6rem
+        );
+}
+
+.public-story-marker {
+    display: grid;
+    min-height: 27rem;
+    padding:
+        clamp(
+            2rem,
+            5vw,
+            3.5rem
+        );
+    align-content: space-between;
+    color: var(--color-surface);
+    background:
+        linear-gradient(
+            135deg,
+            transparent 72%,
+            rgba(201, 0, 28, 0.46)
+                72%
+        ),
+        var(--color-ink);
+}
+
+.public-story-marker span {
+    color: #ff7185;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+}
+
+.public-story-marker strong {
+    font-size:
+        clamp(
+            2.4rem,
+            4vw,
+            3.8rem
+        );
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+}
+
+.public-story-copy {
+    align-self: center;
+}
+
+.public-story-copy
+> p:not(.eyebrow) {
+    margin: 1.4rem 0 0;
+    color:
+        var(--color-text-muted);
+    line-height: 1.75;
+}

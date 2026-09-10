@@ -9,6 +9,7 @@ type ButtonVariant =
     | "primary"
     | "dark"
     | "secondary"
+    | "light"
     | "danger"
     | "quiet";
 

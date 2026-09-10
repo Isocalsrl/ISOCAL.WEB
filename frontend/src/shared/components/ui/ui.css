@@ -28,15 +28,15 @@
 }
 
 .ui-button-primary {
-    border-color: #c9001c;
-    color: #ffffff;
-    background: #c9001c;
+    border-color: var(--color-brand);
+    color: var(--color-surface);
+    background: var(--color-brand);
 }
 
 .ui-button-dark {
-    border-color: #1b1b1b;
-    color: #ffffff;
-    background: #1b1b1b;
+    border-color: var(--color-ink);
+    color: var(--color-surface);
+    background: var(--color-ink);
 }
 
 .ui-button-primary::after,
@@ -50,41 +50,55 @@
 .ui-button-dark:hover:not(
     :disabled
 ) {
-    border-color: #980015;
-    background: #980015;
+    border-color: var(--color-brand-dark);
+    background: var(--color-brand-dark);
 }
 
 .ui-button-secondary {
-    border-color: #1b1b1b;
-    color: #1b1b1b;
-    background: #ffffff;
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+    background: var(--color-surface);
 }
 
 .ui-button-secondary:hover:not(
     :disabled
 ) {
-    color: #ffffff;
-    background: #1b1b1b;
+    color: var(--color-surface);
+    background: var(--color-ink);
+}
+
+.ui-button-light {
+    border-color: var(--color-surface);
+    color: var(--color-ink);
+    background: var(--color-surface);
+}
+
+.ui-button-light:hover:not(
+    :disabled
+) {
+    border-color: var(--color-brand);
+    color: var(--color-surface);
+    background: var(--color-brand);
 }
 
 .ui-button-danger {
-    border-color: #c9001c;
-    color: #c9001c;
-    background: #ffffff;
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+    background: var(--color-surface);
 }
 
 .ui-button-danger:hover:not(
     :disabled
 ) {
-    color: #ffffff;
-    background: #c9001c;
+    color: var(--color-surface);
+    background: var(--color-brand);
 }
 
 .ui-button-quiet {
     min-height: auto;
     padding: 0.35rem;
     border: 0;
-    color: #555555;
+    color: var(--color-text);
     background: transparent;
 }
 
@@ -95,7 +109,7 @@
 .ui-button-quiet:hover:not(
     :disabled
 ) {
-    color: #c9001c;
+    color: var(--color-brand);
 }
 
 .ui-button:disabled {
@@ -131,7 +145,7 @@
 
 .form-field-required {
     margin-left: 0.25rem;
-    color: #c9001c;
+    color: var(--color-brand);
 }
 
 .form-field small {
@@ -145,10 +159,10 @@
     min-height: 3.15rem;
     padding: 0.78rem 0.9rem;
     border: 1px solid #c9c9c9;
-    border-left: 4px solid #c9001c;
+    border-left: 4px solid var(--color-brand);
     border-radius: 0.12rem;
-    color: #1b1b1b;
-    background: #ffffff;
+    color: var(--color-ink);
+    background: var(--color-surface);
     transition:
         border-color 140ms ease,
         box-shadow 140ms ease;
@@ -158,12 +172,12 @@
     :disabled
 ) {
     border-color: #777777;
-    border-left-color: #c9001c;
+    border-left-color: var(--color-brand);
 }
 
 .form-control:focus {
-    border-color: #1b1b1b;
-    border-left-color: #c9001c;
+    border-color: var(--color-ink);
+    border-left-color: var(--color-brand);
     box-shadow:
         0 0 0 3px
         rgba(201, 0, 28, 0.11);
@@ -201,8 +215,8 @@ select.form-control {
         31rem
     );
     padding: 2rem;
-    border-top: 0.45rem solid #c9001c;
-    background: #ffffff;
+    border-top: 0.45rem solid var(--color-brand);
+    background: var(--color-surface);
     box-shadow:
         0 1.5rem 4rem
         rgba(0, 0, 0, 0.28);
@@ -210,7 +224,7 @@ select.form-control {
 
 .confirm-dialog h2 {
     margin: 0;
-    color: #1b1b1b;
+    color: var(--color-ink);
     font-size: 1.65rem;
     font-weight: 900;
     letter-spacing: -0.035em;
@@ -218,7 +232,7 @@ select.form-control {
 
 .confirm-dialog > p:not(.eyebrow) {
     margin: 0.9rem 0 0;
-    color: #626262;
+    color: var(--color-text-muted);
     line-height: 1.6;
 }
 
@@ -237,7 +251,7 @@ select.form-control {
     place-items: center;
     align-content: center;
     text-align: center;
-    background: #ffffff;
+    background: var(--color-surface);
 }
 
 .section-state-spinner {
@@ -246,12 +260,12 @@ select.form-control {
     margin-bottom: 1rem;
     border-color:
         rgba(201, 0, 28, 0.18);
-    border-top-color: #c9001c;
+    border-top-color: var(--color-brand);
 }
 
 .section-state h2 {
     margin: 0;
-    color: #1b1b1b;
+    color: var(--color-ink);
     font-size: 1.35rem;
     font-weight: 900;
 }
@@ -266,7 +280,7 @@ select.form-control {
 .status-badge {
     display: inline-flex;
     padding: 0.35rem 0.5rem;
-    border-left: 3px solid #238347;
+    border-left: 3px solid var(--color-success);
     color: #1d6736;
     background: #edf7f0;
     font-size: 0.62rem;

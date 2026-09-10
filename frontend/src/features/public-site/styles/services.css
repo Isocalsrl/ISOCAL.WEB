@@ -1,0 +1,77 @@
+/* Contenido exclusivo de la página Servicios. */
+
+.public-services-list {
+    display: grid;
+    border-top:
+        3px solid
+        var(--color-ink);
+}
+
+.public-service-card {
+    display: grid;
+    padding:
+        clamp(
+            2rem,
+            5vw,
+            3.25rem
+        )
+        0;
+    border-bottom:
+        1px solid
+        var(--color-border);
+    grid-template-columns:
+        4rem
+        minmax(0, 0.9fr)
+        minmax(18rem, 0.65fr);
+    align-items: start;
+    gap:
+        clamp(
+            1.5rem,
+            4vw,
+            3.5rem
+        );
+}
+
+.public-service-number {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    color: var(--color-surface);
+    background:
+        var(--color-brand);
+    font-size: 0.7rem;
+    font-weight: 900;
+}
+
+.public-service-card h2 {
+    margin: 0;
+    font-size:
+        clamp(
+            1.65rem,
+            3vw,
+            2.5rem
+        );
+    font-weight: 900;
+    letter-spacing: -0.05em;
+}
+
+.public-service-card p {
+    color:
+        var(--color-text-muted);
+    line-height: 1.7;
+}
+
+.public-service-card
+> div p {
+    margin: 0.9rem 0 0;
+}
+
+.public-service-detail {
+    margin: 0;
+    padding-left: 1.25rem;
+    border-left:
+        3px solid
+        var(--color-border);
+    font-size: 0.9rem;
+}

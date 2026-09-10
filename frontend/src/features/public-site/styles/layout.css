@@ -1,0 +1,75 @@
+/* Estructura general, contenedores y cabeceras internas. */
+
+.public-site-shell {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    color: var(--color-ink);
+    background: var(--color-surface);
+}
+
+.public-container {
+    width: min(
+        calc(100% - 3rem),
+        var(--layout-public-width)
+    );
+    margin: 0 auto;
+}
+
+.public-main {
+    flex: 1;
+}
+
+
+.public-page-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom:
+        1px solid
+        var(--color-border);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(27, 27, 27, 0.04)
+                1px,
+            transparent 1px
+        )
+        0 0 / 4rem 100%,
+        var(--color-surface-muted);
+}
+
+.public-page-hero::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width:
+        clamp(
+            0.35rem,
+            1vw,
+            0.7rem
+        );
+    background:
+        var(--color-brand);
+    content: "";
+}
+
+.public-page-hero-content {
+    padding:
+        clamp(
+            4.5rem,
+            9vw,
+            7rem
+        )
+        0;
+}
+
+.public-page-hero h1 {
+    max-width: 64rem;
+    font-size:
+        clamp(
+            3rem,
+            6.5vw,
+            5.8rem
+        );
+}

@@ -2,8 +2,8 @@
 
 ## Objetivo
 
-Mantener separadas la composición de la aplicación, las funciones compartidas y
-la lógica propia de cada módulo administrativo.
+Mantener separadas la composición de la aplicación, las funciones compartidas
+y la lógica propia de cada feature pública o administrativa.
 
 ## Flujo principal
 
@@ -11,6 +11,8 @@ la lógica propia de cada módulo administrativo.
 AppRouter → guard de autenticación → AdminLayout → página del módulo
                                                 ↓
                                    API → cliente HTTP → backend
+
+AppRouter → PublicLayout → página pública
 ```
 
 - **`app/`:** compone providers y rutas.
@@ -53,3 +55,41 @@ registros activos; un `super_admin` recibe activos e inactivos y puede
 reactivarlos. Los endpoints públicos continúan mostrando solo el contenido
 activo. La categoría no puede desactivarse mientras tenga productos asociados;
 el mensaje enviado por la API se presenta directamente al administrador.
+
+## Organización de estilos
+
+La paleta, tipografía y anchos principales viven en
+shared/styles/theme.css. El panel, el login, el sitio público y los
+componentes UI consumen esas mismas variables; un cambio de identidad visual
+se realiza allí y no se duplica por tipo de usuario.
+
+El punto de entrada del sitio público es features/public-site/styles/index.css.
+Sus archivos se separan por responsabilidad:
+
+- layout.css: estructura, contenedores y hero de páginas internas.
+- components.css: patrones usados por más de una página pública.
+- header.css y footer.css: navegación y pie de página.
+- home.css, about.css, services.css y catalog.css: reglas exclusivas de cada
+  pantalla.
+- responsive.css: ajustes agrupados por breakpoint.
+
+Los botones y enlaces de acción públicos y administrativos usan los
+componentes de shared/components/ui. Si una regla se reutiliza entre dos
+pantallas, debe ir en components.css; si pertenece a una sola, debe quedarse
+en el archivo de esa página.
+
+## Organización de autenticación
+
+La feature auth sigue el mismo criterio modular que productos:
+
+- api/ contiene exclusivamente las llamadas HTTP.
+- types/ define los contratos.
+- context/ y hooks/ administran y exponen la sesión.
+- guards/ protege las rutas según sesión y rol.
+- validation/ contiene validaciones puras.
+- components/ contiene el formulario y piezas reutilizables.
+- pages/ compone las pantallas sin concentrar su lógica interna.
+
+El acceso al login administrativo no forma parte de la navegación del sitio
+público. Conocer su ruta no reemplaza los controles de sesión y rol aplicados
+en frontend y backend.

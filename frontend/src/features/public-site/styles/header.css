@@ -1,0 +1,108 @@
+/* Cabecera y navegación principal. */
+
+.public-header {
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    border-bottom:
+        1px solid
+        rgba(27, 27, 27, 0.12);
+    background:
+        rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(0.75rem);
+}
+
+.public-header::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 0.25rem;
+    background: var(--color-brand);
+    content: "";
+}
+
+.public-header-content {
+    position: relative;
+    display: flex;
+    min-height: 5.6rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.public-header .brand-mark {
+    color: var(--color-ink);
+}
+
+.public-header .brand-chevrons {
+    color: var(--color-brand);
+}
+
+.public-navigation {
+    display: flex;
+    align-items: stretch;
+    align-self: stretch;
+    gap: 0.25rem;
+}
+
+.public-navigation-link {
+    position: relative;
+    display: inline-flex;
+    padding: 0 1rem;
+    align-items: center;
+    color: #535353;
+    font-size: 0.72rem;
+    font-weight: 850;
+    letter-spacing: 0.055em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+        color 150ms ease,
+        background 150ms ease;
+}
+
+.public-navigation-link::after {
+    position: absolute;
+    right: 1rem;
+    bottom: 0;
+    left: 1rem;
+    height: 0.25rem;
+    background: var(--color-brand);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: center;
+    transition:
+        transform 150ms ease;
+}
+
+.public-navigation-link:hover,
+.public-navigation-link-active {
+    color: var(--color-ink);
+    background: #f7f7f7;
+}
+
+.public-navigation-link:hover::after,
+.public-navigation-link-active::after {
+    transform: scaleX(1);
+}
+
+.public-menu-button {
+    display: none;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.72rem;
+    border: 0;
+    place-content: center;
+    gap: 0.28rem;
+    color: var(--color-surface);
+    background: var(--color-ink);
+    cursor: pointer;
+}
+
+.public-menu-button span {
+    display: block;
+    width: 1.35rem;
+    height: 0.13rem;
+    background: currentColor;
+}
