@@ -62,14 +62,23 @@ export function AdminDashboardPage() {
         <main className="dashboard-page">
             <header className="dashboard-header">
                 <Link
-                    className="brand-mark brand-mark-dark"
+                    className="brand-mark"
                     to="/"
                 >
-                    <span className="brand-symbol">
-                        I
+                    <span className="brand-word">
+                        ISOCAL
+
+                        <span
+                            className="brand-chevrons"
+                            aria-hidden="true"
+                        >
+                            »
+                        </span>
                     </span>
 
-                    <span>ISOCAL</span>
+                    <span className="brand-subtitle">
+                        Consultoría y metrología
+                    </span>
                 </Link>
 
                 <div className="admin-actions">
@@ -99,7 +108,7 @@ export function AdminDashboardPage() {
                 </p>
 
                 <h1>
-                    Hola, {admin?.name}
+                    Bienvenido, {admin?.name}
                 </h1>
 
                 <p>

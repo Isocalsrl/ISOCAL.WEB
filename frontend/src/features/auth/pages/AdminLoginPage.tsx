@@ -176,36 +176,42 @@ export function AdminLoginPage() {
                     to="/"
                     aria-label="Ir al catálogo de ISOCAL"
                 >
-                    <span className="brand-symbol">
-                        I
+                    <span className="brand-word">
+                        ISOCAL
+
+                        <span
+                            className="brand-chevrons"
+                            aria-hidden="true"
+                        >
+                            »
+                        </span>
                     </span>
 
-                    <span>ISOCAL</span>
+                    <span className="brand-subtitle">
+                        Consultoría y metrología
+                    </span>
                 </Link>
 
                 <div className="brand-copy">
                     <p className="eyebrow">
-                        Gestión técnica
-                        centralizada
+                        Acceso interno
                     </p>
 
                     <h1>
-                        Control claro para
-                        un servicio preciso.
+                        Administración
+                        ISOCAL
                     </h1>
 
                     <p>
-                        Administra el catálogo
-                        y la información
-                        operativa desde un
-                        entorno reservado para
-                        el equipo de ISOCAL.
+                        Gestión de catálogo y
+                        contenidos para el
+                        equipo autorizado.
                     </p>
                 </div>
 
                 <p className="brand-caption">
-                    Metrología · Calibración
-                    · Confianza
+                    Precisión · Confianza
+                    · Experiencia
                 </p>
             </section>
 
@@ -221,17 +227,15 @@ export function AdminLoginPage() {
                 >
                     <div>
                         <p className="eyebrow">
-                            Panel
-                            administrativo
+                            Sistema de gestión
                         </p>
 
-                        <h2>Bienvenido</h2>
+                        <h2>Iniciar sesión</h2>
 
                         <p className="login-intro">
-                            Ingresa con las
-                            credenciales
-                            asignadas a tu
-                            cuenta.
+                            Ingresa tus
+                            credenciales para
+                            continuar al panel.
                         </p>
                     </div>
 
