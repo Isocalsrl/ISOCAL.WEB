@@ -32,6 +32,19 @@ export async function listCategories(
     );
 }
 
+export async function listAdminCategories(
+    req: Request,
+    res: Response,
+): Promise<void> {
+    const categories =
+        await categoriesService
+            .getAdminCategories(
+                req.admin!.role,
+            );
+
+    sendSuccess(res, categories);
+}
+
 export async function getCategoryById(
     req: Request,
     res: Response,
@@ -49,6 +62,24 @@ export async function getCategoryById(
         res,
         category,
     );
+}
+
+export async function getAdminCategoryById(
+    req: Request,
+    res: Response,
+): Promise<void> {
+    const id = parsePositiveInt(
+        req.params.id,
+    );
+
+    const category =
+        await categoriesService
+            .getAdminCategoryById(
+                id,
+                req.admin!.role,
+            );
+
+    sendSuccess(res, category);
 }
 
 
@@ -80,7 +111,10 @@ export async function createCategory(
 
     const category =
         await categoriesService
-            .createCategory(input);
+            .createCategory(
+                input,
+                req.admin!.role,
+            );
 
     sendSuccess(
         res,
@@ -106,6 +140,7 @@ export async function updateCategory(
             .updateCategory(
                 id,
                 input,
+                req.admin!.role,
             );
 
     sendSuccess(

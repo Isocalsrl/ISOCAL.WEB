@@ -103,6 +103,17 @@ export function AdminLayout() {
                         <span>02</span>
                         Categorías
                     </NavLink>
+
+                    {admin?.role ===
+                        "super_admin" && (
+                        <NavLink
+                            className={navigationClass}
+                            to="/admin/access-history"
+                        >
+                            <span>03</span>
+                            Registro de accesos
+                        </NavLink>
+                    )}
                 </nav>
 
                 <p className="admin-sidebar-footer">

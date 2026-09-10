@@ -4,6 +4,7 @@ import {
 
 import type {
     AuthData,
+    LoginEvent,
     LoginCredentials,
 } from "../types/auth.types";
 
@@ -38,5 +39,12 @@ export function logout():
         {
             method: "POST",
         },
+    );
+}
+
+export function getLoginHistory():
+    Promise<LoginEvent[]> {
+    return request<LoginEvent[]>(
+        `${AUTH_PATH}/login-history`,
     );
 }

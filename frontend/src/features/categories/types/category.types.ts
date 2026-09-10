@@ -13,3 +13,8 @@ export interface CategoryInput {
     slug: string;
     description: string | null;
 }
+
+export type CategoryUpdateInput =
+    Partial<CategoryInput> & {
+        isActive?: boolean;
+    };

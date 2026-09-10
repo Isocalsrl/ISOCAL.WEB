@@ -30,12 +30,20 @@ import {
 } from "../../../shared/components/ui/SectionState";
 
 import {
+    StatusBadge,
+} from "../../../shared/components/ui/StatusBadge";
+
+import {
     toSlug,
 } from "../../../shared/utils/toSlug";
 
 import {
     ManagementHeader,
 } from "../../admin/components/ManagementHeader";
+
+import {
+    useAuth,
+} from "../../auth/hooks/useAuth";
 
 import * as categoriesApi
     from "../api/categories.api";
@@ -69,6 +77,13 @@ function sortCategories(
 }
 
 export function CategoriesPage() {
+    const {
+        admin,
+    } = useAuth();
+
+    const isSuperAdmin =
+        admin?.role === "super_admin";
+
     const [
         categories,
         setCategories,
@@ -110,6 +125,11 @@ export function CategoriesPage() {
         isDeactivating,
         setIsDeactivating,
     ] = useState(false);
+
+    const [
+        reactivatingCategoryId,
+        setReactivatingCategoryId,
+    ] = useState<number | null>(null);
 
     const [
         errorMessage,
@@ -318,18 +338,26 @@ export function CategoriesPage() {
         setIsDeactivating(true);
 
         try {
-            await categoriesApi
-                .deactivateCategory(
-                    categoryToDeactivate.id,
-                );
+            const deactivatedCategory =
+                await categoriesApi
+                    .deactivateCategory(
+                        categoryToDeactivate.id,
+                    );
 
-            setCategories(
-                (currentCategories) =>
-                    currentCategories.filter(
-                        (category) =>
-                            category.id !==
-                            categoryToDeactivate.id,
-                    ),
+            setCategories((currentCategories) =>
+                isSuperAdmin
+                    ? currentCategories.map(
+                          (category) =>
+                              category.id ===
+                              deactivatedCategory.id
+                                  ? deactivatedCategory
+                                  : category,
+                      )
+                    : currentCategories.filter(
+                          (category) =>
+                              category.id !==
+                              categoryToDeactivate.id,
+                      ),
             );
 
             if (
@@ -354,12 +382,68 @@ export function CategoriesPage() {
         }
     }
 
+    async function handleReactivate(
+        category: Category,
+    ): Promise<void> {
+        setErrorMessage(null);
+        setSuccessMessage(null);
+        setReactivatingCategoryId(
+            category.id,
+        );
+
+        try {
+            const reactivatedCategory =
+                await categoriesApi
+                    .reactivateCategory(
+                        category.id,
+                    );
+
+            setCategories(
+                (currentCategories) =>
+                    sortCategories(
+                        currentCategories.map(
+                            (currentCategory) =>
+                                currentCategory.id ===
+                                reactivatedCategory.id
+                                    ? reactivatedCategory
+                                    : currentCategory,
+                        ),
+                    ),
+            );
+
+            if (
+                categoryBeingEdited?.id ===
+                category.id
+            ) {
+                setCategoryBeingEdited(
+                    reactivatedCategory,
+                );
+            }
+
+            setSuccessMessage(
+                "Categoría reactivada correctamente.",
+            );
+        } catch (error) {
+            setErrorMessage(
+                error instanceof ApiError
+                    ? error.message
+                    : "No se pudo reactivar la categoría.",
+            );
+        } finally {
+            setReactivatingCategoryId(null);
+        }
+    }
+
     return (
         <section className="management-page">
             <ManagementHeader
                 eyebrow="Clasificación"
                 title="Categorías"
-                description="Organiza los productos mediante categorías claras y consistentes."
+                description={
+                    isSuperAdmin
+                        ? "Supervisa la clasificación completa y recupera registros desactivados."
+                        : "Organiza los productos mediante categorías claras y consistentes."
+                }
                 actions={
                     categoryBeingEdited ? (
                         <Button
@@ -406,7 +490,11 @@ export function CategoriesPage() {
                 <div className="category-workspace">
                     <div className="data-panel">
                         <div className="category-list-heading">
-                            <h2>Categorías activas</h2>
+                            <h2>
+                                {isSuperAdmin
+                                    ? "Categorías registradas"
+                                    : "Categorías activas"}
+                            </h2>
                             <span>{categories.length}</span>
                         </div>
 
@@ -433,6 +521,14 @@ export function CategoriesPage() {
                                                     {category.description ??
                                                         "Sin descripción"}
                                                 </p>
+
+                                                <StatusBadge
+                                                    isActive={
+                                                        category.isActive
+                                                    }
+                                                    activeLabel="Activa"
+                                                    inactiveLabel="Inactiva"
+                                                />
                                             </div>
 
                                             <div className="data-actions">
@@ -446,17 +542,35 @@ export function CategoriesPage() {
                                                     Editar
                                                 </Button>
 
-                                                <Button
-                                                    type="button"
-                                                    variant="danger"
-                                                    onClick={() => {
-                                                        setCategoryToDeactivate(
-                                                            category,
-                                                        );
-                                                    }}
-                                                >
-                                                    Desactivar
-                                                </Button>
+                                                {category.isActive ? (
+                                                    <Button
+                                                        type="button"
+                                                        variant="danger"
+                                                        onClick={() => {
+                                                            setCategoryToDeactivate(
+                                                                category,
+                                                            );
+                                                        }}
+                                                    >
+                                                        Desactivar
+                                                    </Button>
+                                                ) : (
+                                                    <Button
+                                                        type="button"
+                                                        isLoading={
+                                                            reactivatingCategoryId ===
+                                                            category.id
+                                                        }
+                                                        loadingLabel="Reactivando..."
+                                                        onClick={() => {
+                                                            void handleReactivate(
+                                                                category,
+                                                            );
+                                                        }}
+                                                    >
+                                                        Reactivar
+                                                    </Button>
+                                                )}
                                             </div>
                                         </article>
                                     ),

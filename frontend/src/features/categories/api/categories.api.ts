@@ -5,10 +5,8 @@ import {
 import type {
     Category,
     CategoryInput,
+    CategoryUpdateInput,
 } from "../types/category.types";
-
-const PUBLIC_CATEGORIES_PATH =
-    "/api/categories";
 
 const ADMIN_CATEGORIES_PATH =
     "/api/admin/categories";
@@ -16,7 +14,7 @@ const ADMIN_CATEGORIES_PATH =
 export function listCategories():
     Promise<Category[]> {
     return request<Category[]>(
-        PUBLIC_CATEGORIES_PATH,
+        ADMIN_CATEGORIES_PATH,
     );
 }
 
@@ -34,13 +32,24 @@ export function createCategory(
 
 export function updateCategory(
     id: number,
-    input: CategoryInput,
+    input: CategoryUpdateInput,
 ): Promise<Category> {
     return request<Category>(
         `${ADMIN_CATEGORIES_PATH}/${id}`,
         {
             method: "PATCH",
             body: JSON.stringify(input),
+        },
+    );
+}
+
+export function reactivateCategory(
+    id: number,
+): Promise<Category> {
+    return updateCategory(
+        id,
+        {
+            isActive: true,
         },
     );
 }

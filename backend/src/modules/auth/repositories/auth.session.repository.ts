@@ -2,10 +2,19 @@ import {
     db,
 } from "../../../database/db.js";
 
+import type {
+    CreateLoginEventInput,
+} from "../auth.types.js";
+
+import {
+    recordLoginEvent,
+} from "./auth.login-event.repository.js";
+
 export async function createSession(
     adminId: number,
     tokenHash: string,
     expiresAt: Date,
+    loginEvent: CreateLoginEventInput,
 ): Promise<void> {
     const client = await db.connect();
 
@@ -39,6 +48,11 @@ export async function createSession(
                 WHERE id = $1
             `,
             [adminId],
+        );
+
+        await recordLoginEvent(
+            loginEvent,
+            client,
         );
 
         await client.query("COMMIT");

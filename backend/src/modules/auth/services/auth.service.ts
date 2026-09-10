@@ -13,7 +13,9 @@ import * as authRepository
     from "../repositories/index.js";
 import type {
     Admin,
+    LoginEvent,
     LoginInput,
+    LoginMetadata,
     LoginResult,
 } from "../auth.types.js";
 import {
@@ -41,6 +43,7 @@ export function hashSessionToken(
 
 export async function login(
     input: LoginInput,
+    metadata: LoginMetadata,
 ): Promise<LoginResult> {
     const normalizedInput =
         normalizeLoginInput(input);
@@ -61,11 +64,38 @@ export async function login(
             passwordHash,
         );
 
-    if (
-        !admin ||
-        !passwordMatches ||
-        !admin.isActive
-    ) {
+    const loginMetadata = {
+        ipAddress:
+            metadata.ipAddress
+                ?.trim()
+                .slice(0, 64) || null,
+        userAgent:
+            metadata.userAgent
+                ?.trim()
+                .slice(0, 512) || null,
+    };
+
+    if (!admin || !passwordMatches) {
+        await authRepository.recordLoginEvent({
+            adminId: admin?.id ?? null,
+            attemptedEmail:
+                normalizedInput.email,
+            outcome: "invalid_credentials",
+            ...loginMetadata,
+        });
+
+        invalidCredentials();
+    }
+
+    if (!admin.isActive) {
+        await authRepository.recordLoginEvent({
+            adminId: admin.id,
+            attemptedEmail:
+                normalizedInput.email,
+            outcome: "inactive_account",
+            ...loginMetadata,
+        });
+
         invalidCredentials();
     }
 
@@ -89,6 +119,13 @@ export async function login(
         admin.id,
         hashSessionToken(sessionToken),
         expiresAt,
+        {
+            adminId: admin.id,
+            attemptedEmail:
+                normalizedInput.email,
+            outcome: "success",
+            ...loginMetadata,
+        },
     );
 
     const {
@@ -143,4 +180,10 @@ export async function hashPassword(
         password,
         12,
     );
+}
+
+export async function getLoginHistory():
+    Promise<LoginEvent[]> {
+    return authRepository
+        .findRecentLoginEvents();
 }

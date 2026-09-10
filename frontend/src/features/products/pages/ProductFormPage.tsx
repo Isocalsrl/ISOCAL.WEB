@@ -152,7 +152,12 @@ export function ProductFormPage() {
                     return;
                 }
 
-                setCategories(nextCategories);
+                setCategories(
+                    nextCategories.filter(
+                        (category) =>
+                            category.isActive,
+                    ),
+                );
 
                 if (product) {
                     setForm({

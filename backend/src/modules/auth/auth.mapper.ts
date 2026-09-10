@@ -1,6 +1,8 @@
 import type {
     Admin,
     AdminWithPasswordHash,
+    LoginEvent,
+    LoginOutcome,
 } from "./auth.types.js";
 
 export interface AdminRow {
@@ -17,6 +19,17 @@ export interface AdminRow {
 export interface AdminWithPasswordHashRow
     extends AdminRow {
     password_hash: string;
+}
+
+export interface LoginEventRow {
+    id: string | number;
+    admin_id: number | null;
+    admin_name: string | null;
+    attempted_email: string;
+    outcome: LoginOutcome;
+    ip_address: string | null;
+    user_agent: string | null;
+    occurred_at: Date;
 }
 
 export function toAdmin(
@@ -40,5 +53,20 @@ export function toAdminWithPasswordHash(
     return {
         ...toAdmin(row),
         passwordHash: row.password_hash,
+    };
+}
+
+export function toLoginEvent(
+    row: LoginEventRow,
+): LoginEvent {
+    return {
+        id: Number(row.id),
+        adminId: row.admin_id,
+        adminName: row.admin_name,
+        attemptedEmail: row.attempted_email,
+        outcome: row.outcome,
+        ipAddress: row.ip_address,
+        userAgent: row.user_agent,
+        occurredAt: row.occurred_at,
     };
 }

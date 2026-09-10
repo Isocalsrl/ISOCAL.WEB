@@ -15,3 +15,8 @@ export interface ProductInput {
     description: string | null;
     categoryId: number | null;
 }
+
+export type ProductUpdateInput =
+    Partial<ProductInput> & {
+        isActive?: boolean;
+    };

@@ -22,6 +22,22 @@ export interface AuthData {
     admin: Admin;
 }
 
+export type LoginOutcome =
+    | "success"
+    | "invalid_credentials"
+    | "inactive_account";
+
+export interface LoginEvent {
+    id: number;
+    adminId: number | null;
+    adminName: string | null;
+    attemptedEmail: string;
+    outcome: LoginOutcome;
+    ipAddress: string | null;
+    userAgent: string | null;
+    occurredAt: string;
+}
+
 export type AuthStatus =
     | "loading"
     | "authenticated"

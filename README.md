@@ -77,15 +77,30 @@ npm run db:init
 Este comando crea el contenedor y el volumen `postgres_data` si todavía no
 existen. Las siguientes ejecuciones conservan los datos y solo aplican las
 migraciones que aún no estén registradas en la tabla `schema_migrations`. El
-seed es idempotente: crea el administrador, tres categorías y cuatro productos
-de prueba solo si todavía no existen.
+seed es idempotente: crea dos accesos administrativos, tres categorías y cuatro
+productos de prueba solo si todavía no existen. Las credenciales viven en el
+script de seed porque se usan únicamente para desarrollo local; no requieren
+variables adicionales en el `.env`.
 
-Credenciales locales del administrador:
+Credenciales locales del propietario:
 
 ```text
 Correo: admin@isocal.com
 Contraseña: Admin123!
+Rol: super_admin
 ```
+
+Credenciales locales del administrador de desarrollo:
+
+```text
+Correo: developer@isocal.com
+Contraseña: Developer123!
+Rol: admin
+```
+
+El administrador de desarrollo gestiona contenido activo. El propietario puede
+consultar también los registros inactivos, restaurarlos y revisar el registro de
+accesos al panel.
 
 Para volver a ejecutar únicamente los seeds sobre una base ya inicializada:
 

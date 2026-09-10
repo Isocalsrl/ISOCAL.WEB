@@ -29,11 +29,16 @@ AppRouter → guard de autenticación → AdminLayout → página del módulo
 /admin/products/new              creación de producto
 /admin/products/:productId/edit  edición de producto
 /admin/categories                gestión de categorías
+/admin/access-history            registro de accesos (solo super_admin)
 ```
 
 Todas las rutas se renderizan dentro de `ProtectedRoute`. Mientras se verifica
 la cookie de sesión se muestra un estado de carga; una respuesta `401` redirige
 al login y un error de conexión permite reintentar la consulta.
+
+`SuperAdminRoute` agrega el límite de navegación para las vistas reservadas al
+propietario. Es una medida de presentación; el backend vuelve a validar el rol
+en cada operación sensible.
 
 ## Componentes compartidos
 
@@ -43,7 +48,8 @@ feature conserva sus validaciones, estados y llamadas a la API.
 
 ## Contrato actual del catálogo
 
-Los endpoints de listado devuelven únicamente registros activos. Por esa razón,
-cuando un producto o una categoría se desactiva deja de aparecer en el panel.
-La categoría no puede desactivarse mientras tenga productos asociados; el
-mensaje enviado por la API se presenta directamente al administrador.
+Los listados privados respetan el rol de la sesión. Un `admin` recibe únicamente
+registros activos; un `super_admin` recibe activos e inactivos y puede
+reactivarlos. Los endpoints públicos continúan mostrando solo el contenido
+activo. La categoría no puede desactivarse mientras tenga productos asociados;
+el mensaje enviado por la API se presenta directamente al administrador.

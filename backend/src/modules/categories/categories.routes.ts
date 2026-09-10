@@ -41,6 +41,16 @@ export function createAdminCategoriesRouter(
         authenticateAdmin,
     );
 
+    router.get(
+        "/",
+        categoriesController.listAdminCategories,
+    );
+
+    router.get(
+        "/:id",
+        categoriesController.getAdminCategoryById,
+    );
+
     router.post(
         "/",
         validateBody(

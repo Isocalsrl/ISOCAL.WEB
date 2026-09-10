@@ -7,6 +7,10 @@ import {
 } from "../../middlewares/auth.middleware.js";
 
 import {
+    requireAdminRole,
+} from "../../middlewares/role.middleware.js";
+
+import {
     validateBody,
 } from "../../middlewares/validate.middleware.js";
 
@@ -37,4 +41,11 @@ authRouter.get(
     "/me",
     authenticateAdmin,
     authController.getCurrentAdmin,
+);
+
+authRouter.get(
+    "/login-history",
+    authenticateAdmin,
+    requireAdminRole("super_admin"),
+    authController.getLoginHistory,
 );

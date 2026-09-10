@@ -27,6 +27,13 @@ export async function login(
     const result =
         await authService.login(
             req.body as LoginInput,
+            {
+                ipAddress:
+                    req.ip ?? null,
+                userAgent:
+                    req.get("user-agent") ??
+                    null,
+            },
         );
 
     setSessionCookie(
@@ -73,5 +80,19 @@ export async function logout(
     sendSuccess(
         res,
         null,
+    );
+}
+
+export async function getLoginHistory(
+    _req: Request,
+    res: Response,
+): Promise<void> {
+    const events =
+        await authService
+            .getLoginHistory();
+
+    sendSuccess(
+        res,
+        events,
     );
 }

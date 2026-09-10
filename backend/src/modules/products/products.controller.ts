@@ -13,6 +13,19 @@ export async function listProducts(_req: Request, res: Response): Promise<void> 
     sendSuccess(res, products);
 }
 
+export async function listAdminProducts(
+    req: Request,
+    res: Response,
+): Promise<void> {
+    const products =
+        await productsService
+            .getAdminProducts(
+                req.admin!.role,
+            );
+
+    sendSuccess(res, products);
+}
+
 export async function getProductById(req: Request, res: Response): Promise<void> {
     const id = parsePositiveInt(req.params.id);
     const product = await productsService.getProductById(id);
@@ -20,9 +33,27 @@ export async function getProductById(req: Request, res: Response): Promise<void>
     sendSuccess(res, product);
 }
 
+export async function getAdminProductById(
+    req: Request,
+    res: Response,
+): Promise<void> {
+    const id = parsePositiveInt(req.params.id);
+    const product =
+        await productsService
+            .getAdminProductById(
+                id,
+                req.admin!.role,
+            );
+
+    sendSuccess(res, product);
+}
+
 export async function createProduct(req: Request, res: Response): Promise<void> {
     const input = req.body as CreateProductInput;
-    const product = await productsService.createProduct(input);
+    const product = await productsService.createProduct(
+        input,
+        req.admin!.role,
+    );
 
     sendSuccess(res, product, 201);
 }
@@ -30,7 +61,11 @@ export async function createProduct(req: Request, res: Response): Promise<void> 
 export async function updateProduct(req: Request, res: Response): Promise<void> {
     const id = parsePositiveInt(req.params.id);
     const input = req.body as UpdateProductInput;
-    const product = await productsService.updateProduct(id, input);
+    const product = await productsService.updateProduct(
+        id,
+        input,
+        req.admin!.role,
+    );
 
     sendSuccess(res, product);
 }

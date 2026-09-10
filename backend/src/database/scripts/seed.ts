@@ -7,12 +7,20 @@ import {
     createSeedProductIfMissing,
 } from "../../modules/products/repositories/products.seed.repository.js";
 
-const TEST_ADMIN = {
-    name: "Administrador Isocal",
-    email: "admin@isocal.com",
-    password: "Admin123!",
-    role: "super_admin" as const,
-};
+const TEST_ADMINS = [
+    {
+        name: "Propietario Isocal",
+        email: "admin@isocal.com",
+        password: "Admin123!",
+        role: "super_admin" as const,
+    },
+    {
+        name: "Administrador de desarrollo",
+        email: "developer@isocal.com",
+        password: "Developer123!",
+        role: "admin" as const,
+    },
+] as const;
 
 const TEST_CATEGORIES = [
     {
@@ -67,13 +75,19 @@ const TEST_PRODUCTS = [
 ] as const;
 
 export async function runSeeds(): Promise<void> {
-    const adminResult =
-        await seedAdmin(TEST_ADMIN);
+    let createdAdmins = 0;
+
+    for (const admin of TEST_ADMINS) {
+        const result =
+            await seedAdmin(admin);
+
+        if (result === "created") {
+            createdAdmins += 1;
+        }
+    }
 
     console.log(
-        adminResult === "created"
-            ? "Administrador inicial creado."
-            : "Seed de administrador omitido: el correo ya existe.",
+        `Accesos de prueba listos: ${TEST_ADMINS.length} administradores (${createdAdmins} creados).`,
     );
 
     const categoryIds =

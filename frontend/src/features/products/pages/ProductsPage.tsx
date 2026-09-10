@@ -34,8 +34,16 @@ import {
 } from "../../../shared/components/ui/SectionState";
 
 import {
+    StatusBadge,
+} from "../../../shared/components/ui/StatusBadge";
+
+import {
     ManagementHeader,
 } from "../../admin/components/ManagementHeader";
+
+import {
+    useAuth,
+} from "../../auth/hooks/useAuth";
 
 import * as categoriesApi
     from "../../categories/api/categories.api";
@@ -53,6 +61,18 @@ import type {
 
 interface ProductsLocationState {
     message?: string;
+}
+
+function formatDate(
+    value: string,
+): string {
+    return new Intl.DateTimeFormat(
+        "es-PE",
+        {
+            dateStyle: "medium",
+            timeStyle: "short",
+        },
+    ).format(new Date(value));
 }
 
 async function fetchProductsData(): Promise<{
@@ -74,6 +94,13 @@ async function fetchProductsData(): Promise<{
 }
 
 export function ProductsPage() {
+    const {
+        admin,
+    } = useAuth();
+
+    const isSuperAdmin =
+        admin?.role === "super_admin";
+
     const location =
         useLocation();
 
@@ -121,6 +148,11 @@ export function ProductsPage() {
         isDeactivating,
         setIsDeactivating,
     ] = useState(false);
+
+    const [
+        reactivatingProductId,
+        setReactivatingProductId,
+    ] = useState<number | null>(null);
 
     const loadData =
         useCallback(
@@ -206,18 +238,26 @@ export function ProductsPage() {
         setIsDeactivating(true);
 
         try {
-            await productsApi
-                .deactivateProduct(
-                    productToDeactivate.id,
-                );
+            const deactivatedProduct =
+                await productsApi
+                    .deactivateProduct(
+                        productToDeactivate.id,
+                    );
 
-            setProducts(
-                (currentProducts) =>
-                    currentProducts.filter(
-                        (product) =>
-                            product.id !==
-                            productToDeactivate.id,
-                    ),
+            setProducts((currentProducts) =>
+                isSuperAdmin
+                    ? currentProducts.map(
+                          (product) =>
+                              product.id ===
+                              productToDeactivate.id
+                                  ? deactivatedProduct
+                                  : product,
+                      )
+                    : currentProducts.filter(
+                          (product) =>
+                              product.id !==
+                              productToDeactivate.id,
+                      ),
             );
 
             setSuccessMessage(
@@ -236,12 +276,57 @@ export function ProductsPage() {
         }
     }
 
+    async function handleReactivate(
+        product: Product,
+    ): Promise<void> {
+        setErrorMessage(null);
+        setSuccessMessage(null);
+        setReactivatingProductId(
+            product.id,
+        );
+
+        try {
+            const reactivatedProduct =
+                await productsApi
+                    .reactivateProduct(
+                        product.id,
+                    );
+
+            setProducts(
+                (currentProducts) =>
+                    currentProducts.map(
+                        (currentProduct) =>
+                            currentProduct.id ===
+                            reactivatedProduct.id
+                                ? reactivatedProduct
+                                : currentProduct,
+                    ),
+            );
+
+            setSuccessMessage(
+                "Producto reactivado correctamente.",
+            );
+        } catch (error) {
+            setErrorMessage(
+                error instanceof ApiError
+                    ? error.message
+                    : "No se pudo reactivar el producto.",
+            );
+        } finally {
+            setReactivatingProductId(null);
+        }
+    }
+
     return (
         <section className="management-page">
             <ManagementHeader
                 eyebrow="Catálogo"
                 title="Productos"
-                description="Administra la información visible en el catálogo público."
+                description={
+                    isSuperAdmin
+                        ? "Supervisa el catálogo completo y recupera registros desactivados."
+                        : "Administra la información visible en el catálogo público."
+                }
                 actions={
                     <ActionLink to="/admin/products/new">
                         Nuevo producto
@@ -280,7 +365,7 @@ export function ProductsPage() {
                 />
             ) : products.length === 0 ? (
                 <SectionState
-                    title="No hay productos activos"
+                    title="No hay productos registrados"
                     description="Registra el primer producto para comenzar a completar el catálogo."
                 />
             ) : (
@@ -290,7 +375,9 @@ export function ProductsPage() {
                             <strong>
                                 {products.length}
                             </strong>{" "}
-                            productos activos
+                            {isSuperAdmin
+                                ? "productos registrados"
+                                : "productos activos"}
                         </p>
                     </div>
 
@@ -302,6 +389,9 @@ export function ProductsPage() {
                                     <th>Categoría</th>
                                     <th>Descripción</th>
                                     <th>Estado</th>
+                                    {isSuperAdmin && (
+                                        <th>Actualizado</th>
+                                    )}
                                     <th>
                                         <span className="sr-only">
                                             Acciones
@@ -343,10 +433,22 @@ export function ProductsPage() {
                                             </td>
 
                                             <td>
-                                                <span className="status-badge">
-                                                    Activo
-                                                </span>
+                                                <StatusBadge
+                                                    isActive={
+                                                        product.isActive
+                                                    }
+                                                />
                                             </td>
+
+                                            {isSuperAdmin && (
+                                                <td>
+                                                    <span className="data-date">
+                                                        {formatDate(
+                                                            product.updatedAt,
+                                                        )}
+                                                    </span>
+                                                </td>
+                                            )}
 
                                             <td>
                                                 <div className="data-actions">
@@ -357,17 +459,35 @@ export function ProductsPage() {
                                                         Editar
                                                     </ActionLink>
 
-                                                    <Button
-                                                        type="button"
-                                                        variant="danger"
-                                                        onClick={() => {
-                                                            setProductToDeactivate(
-                                                                product,
-                                                            );
-                                                        }}
-                                                    >
-                                                        Desactivar
-                                                    </Button>
+                                                    {product.isActive ? (
+                                                        <Button
+                                                            type="button"
+                                                            variant="danger"
+                                                            onClick={() => {
+                                                                setProductToDeactivate(
+                                                                    product,
+                                                                );
+                                                            }}
+                                                        >
+                                                            Desactivar
+                                                        </Button>
+                                                    ) : (
+                                                        <Button
+                                                            type="button"
+                                                            isLoading={
+                                                                reactivatingProductId ===
+                                                                product.id
+                                                            }
+                                                            loadingLabel="Reactivando..."
+                                                            onClick={() => {
+                                                                void handleReactivate(
+                                                                    product,
+                                                                );
+                                                            }}
+                                                        >
+                                                            Reactivar
+                                                        </Button>
+                                                    )}
                                                 </div>
                                             </td>
                                         </tr>

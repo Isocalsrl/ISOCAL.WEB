@@ -263,6 +263,24 @@ select.form-control {
     line-height: 1.55;
 }
 
+.status-badge {
+    display: inline-flex;
+    padding: 0.35rem 0.5rem;
+    border-left: 3px solid #238347;
+    color: #1d6736;
+    background: #edf7f0;
+    font-size: 0.62rem;
+    font-weight: 850;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+}
+
+.status-badge-inactive {
+    border-left-color: #777777;
+    color: #575757;
+    background: #eeeeee;
+}
+
 @keyframes ui-spin {
     to {
         transform: rotate(360deg);
