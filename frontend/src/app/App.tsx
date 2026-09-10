@@ -1,8 +1,15 @@
+import {
+    AuthProvider,
+} from "../features/auth/context/AuthProvider";
+
+import {
+    AppRouter,
+} from "./router/AppRouter";
+
 export default function App() {
     return (
-        <main>
-            <h1>ISOCAL</h1>
-            <p>Frontend funcionando</p>
-        </main>
-    )
+        <AuthProvider>
+            <AppRouter />
+        </AuthProvider>
+    );
 }

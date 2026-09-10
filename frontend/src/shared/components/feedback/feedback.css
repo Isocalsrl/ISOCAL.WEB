@@ -1,0 +1,133 @@
+.full-page-feedback {
+    display: grid;
+    min-height: 100vh;
+    padding: 2rem;
+    place-content: center;
+    justify-items: center;
+    color: #4f6259;
+    text-align: center;
+    background: #f3f5f2;
+}
+
+.full-page-feedback h1 {
+    margin: 1rem 0 0.5rem;
+    color: #14251f;
+    font-size: clamp(
+        1.8rem,
+        5vw,
+        2.7rem
+    );
+    letter-spacing: -0.04em;
+}
+
+.full-page-feedback p {
+    max-width: 32rem;
+    margin: 0.5rem 0 1.25rem;
+    line-height: 1.6;
+}
+
+.full-page-feedback button {
+    padding: 0.75rem 1.1rem;
+    border: 1px solid #bdcbc4;
+    border-radius: 0.65rem;
+    color: #1a503c;
+    background: #ffffff;
+    cursor: pointer;
+    font-weight: 750;
+}
+
+.full-page-feedback button:hover:not(
+    :disabled
+) {
+    border-color: #7f9d8f;
+    background: #f8fbf9;
+}
+
+.full-page-feedback button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.full-page-spinner {
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 3px solid
+        rgba(23, 107, 76, 0.2);
+    border-top-color: #176b4c;
+    border-radius: 50%;
+    animation: feedback-spin
+        700ms linear infinite;
+}
+
+.full-page-feedback-icon {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    place-items: center;
+    color: #8a3128;
+    background: #fbe2de;
+    font-weight: 900;
+}
+
+.inline-alert {
+    display: flex;
+    padding: 0.85rem 1rem;
+    border: 1px solid;
+    border-radius: 0.75rem;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.inline-alert-icon {
+    display: grid;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    place-items: center;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 900;
+}
+
+.inline-alert-error {
+    border-color: #f0c6c0;
+    color: #8a3128;
+    background: #fff5f3;
+}
+
+.inline-alert-error
+.inline-alert-icon {
+    background: #b74438;
+}
+
+.inline-alert-success {
+    border-color: #b7ddc9;
+    color: #17603f;
+    background: #f1fbf5;
+}
+
+.inline-alert-success
+.inline-alert-icon {
+    background: #23855f;
+}
+
+.inline-alert-info {
+    border-color: #bfd5df;
+    color: #28596c;
+    background: #f1f8fb;
+}
+
+.inline-alert-info
+.inline-alert-icon {
+    background: #38778f;
+}
+
+@keyframes feedback-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
