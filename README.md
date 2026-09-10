@@ -77,7 +77,8 @@ npm run db:init
 Este comando crea el contenedor y el volumen `postgres_data` si todavía no
 existen. Las siguientes ejecuciones conservan los datos y solo aplican las
 migraciones que aún no estén registradas en la tabla `schema_migrations`. El
-seed es idempotente: crea el administrador de prueba solo si todavía no existe.
+seed es idempotente: crea el administrador, tres categorías y cuatro productos
+de prueba solo si todavía no existen.
 
 Credenciales locales del administrador:
 
@@ -154,6 +155,8 @@ npm run preview  # Previsualiza la compilación
 
 La separación de responsabilidades del backend está documentada en
 [`docs/BACKEND_ARCHITECTURE.md`](docs/BACKEND_ARCHITECTURE.md).
+La estructura del panel administrativo está documentada en
+[`docs/FRONTEND_ARCHITECTURE.md`](docs/FRONTEND_ARCHITECTURE.md).
 
 ```text
 isocal/

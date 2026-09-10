@@ -13,12 +13,24 @@ import {
 } from "../../features/auth/guards/PublicOnlyRoute";
 
 import {
-    AdminDashboardPage,
-} from "../../features/auth/pages/AdminDashboardPage";
+    AdminLayout,
+} from "../../features/admin/components/AdminLayout";
 
 import {
     AdminLoginPage,
 } from "../../features/auth/pages/AdminLoginPage";
+
+import {
+    CategoriesPage,
+} from "../../features/categories/pages/CategoriesPage";
+
+import {
+    ProductFormPage,
+} from "../../features/products/pages/ProductFormPage";
+
+import {
+    ProductsPage,
+} from "../../features/products/pages/ProductsPage";
 
 import {
     PublicCatalogPage,
@@ -55,9 +67,47 @@ export function AppRouter() {
                 <Route
                     path="/admin"
                     element={
-                        <AdminDashboardPage />
+                        <AdminLayout />
                     }
-                />
+                >
+                    <Route
+                        index
+                        element={
+                            <Navigate
+                                to="products"
+                                replace
+                            />
+                        }
+                    />
+
+                    <Route
+                        path="products"
+                        element={
+                            <ProductsPage />
+                        }
+                    />
+
+                    <Route
+                        path="products/new"
+                        element={
+                            <ProductFormPage />
+                        }
+                    />
+
+                    <Route
+                        path="products/:productId/edit"
+                        element={
+                            <ProductFormPage />
+                        }
+                    />
+
+                    <Route
+                        path="categories"
+                        element={
+                            <CategoriesPage />
+                        }
+                    />
+                </Route>
             </Route>
 
             <Route

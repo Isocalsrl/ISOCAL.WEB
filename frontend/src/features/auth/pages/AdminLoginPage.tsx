@@ -14,8 +14,20 @@ import {
 } from "../../../shared/api/httpClient";
 
 import {
+    BrandMark,
+} from "../../../shared/components/brand/BrandMark";
+
+import {
     InlineAlert,
 } from "../../../shared/components/feedback/InlineAlert";
+
+import {
+    Button,
+} from "../../../shared/components/ui/Button";
+
+import {
+    FormField,
+} from "../../../shared/components/ui/FormField";
 
 import {
     useAuth,
@@ -171,26 +183,7 @@ export function AdminLoginPage() {
                 className="login-brand"
                 aria-label="Presentación de ISOCAL"
             >
-                <Link
-                    className="brand-mark"
-                    to="/"
-                    aria-label="Ir al catálogo de ISOCAL"
-                >
-                    <span className="brand-word">
-                        ISOCAL
-
-                        <span
-                            className="brand-chevrons"
-                            aria-hidden="true"
-                        >
-                            »
-                        </span>
-                    </span>
-
-                    <span className="brand-subtitle">
-                        Consultoría y metrología
-                    </span>
-                </Link>
+                <BrandMark />
 
                 <div className="brand-copy">
                     <p className="eyebrow">
@@ -239,12 +232,13 @@ export function AdminLoginPage() {
                         </p>
                     </div>
 
-                    <div className="form-field">
-                        <label htmlFor="email">
-                            Correo electrónico
-                        </label>
-
+                    <FormField
+                        label="Correo electrónico"
+                        htmlFor="email"
+                        required
+                    >
                         <input
+                            className="form-control"
                             id="email"
                             name="email"
                             type="email"
@@ -266,14 +260,15 @@ export function AdminLoginPage() {
                             autoFocus
                             required
                         />
-                    </div>
+                    </FormField>
 
-                    <div className="form-field">
-                        <label htmlFor="password">
-                            Contraseña
-                        </label>
-
+                    <FormField
+                        label="Contraseña"
+                        htmlFor="password"
+                        required
+                    >
                         <input
+                            className="form-control"
                             id="password"
                             name="password"
                             type="password"
@@ -296,7 +291,7 @@ export function AdminLoginPage() {
                             maxLength={128}
                             required
                         />
-                    </div>
+                    </FormField>
 
                     {errorMessage && (
                         <InlineAlert>
@@ -304,26 +299,15 @@ export function AdminLoginPage() {
                         </InlineAlert>
                     )}
 
-                    <button
+                    <Button
                         className="login-button"
                         type="submit"
-                        disabled={
-                            isSubmitting
-                        }
+                        variant="dark"
+                        isLoading={isSubmitting}
+                        loadingLabel="Ingresando..."
                     >
-                        {isSubmitting ? (
-                            <>
-                                <span
-                                    className="button-spinner"
-                                    aria-hidden="true"
-                                />
-
-                                Ingresando...
-                            </>
-                        ) : (
-                            "Ingresar al panel"
-                        )}
-                    </button>
+                        Ingresar al panel
+                    </Button>
 
                     <Link
                         className="catalog-link"
