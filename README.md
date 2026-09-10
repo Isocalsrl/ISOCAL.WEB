@@ -48,6 +48,9 @@ Copia `backend/.env.example` como `backend/.env`:
 ```env
 PORT=3000
 DATABASE_URL=postgresql://postgres:postgres@localhost:5433/isocal
+FRONTEND_ORIGIN=http://localhost:5173
+ADMIN_SESSION_DURATION_HOURS=12
+NODE_ENV=development
 ```
 
 ### Frontend
@@ -63,8 +66,8 @@ repositorio.
 
 ## Ejecución local
 
-Con Docker Desktop abierto, desde la carpeta `backend` inicia PostgreSQL y
-aplica las migraciones pendientes:
+Con Docker Desktop abierto, desde la carpeta `backend` inicia PostgreSQL,
+aplica las migraciones pendientes y ejecuta los seeds locales:
 
 ```bash
 cd backend
@@ -73,7 +76,21 @@ npm run db:init
 
 Este comando crea el contenedor y el volumen `postgres_data` si todavía no
 existen. Las siguientes ejecuciones conservan los datos y solo aplican las
-migraciones que aún no estén registradas en la tabla `schema_migrations`.
+migraciones que aún no estén registradas en la tabla `schema_migrations`. El
+seed es idempotente: crea el administrador de prueba solo si todavía no existe.
+
+Credenciales locales del administrador:
+
+```text
+Correo: admin@isocal.com
+Contraseña: Admin123!
+```
+
+Para volver a ejecutar únicamente los seeds sobre una base ya inicializada:
+
+```bash
+npm run db:seed
+```
 
 Después, ejecuta el backend:
 
@@ -119,7 +136,8 @@ Si la API y PostgreSQL están disponibles, la respuesta será:
 npm run dev       # Ejecuta la API en modo desarrollo
 npm run build     # Compila TypeScript
 npm start         # Ejecuta la versión compilada
-npm run db:init   # Inicia PostgreSQL y aplica migraciones pendientes
+npm run db:init   # Inicia PostgreSQL, migra y carga los seeds locales
+npm run db:seed   # Ejecuta nuevamente los seeds idempotentes
 npm run test:run  # Ejecuta las pruebas una vez
 ```
 

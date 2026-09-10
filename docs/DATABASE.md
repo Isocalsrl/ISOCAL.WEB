@@ -63,6 +63,13 @@ Roles iniciales:
 
 Los visitantes normales de la web no necesitan una cuenta.
 
+## Sesiones de administradores
+
+Cada inicio de sesión crea una fila temporal asociada al administrador. La base
+de datos conserva únicamente el hash del token, junto con su fecha de
+expiración. Al cerrar sesión se elimina la fila correspondiente; las sesiones
+expiradas también se limpian durante nuevos inicios de sesión.
+
 ---
 
 ## Relación principal

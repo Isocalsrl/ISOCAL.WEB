@@ -46,9 +46,38 @@ products/
 ```
 
 Las rutas públicas exponen únicamente la consulta de productos activos. La
-función `createAdminProductsRouter` prepara las operaciones de escritura para
-conectarlas cuando el middleware de autenticación de administradores esté
-implementado.
+función `createAdminProductsRouter` expone las operaciones de escritura bajo
+`/api/admin/products` y exige una sesión válida de administrador.
+
+## Autenticación de administradores
+
+```text
+auth/
+├── auth.controller.ts
+├── auth.cookie.ts
+├── auth.mapper.ts
+├── auth.routes.ts
+├── auth.types.ts
+├── repositories/
+│   ├── auth.create.repository.ts
+│   ├── auth.read.repository.ts
+│   └── auth.session.repository.ts
+├── services/
+│   ├── auth.normalizer.ts
+│   ├── auth.seed.service.ts
+│   └── auth.service.ts
+└── validators/
+    └── auth.body.validator.ts
+```
+
+El login genera un token opaco aleatorio. Solo su hash SHA-256 se guarda en
+`admin_sessions`; el token original se entrega mediante una cookie `HttpOnly`.
+El middleware consulta la sesión, verifica su expiración y confirma que el
+administrador siga activo antes de permitir acceso a las rutas privadas.
+
+El seed mantiene el mismo límite de capas: el script contiene únicamente los
+datos locales, el service valida y cifra la contraseña, y el repository realiza
+el `INSERT`. Tanto `db:init` como `db:seed` lo ejecutan de forma idempotente.
 
 ## Criterios para cambios nuevos
 
