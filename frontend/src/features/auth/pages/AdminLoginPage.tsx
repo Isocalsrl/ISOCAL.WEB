@@ -1,0 +1,323 @@
+import {
+    useState,
+    type FormEvent,
+} from "react";
+
+import {
+    Link,
+    useLocation,
+    useNavigate,
+} from "react-router-dom";
+
+import {
+    ApiError,
+} from "../../../shared/api/httpClient";
+
+import {
+    BrandMark,
+} from "../../../shared/components/brand/BrandMark";
+
+import {
+    InlineAlert,
+} from "../../../shared/components/feedback/InlineAlert";
+
+import {
+    Button,
+} from "../../../shared/components/ui/Button";
+
+import {
+    FormField,
+} from "../../../shared/components/ui/FormField";
+
+import {
+    useAuth,
+} from "../hooks/useAuth";
+
+import "../styles/auth.css";
+
+const EMAIL_PATTERN =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+interface LoginLocationState {
+    from?: string;
+}
+
+export function AdminLoginPage() {
+    const {
+        login,
+        status,
+    } = useAuth();
+
+    const navigate =
+        useNavigate();
+
+    const location =
+        useLocation();
+
+    const [
+        email,
+        setEmail,
+    ] = useState("");
+
+    const [
+        password,
+        setPassword,
+    ] = useState("");
+
+    const [
+        errorMessage,
+        setErrorMessage,
+    ] = useState<string | null>(
+        status === "error"
+            ? "No se pudo verificar la sesión anterior. Aún puedes intentar ingresar."
+            : null,
+    );
+
+    const [
+        isSubmitting,
+        setIsSubmitting,
+    ] = useState(false);
+
+    async function handleSubmit(
+        event:
+            FormEvent<HTMLFormElement>,
+    ): Promise<void> {
+        event.preventDefault();
+
+        setErrorMessage(null);
+
+        const normalizedEmail =
+            email.trim();
+
+        if (
+            !normalizedEmail ||
+            !password
+        ) {
+            setErrorMessage(
+                "Completa el correo y la contraseña.",
+            );
+
+            return;
+        }
+
+        if (
+            !EMAIL_PATTERN.test(
+                normalizedEmail,
+            )
+        ) {
+            setErrorMessage(
+                "Ingresa un correo electrónico válido.",
+            );
+
+            return;
+        }
+
+        if (
+            password.length < 8 ||
+            password.length > 128
+        ) {
+            setErrorMessage(
+                "La contraseña debe tener entre 8 y 128 caracteres.",
+            );
+
+            return;
+        }
+
+        setIsSubmitting(true);
+
+        try {
+            await login({
+                email:
+                    normalizedEmail,
+                password,
+            });
+
+            const state =
+                location.state as (
+                    LoginLocationState |
+                    null
+                );
+
+            navigate(
+                state?.from ??
+                    "/admin",
+                {
+                    replace: true,
+                },
+            );
+        } catch (error) {
+            if (
+                error instanceof ApiError &&
+                error.status === 401
+            ) {
+                setErrorMessage(
+                    "Correo o contraseña incorrectos.",
+                );
+            } else if (
+                error instanceof ApiError &&
+                error.code ===
+                    "NETWORK_ERROR"
+            ) {
+                setErrorMessage(
+                    "No pudimos conectar con el servidor. Comprueba que la API esté encendida.",
+                );
+            } else if (
+                error instanceof ApiError
+            ) {
+                setErrorMessage(
+                    error.message,
+                );
+            } else {
+                setErrorMessage(
+                    "Ocurrió un error inesperado. Inténtalo nuevamente.",
+                );
+            }
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
+
+    return (
+        <main className="login-page">
+            <section
+                className="login-brand"
+                aria-label="Presentación de ISOCAL"
+            >
+                <BrandMark />
+
+                <div className="brand-copy">
+                    <p className="eyebrow">
+                        Acceso interno
+                    </p>
+
+                    <h1>
+                        Administración
+                        ISOCAL
+                    </h1>
+
+                    <p>
+                        Gestión de catálogo y
+                        contenidos para el
+                        equipo autorizado.
+                    </p>
+                </div>
+
+                <p className="brand-caption">
+                    Precisión · Confianza
+                    · Experiencia
+                </p>
+            </section>
+
+            <section
+                className="login-panel"
+            >
+                <form
+                    className="login-card"
+                    onSubmit={
+                        handleSubmit
+                    }
+                    noValidate
+                >
+                    <div>
+                        <p className="eyebrow">
+                            Sistema de gestión
+                        </p>
+
+                        <h2>Iniciar sesión</h2>
+
+                        <p className="login-intro">
+                            Ingresa tus
+                            credenciales para
+                            continuar al panel.
+                        </p>
+                    </div>
+
+                    <FormField
+                        label="Correo electrónico"
+                        htmlFor="email"
+                        required
+                    >
+                        <input
+                            className="form-control"
+                            id="email"
+                            name="email"
+                            type="email"
+                            autoComplete="username"
+                            placeholder="nombre@isocal.pe"
+                            value={email}
+                            onChange={(
+                                event,
+                            ) => {
+                                setEmail(
+                                    event
+                                        .target
+                                        .value,
+                                );
+                            }}
+                            disabled={
+                                isSubmitting
+                            }
+                            autoFocus
+                            required
+                        />
+                    </FormField>
+
+                    <FormField
+                        label="Contraseña"
+                        htmlFor="password"
+                        required
+                    >
+                        <input
+                            className="form-control"
+                            id="password"
+                            name="password"
+                            type="password"
+                            autoComplete="current-password"
+                            placeholder="Mínimo 8 caracteres"
+                            value={password}
+                            onChange={(
+                                event,
+                            ) => {
+                                setPassword(
+                                    event
+                                        .target
+                                        .value,
+                                );
+                            }}
+                            disabled={
+                                isSubmitting
+                            }
+                            minLength={8}
+                            maxLength={128}
+                            required
+                        />
+                    </FormField>
+
+                    {errorMessage && (
+                        <InlineAlert>
+                            {errorMessage}
+                        </InlineAlert>
+                    )}
+
+                    <Button
+                        className="login-button"
+                        type="submit"
+                        variant="dark"
+                        isLoading={isSubmitting}
+                        loadingLabel="Ingresando..."
+                    >
+                        Ingresar al panel
+                    </Button>
+
+                    <Link
+                        className="catalog-link"
+                        to="/"
+                    >
+                        Volver al catálogo
+                        público
+                    </Link>
+                </form>
+            </section>
+        </main>
+    );
+}

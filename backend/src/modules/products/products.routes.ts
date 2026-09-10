@@ -18,6 +18,16 @@ export function createAdminProductsRouter(
 
     router.use(authenticateAdmin);
 
+    router.get(
+        "/",
+        productsController.listAdminProducts,
+    );
+
+    router.get(
+        "/:id",
+        productsController.getAdminProductById,
+    );
+
     router.post(
         "/",
         validateBody(validateCreateProductBody),

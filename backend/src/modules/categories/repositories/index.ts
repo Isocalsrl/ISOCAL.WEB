@@ -5,6 +5,7 @@ export {
 export {
     findActiveById,
     findActiveProductsByCategoryId,
+    findAll,
     findAllActive,
     findById,
     hasAssociatedProducts,

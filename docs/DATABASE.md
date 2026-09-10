@@ -4,11 +4,13 @@
 
 Definir la información principal que manejará el sistema y servir como referencia para desarrollo y diseño.
 
-Actualmente el sistema contempla tres entidades principales:
+Actualmente el sistema contempla cinco entidades principales:
 
 * Categorías
 * Productos
 * Administradores
+* Sesiones de administradores
+* Eventos de acceso
 
 ---
 
@@ -61,7 +63,33 @@ Roles iniciales:
 * `admin`
 * `super_admin`
 
+`admin` opera sobre contenido activo. `super_admin` puede consultar y recuperar
+contenido inactivo, además de revisar la actividad de acceso.
+
 Los visitantes normales de la web no necesitan una cuenta.
+
+## Sesiones de administradores
+
+Cada inicio de sesión crea una fila temporal asociada al administrador. La base
+de datos conserva únicamente el hash del token, junto con su fecha de
+expiración. Al cerrar sesión se elimina la fila correspondiente; las sesiones
+expiradas también se limpian durante nuevos inicios de sesión.
+
+## Eventos de acceso
+
+El historial de acceso es independiente de las sesiones y no se elimina al
+cerrarlas. Cada evento conserva:
+
+* Administrador relacionado, cuando se pudo identificar
+* Correo utilizado
+* Resultado del intento
+* Dirección IP
+* Agente de usuario
+* Fecha y hora
+
+Los resultados admitidos son `success`, `invalid_credentials` e
+`inactive_account`. La relación con administradores usa `ON DELETE SET NULL`
+para conservar la trazabilidad del evento.
 
 ---
 

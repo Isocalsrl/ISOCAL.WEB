@@ -14,6 +14,16 @@ export async function findAllActive(): Promise<Product[]> {
     return result.rows.map(toProduct);
 }
 
+export async function findAll(): Promise<Product[]> {
+    const result = await db.query<ProductRow>(`
+        SELECT ${PRODUCT_COLUMNS}
+        FROM products
+        ORDER BY id ASC
+    `);
+
+    return result.rows.map(toProduct);
+}
+
 export async function findActiveById(id: number): Promise<Product | null> {
     const result = await db.query<ProductRow>(
         `

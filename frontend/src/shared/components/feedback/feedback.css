@@ -1,0 +1,139 @@
+.full-page-feedback {
+    display: grid;
+    min-height: 100vh;
+    padding: 2rem;
+    place-content: center;
+    justify-items: center;
+    color: #5b5b5b;
+    text-align: center;
+    background: #f5f5f5;
+}
+
+.full-page-feedback h1 {
+    max-width: 34rem;
+    margin: 1.25rem 0 0.5rem;
+    color: #1b1b1b;
+    font-size: clamp(
+        1.9rem,
+        5vw,
+        3rem
+    );
+    font-weight: 900;
+    letter-spacing: -0.05em;
+}
+
+.full-page-feedback p {
+    max-width: 32rem;
+    margin: 0.5rem 0 1.4rem;
+    line-height: 1.6;
+}
+
+.full-page-feedback button {
+    min-height: 2.9rem;
+    padding: 0.7rem 1.2rem;
+    border: 2px solid #1b1b1b;
+    border-radius: 0.1rem;
+    color: #ffffff;
+    background: #1b1b1b;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 850;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.full-page-feedback button:hover:not(
+    :disabled
+) {
+    border-color: #c9001c;
+    background: #c9001c;
+}
+
+.full-page-feedback button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.full-page-spinner {
+    width: 2.35rem;
+    height: 2.35rem;
+    border: 3px solid
+        rgba(201, 0, 28, 0.18);
+    border-top-color: #c9001c;
+    border-radius: 50%;
+    animation: feedback-spin
+        700ms linear infinite;
+}
+
+.full-page-feedback-icon {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.1rem;
+    place-items: center;
+    color: #ffffff;
+    background: #c9001c;
+    font-weight: 900;
+}
+
+.inline-alert {
+    display: flex;
+    padding: 0.85rem 1rem;
+    border: 1px solid;
+    border-left-width: 4px;
+    border-radius: 0.1rem;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.inline-alert-icon {
+    display: grid;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    place-items: center;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 900;
+}
+
+.inline-alert-error {
+    border-color: #d9a3aa;
+    color: #8f0014;
+    background: #fff5f6;
+}
+
+.inline-alert-error
+.inline-alert-icon {
+    background: #c9001c;
+}
+
+.inline-alert-success {
+    border-color: #91c4a3;
+    color: #14582c;
+    background: #f3faf5;
+}
+
+.inline-alert-success
+.inline-alert-icon {
+    background: #248347;
+}
+
+.inline-alert-info {
+    border-color: #aebbc3;
+    color: #334b59;
+    background: #f4f8fa;
+}
+
+.inline-alert-info
+.inline-alert-icon {
+    background: #496b7e;
+}
+
+@keyframes feedback-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

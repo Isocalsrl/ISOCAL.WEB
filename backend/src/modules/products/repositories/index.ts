@@ -2,6 +2,7 @@ export {
     categoryExists,
     findActiveById,
     findById,
+    findAll,
     findAllActive,
 } from "./products.read.repository.js";
 

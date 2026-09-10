@@ -46,9 +46,53 @@ products/
 ```
 
 Las rutas públicas exponen únicamente la consulta de productos activos. La
-función `createAdminProductsRouter` prepara las operaciones de escritura para
-conectarlas cuando el middleware de autenticación de administradores esté
-implementado.
+función `createAdminProductsRouter` expone la consulta y escritura privada bajo
+`/api/admin/products` y exige una sesión válida. El service decide el alcance
+según el rol autenticado: `admin` recibe registros activos y `super_admin`
+recibe el catálogo completo.
+
+## Autenticación de administradores
+
+```text
+auth/
+├── auth.controller.ts
+├── auth.cookie.ts
+├── auth.mapper.ts
+├── auth.routes.ts
+├── auth.types.ts
+├── repositories/
+│   ├── auth.create.repository.ts
+│   ├── auth.login-event.repository.ts
+│   ├── auth.read.repository.ts
+│   └── auth.session.repository.ts
+├── services/
+│   ├── auth.normalizer.ts
+│   ├── auth.seed.service.ts
+│   └── auth.service.ts
+└── validators/
+    └── auth.body.validator.ts
+```
+
+El login genera un token opaco aleatorio. Solo su hash SHA-256 se guarda en
+`admin_sessions`; el token original se entrega mediante una cookie `HttpOnly`.
+El middleware consulta la sesión, verifica su expiración y confirma que el
+administrador siga activo antes de permitir acceso a las rutas privadas.
+
+La autorización tiene dos niveles. `admin` puede crear, editar y desactivar
+contenido activo. `super_admin` también puede consultar, modificar y reactivar
+contenido inactivo. Estas reglas se aplican en los services; los permisos no
+dependen de que el frontend oculte una acción.
+
+Cada intento de login válido en formato genera un evento persistente con correo,
+resultado, fecha, IP y agente de usuario. Los accesos correctos se registran en
+la misma transacción que crea la sesión. El endpoint
+`GET /api/admin/auth/login-history` está protegido además por el middleware de
+rol y solo responde a `super_admin`.
+
+El seed mantiene el mismo límite de capas: el script contiene únicamente los
+datos locales de ambos roles, el service valida y cifra las contraseñas, y el
+repository realiza el `INSERT`. Tanto `db:init` como `db:seed` lo ejecutan de
+forma idempotente.
 
 ## Criterios para cambios nuevos
 

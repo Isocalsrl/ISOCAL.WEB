@@ -23,6 +23,16 @@ export async function findAllActive(): Promise<Category[]> {
     return result.rows.map(toCategory);
 }
 
+export async function findAll(): Promise<Category[]> {
+    const result = await db.query<CategoryRow>(`
+        SELECT ${CATEGORY_COLUMNS}
+        FROM categories
+        ORDER BY name ASC, id ASC
+    `);
+
+    return result.rows.map(toCategory);
+}
+
 export async function findActiveById(
     id: number
 ): Promise<Category | null> {
