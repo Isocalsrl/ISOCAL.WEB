@@ -3,6 +3,10 @@ import {
 } from "../../../favorites/components/FavoriteToggleButton";
 
 import {
+    QuotationToggleButton,
+} from "../../../quotation/components/QuotationToggleButton";
+
+import {
     ArrowIcon,
 } from "../../../../shared/components/ui/ArrowIcon";
 
@@ -103,6 +107,16 @@ export function PublicProductCard({
                     <ArrowIcon />
                 </span>
             </button>
+
+            <QuotationToggleButton
+                className="catalog-product-quotation"
+                productId={
+                    product.id
+                }
+                productName={
+                    product.name
+                }
+            />
         </article>
     );
 }
