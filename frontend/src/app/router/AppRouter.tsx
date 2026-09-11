@@ -5,6 +5,10 @@ import {
 } from "react-router-dom";
 
 import {
+    AdminLayout,
+} from "../../features/admin/components/AdminLayout";
+
+import {
     ProtectedRoute,
 } from "../../features/auth/guards/ProtectedRoute";
 
@@ -17,20 +21,20 @@ import {
 } from "../../features/auth/guards/SuperAdminRoute";
 
 import {
-    AdminLayout,
-} from "../../features/admin/components/AdminLayout";
+    LoginHistoryPage,
+} from "../../features/auth/pages/LoginHistoryPage";
 
 import {
     LoginPage,
 } from "../../features/auth/pages/LoginPage";
 
 import {
-    LoginHistoryPage,
-} from "../../features/auth/pages/LoginHistoryPage";
-
-import {
     CategoriesPage,
 } from "../../features/categories/pages/CategoriesPage";
+
+import {
+    FavoritesPage,
+} from "../../features/favorites/pages/FavoritesPage";
 
 import {
     ProductFormPage,
@@ -104,6 +108,13 @@ export function AppRouter() {
                     path="productos/:productId"
                     element={
                         <PublicProductDetailPage />
+                    }
+                />
+
+                <Route
+                    path="favoritos"
+                    element={
+                        <FavoritesPage />
                     }
                 />
             </Route>

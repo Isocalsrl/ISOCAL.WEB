@@ -11,6 +11,10 @@ import type {
 } from "../../../categories/types/category.types";
 
 import {
+    FavoriteToggleButton,
+} from "../../../favorites/components/FavoriteToggleButton";
+
+import {
     contactUrl,
 } from "../../../public-site/data/company";
 
@@ -31,10 +35,13 @@ interface PublicProductDetailProps {
     errorMessage:
         string | null;
 
-    catalogReturnUrl:
+    returnUrl:
         string;
 
-    onGoToCatalog:
+    returnLabel:
+        string;
+
+    onGoToReturnPage:
         () => void;
 }
 
@@ -43,8 +50,9 @@ export function PublicProductDetail({
     category,
     isLoading,
     errorMessage,
-    catalogReturnUrl,
-    onGoToCatalog,
+    returnUrl,
+    returnLabel,
+    onGoToReturnPage,
 }: PublicProductDetailProps) {
     return (
         <section className="product-detail-page">
@@ -52,7 +60,7 @@ export function PublicProductDetail({
                 <Link
                     className="product-detail-back"
                     to={
-                        catalogReturnUrl
+                        returnUrl
                     }
                 >
                     <span
@@ -61,7 +69,7 @@ export function PublicProductDetail({
                         ←
                     </span>
 
-                    Volver al catálogo
+                    {returnLabel}
                 </Link>
 
                 {isLoading && (
@@ -82,9 +90,11 @@ export function PublicProductDetail({
                                 description={
                                     errorMessage
                                 }
-                                actionLabel="Volver al catálogo"
+                                actionLabel={
+                                    returnLabel
+                                }
                                 onAction={
-                                    onGoToCatalog
+                                    onGoToReturnPage
                                 }
                             />
                         </div>
@@ -158,17 +168,29 @@ export function PublicProductDetail({
                                     tu necesidad.
                                 </p>
 
-                                <a
-                                    className="ui-button ui-button-primary"
-                                    href={contactUrl(
-                                        product.name,
-                                    )}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Consultar
-                                    producto
-                                </a>
+                                <div className="product-detail-actions">
+                                    <FavoriteToggleButton
+                                        productId={
+                                            product.id
+                                        }
+                                        productName={
+                                            product.name
+                                        }
+                                        showText
+                                    />
+
+                                    <a
+                                        className="ui-button ui-button-primary"
+                                        href={contactUrl(
+                                            product.name,
+                                        )}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Consultar
+                                        producto
+                                    </a>
+                                </div>
 
                                 {category && (
                                     <div className="product-detail-meta">

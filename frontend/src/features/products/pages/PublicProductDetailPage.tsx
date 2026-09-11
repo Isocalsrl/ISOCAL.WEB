@@ -20,8 +20,9 @@ export function PublicProductDetailPage() {
         category,
         isLoading,
         errorMessage,
-        catalogReturnUrl,
-        goToCatalog,
+        returnUrl,
+        returnLabel,
+        goToReturnPage,
     } =
         usePublicProductDetail();
 
@@ -64,11 +65,14 @@ export function PublicProductDetailPage() {
                 errorMessage={
                     errorMessage
                 }
-                catalogReturnUrl={
-                    catalogReturnUrl
+                returnUrl={
+                    returnUrl
                 }
-                onGoToCatalog={
-                    goToCatalog
+                returnLabel={
+                    returnLabel
+                }
+                onGoToReturnPage={
+                    goToReturnPage
                 }
             />
 

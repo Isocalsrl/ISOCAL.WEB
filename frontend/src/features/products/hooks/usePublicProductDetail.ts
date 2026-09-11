@@ -146,12 +146,27 @@ export function usePublicProductDetail() {
             "categoria",
         );
 
+    const comesFromFavorites =
+        searchParams.get(
+            "origen",
+        ) === "favoritos";
+
     const catalogReturnUrl =
         returnCategory
             ? `/productos?categoria=${encodeURIComponent(
                   returnCategory,
               )}`
             : "/productos";
+
+    const returnUrl =
+        comesFromFavorites
+            ? "/favoritos"
+            : catalogReturnUrl;
+
+    const returnLabel =
+        comesFromFavorites
+            ? "Volver a favoritos"
+            : "Volver al catálogo";
 
     useEffect(() => {
         let isActive =
@@ -264,10 +279,12 @@ export function usePublicProductDetail() {
         category,
         isLoading,
         errorMessage,
-        catalogReturnUrl,
-        goToCatalog: () => {
+        returnUrl,
+        returnLabel,
+
+        goToReturnPage: () => {
             navigate(
-                "/productos",
+                returnUrl,
             );
         },
     };

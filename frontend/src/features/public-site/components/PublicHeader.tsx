@@ -5,6 +5,10 @@ import {
 } from "react";
 
 import {
+    FavoritesHeaderLink,
+} from "../../favorites/components/FavoritesHeaderLink";
+
+import {
     BrandMark,
 } from "../../../shared/components/brand/BrandMark";
 
@@ -32,6 +36,7 @@ export function PublicHeader() {
             setIsNavigationOpen(
                 false,
             );
+
             setOpenSubmenu(
                 null,
             );
@@ -133,6 +138,12 @@ export function PublicHeader() {
                         }
                         onToggleSubmenu={
                             toggleSubmenu
+                        }
+                    />
+
+                    <FavoritesHeaderLink
+                        onNavigate={
+                            closeNavigation
                         }
                     />
 

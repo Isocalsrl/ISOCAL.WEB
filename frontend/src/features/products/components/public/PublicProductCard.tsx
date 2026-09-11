@@ -1,4 +1,8 @@
 import {
+    FavoriteToggleButton,
+} from "../../../favorites/components/FavoriteToggleButton";
+
+import {
     ArrowIcon,
 } from "../../../../shared/components/ui/ArrowIcon";
 
@@ -18,19 +22,37 @@ interface PublicProductCardProps {
             productId:
                 number,
         ) => void;
+
+    opensDialog?:
+        boolean;
 }
 
 export function PublicProductCard({
     product,
     categoryName,
     onOpen,
+    opensDialog = true,
 }: PublicProductCardProps) {
     return (
         <article className="catalog-product-card">
+            <FavoriteToggleButton
+                className="catalog-product-favorite"
+                productId={
+                    product.id
+                }
+                productName={
+                    product.name
+                }
+            />
+
             <button
                 className="catalog-product-card-button"
                 type="button"
-                aria-haspopup="dialog"
+                aria-haspopup={
+                    opensDialog
+                        ? "dialog"
+                        : undefined
+                }
                 aria-label={`Abrir información de ${product.name}`}
                 onClick={() => {
                     onOpen(
