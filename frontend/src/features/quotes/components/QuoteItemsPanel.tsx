@@ -1,0 +1,3 @@
+import { formatMoney } from "../model/quoteFormatting";
+import type { QuoteItem } from "../types/quote.types";
+export function QuoteItemsPanel({ items, showPricing = false }: { items: readonly QuoteItem[]; showPricing?: boolean }) { return <section className="quote-panel"><h2>Productos solicitados</h2><div className="quote-items-list">{items.map((item) => <article className="quote-item-row" key={item.id}><div><h3>{item.productName}</h3><p>Cantidad: {item.quantity}</p>{item.customerNotes && <p>Observación: {item.customerNotes}</p>}</div>{showPricing && <dl><div><dt>Precio unitario</dt><dd>{formatMoney(item.unitPrice)}</dd></div><div><dt>Subtotal</dt><dd>{formatMoney(item.subtotal)}</dd></div></dl>}</article>)}</div></section>; }

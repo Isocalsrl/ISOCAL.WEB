@@ -1,0 +1,3 @@
+import { formatDate } from "../model/quoteFormatting";
+import type { QuoteHistoryEvent } from "../types/quote.types";
+export function QuoteHistory({ events }: { events: readonly QuoteHistoryEvent[] }) { return <section className="quote-panel"><h2>Historial</h2>{events.length === 0 ? <p className="quote-muted">No hay eventos registrados.</p> : <ol className="quote-history">{events.map((event) => <li key={event.id}><strong>{event.eventType}</strong><span>{event.actorAdminName ?? "Sistema"} · {formatDate(event.createdAt)}</span>{event.note && <p>{event.note}</p>}</li>)}</ol>}</section>; }

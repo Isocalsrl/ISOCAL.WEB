@@ -26,6 +26,9 @@ import {
 import {
     quotesRouter,
 } from "./modules/quotes/quotes.routes.js";
+import {
+    createAdminQuotesRouter,
+} from "./modules/quotes/quotes.admin.routes.js";
 
 const app = express();
 
@@ -93,6 +96,13 @@ app.use(
 app.use(
     "/api/admin/categories",
     createAdminCategoriesRouter(
+        authenticateAdmin,
+    ),
+);
+
+app.use(
+    "/api/admin/quotes",
+    createAdminQuotesRouter(
         authenticateAdmin,
     ),
 );

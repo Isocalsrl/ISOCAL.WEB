@@ -33,6 +33,14 @@ import {
 } from "../../features/categories/pages/CategoriesPage";
 
 import {
+    QuoteDetailPage,
+} from "../../features/quotes/pages/QuoteDetailPage";
+
+import {
+    QuotesPage,
+} from "../../features/quotes/pages/QuotesPage";
+
+import {
     FavoritesPage,
 } from "../../features/favorites/pages/FavoritesPage";
 
@@ -189,6 +197,20 @@ export function AppRouter() {
                         path="categories"
                         element={
                             <CategoriesPage />
+                        }
+                    />
+
+                    <Route
+                        path="quotes"
+                        element={
+                            <QuotesPage />
+                        }
+                    />
+
+                    <Route
+                        path="quotes/:quoteId"
+                        element={
+                            <QuoteDetailPage />
                         }
                     />
 

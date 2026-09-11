@@ -104,13 +104,21 @@ export function AdminLayout() {
                         Categorías
                     </NavLink>
 
+                    <NavLink
+                        className={navigationClass}
+                        to="/admin/quotes"
+                    >
+                        <span>03</span>
+                        Cotizaciones
+                    </NavLink>
+
                     {admin?.role ===
                         "super_admin" && (
                         <NavLink
                             className={navigationClass}
                             to="/admin/access-history"
                         >
-                            <span>03</span>
+                            <span>04</span>
                             Registro de accesos
                         </NavLink>
                     )}
