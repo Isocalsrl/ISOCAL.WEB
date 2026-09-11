@@ -1,0 +1,6 @@
+export interface QuoteDocument { id: number; quoteId: number; version: number; storageKey: string; fileName: string; mimeType: string; fileSizeBytes: number; sha256: string; isCurrent: boolean; generatedBy: number | null; generatedAt: Date; }
+export interface QuoteDocumentCompany { legalName: string; ruc: string; phone: string; email: string; website: string; address: string | null; }
+export interface QuoteDocumentCustomer { name: string; companyName: string | null; ruc: string | null; email: string; phone: string; }
+export interface QuoteDocumentItem { productName: string; quantity: number; customerNotes: string | null; unitPrice: number; discountAmount: number; subtotal: number; }
+export interface QuoteDocumentFinancialSummary { grossSubtotal: number; itemDiscountAmount: number; globalDiscountAmount: number; totalDiscountAmount: number; taxableSubtotal: number; taxRate: number; taxAmount: number; total: number; }
+export interface QuoteDocumentData { company: QuoteDocumentCompany; reference: string; issuedAt: Date; validUntil: string; currency: string; customer: QuoteDocumentCustomer; items: QuoteDocumentItem[]; financial: QuoteDocumentFinancialSummary; paymentTerms: string; commercialNotes: string | null; }

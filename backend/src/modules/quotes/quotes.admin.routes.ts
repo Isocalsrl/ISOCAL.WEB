@@ -14,6 +14,8 @@ export function createAdminQuotesRouter(authenticateAdmin: RequestHandler): Rout
     router.patch("/:id/pricing", requireAdminRole("super_admin"), validateBody(validatePricingBody), controller.updatePricing);
     router.patch("/:id/commercial-details", requireAdminRole("super_admin"), validateBody(validateCommercialDetailsBody), controller.updateCommercialDetails);
     router.post("/:id/prepare", requireAdminRole("super_admin"), controller.prepareQuote);
+    router.post("/:id/send", requireAdminRole("super_admin"), controller.sendQuote);
+    router.post("/:id/resend", requireAdminRole("super_admin"), controller.resendQuote);
     router.post("/:id/reject", requireAdminRole("super_admin"), validateBody(validateRejectionBody), controller.rejectQuote);
     router.get("/:id/history", requireAdminRole("super_admin"), controller.getHistory);
     return router;

@@ -1,4 +1,5 @@
-import type { QuoteStatus } from "../types/quote.types";
-export const QUOTE_STATUS_LABELS: Record<QuoteStatus, string> = { pending: "Pendiente", in_review: "En revisión", priced: "Valorizada", ready_to_send: "Lista para envío", sent: "Enviada", rejected: "Rechazada" };
+import type { QuoteEventType, QuoteStatus } from "../types/quote.types";
+export const QUOTE_STATUS_LABELS: Record<QuoteStatus, string> = { pending: "Pendiente", in_review: "En revision", priced: "Valorizada", ready_to_send: "Lista para envio", sent: "Enviada", rejected: "Rechazada" };
+export const QUOTE_EVENT_LABELS: Record<QuoteEventType, string> = { review_started: "Revision iniciada", pricing_updated: "Precios actualizados", commercial_details_updated: "Condiciones actualizadas", prepared: "Cotizacion preparada", rejected: "Cotizacion rechazada", document_generated: "PDF generado", email_sent: "Cotizacion enviada", email_failed: "Fallo el envio", email_resent: "Cotizacion reenviada" };
 export function formatMoney(value: number | null | undefined): string { return value == null ? "—" : new Intl.NumberFormat("es-PE", { style: "currency", currency: "PEN" }).format(value); }
 export function formatDate(value: string): string { const date = new Date(value); return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("es-PE", { dateStyle: "medium", timeStyle: "short" }).format(date); }
