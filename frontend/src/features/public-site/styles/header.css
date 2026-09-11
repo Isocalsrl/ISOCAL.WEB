@@ -1,6 +1,6 @@
 .public-header {
     position: sticky;
-    z-index: 20;
+    z-index: 40;
     top: 0;
     border-bottom:
         1px solid
@@ -16,6 +16,10 @@
             255,
             255,
             0.97
+        );
+    backdrop-filter:
+        blur(
+            0.75rem
         );
 }
 
@@ -45,16 +49,23 @@
     height: 2.25rem;
 }
 
-.public-navigation-panel {
+.public-navigation-panel,
+.public-navigation,
+.public-navigation-item {
     display: flex;
     align-items: center;
+}
+
+.public-navigation-panel {
     gap: 1.4rem;
 }
 
 .public-navigation {
-    display: flex;
-    align-items: center;
     gap: 0.25rem;
+}
+
+.public-navigation-item {
+    position: relative;
 }
 
 .public-navigation-link {
@@ -65,6 +76,7 @@
         0
         0.8rem;
     align-items: center;
+    gap: 0.55rem;
     color: #4f5358;
     font-size: 0.7rem;
     font-weight: 850;
@@ -89,7 +101,9 @@
         var(--public-red);
     content: "";
     transform:
-        scaleX(0);
+        scaleX(
+            0
+        );
     transform-origin: left;
     transition:
         transform
@@ -106,7 +120,191 @@
 .public-navigation-link:hover::after,
 .public-navigation-link-active::after {
     transform:
-        scaleX(1);
+        scaleX(
+            1
+        );
+}
+
+.public-navigation-caret {
+    width: 0.42rem;
+    height: 0.42rem;
+    margin-top: -0.2rem;
+    border-right:
+        0.1rem solid
+        currentColor;
+    border-bottom:
+        0.1rem solid
+        currentColor;
+    transform:
+        rotate(
+            45deg
+        );
+    transition:
+        transform
+        150ms
+        ease;
+}
+
+.public-navigation-item-has-children:hover
+.public-navigation-caret,
+.public-navigation-item-has-children:focus-within
+.public-navigation-caret {
+    transform:
+        translateY(
+            0.2rem
+        )
+        rotate(
+            225deg
+        );
+}
+
+.public-navigation-submenu {
+    position: absolute;
+    top:
+        calc(
+            100% - 0.1rem
+        );
+    left: 50%;
+    width: 23rem;
+    padding: 1.25rem;
+    border:
+        1px solid
+        var(--public-line);
+    opacity: 0;
+    visibility: hidden;
+    background: #ffffff;
+    box-shadow:
+        0
+        1.4rem
+        3.2rem
+        rgba(
+            13,
+            26,
+            42,
+            0.16
+        );
+    transform:
+        translate(
+            -50%,
+            0.65rem
+        );
+    transition:
+        opacity
+        150ms
+        ease,
+        visibility
+        150ms
+        ease,
+        transform
+        150ms
+        ease;
+    pointer-events: none;
+}
+
+.public-navigation-submenu::before {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    left: -1px;
+    height: 0.22rem;
+    background:
+        var(--public-red);
+    content: "";
+}
+
+.public-navigation-item-has-children:hover
+.public-navigation-submenu,
+.public-navigation-item-has-children:focus-within
+.public-navigation-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform:
+        translate(
+            -50%,
+            0
+        );
+    pointer-events: auto;
+}
+
+.public-navigation-submenu-title {
+    margin: 0;
+    padding:
+        0.35rem
+        0.4rem
+        0.85rem;
+    color:
+        var(--public-muted);
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing:
+        0.1em;
+    text-transform:
+        uppercase;
+}
+
+.public-navigation-submenu-link {
+    display: grid;
+    padding:
+        0.9rem
+        0.4rem;
+    border-top:
+        1px solid
+        var(--public-line);
+    gap: 0.3rem;
+    color:
+        var(--public-navy-deep);
+    text-decoration: none;
+    transition:
+        color
+        150ms
+        ease,
+        padding-left
+        150ms
+        ease;
+}
+
+.public-navigation-submenu-link:hover,
+.public-navigation-submenu-link:focus-visible {
+    padding-left: 0.75rem;
+    color:
+        var(--public-red);
+}
+
+.public-navigation-submenu-link span {
+    font-size: 0.82rem;
+    font-weight: 850;
+}
+
+.public-navigation-submenu-link small {
+    color:
+        var(--public-muted);
+    font-size: 0.72rem;
+    line-height: 1.45;
+}
+
+.public-navigation-submenu-all {
+    display: flex;
+    margin-top: 0.6rem;
+    padding:
+        0.9rem
+        0.4rem
+        0.25rem;
+    align-items: center;
+    justify-content:
+        space-between;
+    color:
+        var(--public-red);
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing:
+        0.065em;
+    text-decoration: none;
+    text-transform:
+        uppercase;
+}
+
+.public-submenu-toggle {
+    display: none;
 }
 
 .public-header-contact {
@@ -164,7 +362,8 @@
     display: block;
     width: 1.35rem;
     height: 0.13rem;
-    background: currentColor;
+    background:
+        currentColor;
 }
 
 @media (
@@ -189,10 +388,15 @@
         right: -1rem;
         left: -1rem;
         display: none;
+        max-height:
+            calc(
+                100vh - 4.8rem
+            );
         padding:
             0.9rem
             1rem
             1rem;
+        overflow-y: auto;
         border-top:
             1px solid
             var(--public-line);
@@ -218,8 +422,19 @@
         gap: 0.75rem;
     }
 
-    .public-navigation {
+    .public-navigation,
+    .public-navigation-item {
         display: grid;
+        align-items: stretch;
+    }
+
+    .public-navigation-item-has-children {
+        grid-template-columns:
+            minmax(
+                0,
+                1fr
+            )
+            3rem;
     }
 
     .public-navigation-link {
@@ -237,13 +452,115 @@
         width: 0.18rem;
         height: auto;
         transform:
-            scaleY(0);
+            scaleY(
+                0
+            );
     }
 
     .public-navigation-link:hover::after,
     .public-navigation-link-active::after {
         transform:
-            scaleY(1);
+            scaleY(
+                1
+            );
+    }
+
+    .public-navigation-caret {
+        display: none;
+    }
+
+    .public-submenu-toggle {
+        display: grid;
+        width: 3rem;
+        min-height: 3rem;
+        padding: 0;
+        border: 0;
+        place-items: center;
+        color:
+            var(--public-navy-deep);
+        background:
+            transparent;
+        cursor: pointer;
+    }
+
+    .public-submenu-toggle span {
+        width: 0.5rem;
+        height: 0.5rem;
+        margin-top: -0.25rem;
+        border-right:
+            0.12rem solid
+            currentColor;
+        border-bottom:
+            0.12rem solid
+            currentColor;
+        transform:
+            rotate(
+                45deg
+            );
+        transition:
+            transform
+            150ms
+            ease;
+    }
+
+    .public-navigation-item-open
+    .public-submenu-toggle span {
+        margin-top: 0.2rem;
+        transform:
+            rotate(
+                225deg
+            );
+    }
+
+    .public-navigation-submenu,
+    .public-navigation-item-has-children:hover
+    .public-navigation-submenu,
+    .public-navigation-item-has-children:focus-within
+    .public-navigation-submenu {
+        position: static;
+        display: none;
+        width: auto;
+        padding:
+            0.75rem
+            0.85rem
+            0.9rem;
+        border: 0;
+        border-left:
+            0.18rem solid
+            var(--public-red);
+        grid-column:
+            1 / -1;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        transform: none;
+        pointer-events: auto;
+    }
+
+    .public-navigation-item-open
+    .public-navigation-submenu,
+    .public-navigation-item-open:hover
+    .public-navigation-submenu,
+    .public-navigation-item-open:focus-within
+    .public-navigation-submenu {
+        display: block;
+        transform: none;
+    }
+
+    .public-navigation-submenu::before,
+    .public-navigation-submenu-title {
+        display: none;
+    }
+
+    .public-navigation-submenu-link {
+        padding:
+            0.8rem
+            0.6rem;
+    }
+
+    .public-navigation-submenu-all {
+        padding-right: 0.6rem;
+        padding-left: 0.6rem;
     }
 
     .public-header-contact {

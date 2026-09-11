@@ -1,4 +1,6 @@
 import {
+    useCallback,
+    useEffect,
     useState,
 } from "react";
 
@@ -34,20 +36,45 @@ export function PublicHeader() {
         setIsNavigationOpen,
     ] = useState(false);
 
-    function closeNavigation(): void {
-        setIsNavigationOpen(
-            false,
+    const [
+        openSubmenu,
+        setOpenSubmenu,
+    ] = useState<string | null>(null);
+
+    const closeNavigation =
+        useCallback((): void => {
+            setIsNavigationOpen(false);
+            setOpenSubmenu(null);
+        }, []);
+
+    useEffect(() => {
+        function closeOnEscape(
+            event: KeyboardEvent,
+        ): void {
+            if (event.key === "Escape") {
+                closeNavigation();
+            }
+        }
+
+        document.addEventListener(
+            "keydown",
+            closeOnEscape,
         );
-    }
+
+        return () => {
+            document.removeEventListener(
+                "keydown",
+                closeOnEscape,
+            );
+        };
+    }, [closeNavigation]);
 
     return (
         <header className="public-header">
             <div className="public-container public-header-content">
                 <BrandMark
                     imageSrc="/images/brand/isocal-logo.svg"
-                    onNavigate={
-                        closeNavigation
-                    }
+                    onNavigate={closeNavigation}
                 />
 
                 <button
@@ -59,29 +86,17 @@ export function PublicHeader() {
                             : "Abrir menú de navegación"
                     }
                     aria-controls="public-navigation"
-                    aria-expanded={
-                        isNavigationOpen
-                    }
+                    aria-expanded={isNavigationOpen}
                     onClick={() => {
                         setIsNavigationOpen(
-                            (
-                                currentValue,
-                            ) =>
+                            (currentValue) =>
                                 !currentValue,
                         );
                     }}
                 >
-                    <span
-                        aria-hidden="true"
-                    />
-
-                    <span
-                        aria-hidden="true"
-                    />
-
-                    <span
-                        aria-hidden="true"
-                    />
+                    <span aria-hidden="true" />
+                    <span aria-hidden="true" />
+                    <span aria-hidden="true" />
                 </button>
 
                 <div
@@ -97,31 +112,160 @@ export function PublicHeader() {
                         aria-label="Navegación principal"
                     >
                         {PUBLIC_NAVIGATION_ITEMS.map(
-                            (
-                                navigationItem,
-                            ) => (
-                                <NavLink
-                                    key={
-                                        navigationItem.to
-                                    }
-                                    className={
-                                        navigationLinkClass
-                                    }
-                                    to={
-                                        navigationItem.to
-                                    }
-                                    end={
-                                        navigationItem.end
-                                    }
-                                    onClick={
-                                        closeNavigation
-                                    }
-                                >
-                                    {
-                                        navigationItem.label
-                                    }
-                                </NavLink>
-                            ),
+                            (navigationItem) => {
+                                if (
+                                    !navigationItem.children
+                                ) {
+                                    return (
+                                        <NavLink
+                                            key={
+                                                navigationItem.to
+                                            }
+                                            className={
+                                                navigationLinkClass
+                                            }
+                                            to={
+                                                navigationItem.to
+                                            }
+                                            end={
+                                                navigationItem.end
+                                            }
+                                            onClick={
+                                                closeNavigation
+                                            }
+                                        >
+                                            {
+                                                navigationItem.label
+                                            }
+                                        </NavLink>
+                                    );
+                                }
+
+                                const isSubmenuOpen =
+                                    openSubmenu ===
+                                    navigationItem.to;
+
+                                return (
+                                    <div
+                                        key={
+                                            navigationItem.to
+                                        }
+                                        className={
+                                            isSubmenuOpen
+                                                ? "public-navigation-item public-navigation-item-has-children public-navigation-item-open"
+                                                : "public-navigation-item public-navigation-item-has-children"
+                                        }
+                                    >
+                                        <NavLink
+                                            className={
+                                                navigationLinkClass
+                                            }
+                                            to={
+                                                navigationItem.to
+                                            }
+                                            onClick={
+                                                closeNavigation
+                                            }
+                                        >
+                                            {
+                                                navigationItem.label
+                                            }
+
+                                            <span
+                                                className="public-navigation-caret"
+                                                aria-hidden="true"
+                                            />
+                                        </NavLink>
+
+                                        <button
+                                            className="public-submenu-toggle"
+                                            type="button"
+                                            aria-label={`${
+                                                isSubmenuOpen
+                                                    ? "Ocultar"
+                                                    : "Mostrar"
+                                            } opciones de ${
+                                                navigationItem.label
+                                            }`}
+                                            aria-expanded={
+                                                isSubmenuOpen
+                                            }
+                                            aria-controls="services-navigation-submenu"
+                                            onClick={() => {
+                                                setOpenSubmenu(
+                                                    isSubmenuOpen
+                                                        ? null
+                                                        : navigationItem.to,
+                                                );
+                                            }}
+                                        >
+                                            <span
+                                                aria-hidden="true"
+                                            />
+                                        </button>
+
+                                        <div
+                                            id="services-navigation-submenu"
+                                            className="public-navigation-submenu"
+                                        >
+                                            <p className="public-navigation-submenu-title">
+                                                Áreas de
+                                                servicio
+                                            </p>
+
+                                            {
+                                                navigationItem.children.map(
+                                                    (
+                                                        child,
+                                                    ) => (
+                                                        <NavLink
+                                                            key={
+                                                                child.to
+                                                            }
+                                                            className="public-navigation-submenu-link"
+                                                            to={
+                                                                child.to
+                                                            }
+                                                            onClick={
+                                                                closeNavigation
+                                                            }
+                                                        >
+                                                            <span>
+                                                                {
+                                                                    child.label
+                                                                }
+                                                            </span>
+
+                                                            <small>
+                                                                {
+                                                                    child.description
+                                                                }
+                                                            </small>
+                                                        </NavLink>
+                                                    ),
+                                                )
+                                            }
+
+                                            <NavLink
+                                                className="public-navigation-submenu-all"
+                                                to="/servicios"
+                                                onClick={
+                                                    closeNavigation
+                                                }
+                                            >
+                                                Ver todos los
+                                                servicios
+
+                                                <span
+                                                    aria-hidden="true"
+                                                >
+                                                    →
+                                                </span>
+                                            </NavLink>
+                                        </div>
+                                    </div>
+                                );
+                            },
                         )}
                     </nav>
 
@@ -130,9 +274,7 @@ export function PublicHeader() {
                         href={contactUrl()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={
-                            closeNavigation
-                        }
+                        onClick={closeNavigation}
                     >
                         Solicitar atención
                     </a>

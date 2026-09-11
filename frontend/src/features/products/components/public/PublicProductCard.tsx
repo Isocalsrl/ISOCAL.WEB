@@ -1,8 +1,4 @@
 import {
-    Link,
-} from "react-router-dom";
-
-import {
     ArrowIcon,
 } from "../../../../shared/components/ui/ArrowIcon";
 
@@ -17,57 +13,74 @@ interface PublicProductCardProps {
     categoryName:
         string;
 
-    returnCategorySlug?:
-        string | null;
+    onOpen:
+        (
+            productId:
+                number,
+        ) => void;
 }
 
 export function PublicProductCard({
     product,
     categoryName,
-    returnCategorySlug =
-        null,
+    onOpen,
 }: PublicProductCardProps) {
-    const returnQuery =
-        returnCategorySlug
-            ? `?categoria=${encodeURIComponent(
-                  returnCategorySlug,
-              )}`
-            : "";
-
     return (
         <article className="catalog-product-card">
-            <div>
+            <button
+                className="catalog-product-card-button"
+                type="button"
+                aria-haspopup="dialog"
+                aria-label={`Abrir información de ${product.name}`}
+                onClick={() => {
+                    onOpen(
+                        product.id,
+                    );
+                }}
+            >
                 <p className="catalog-product-category">
-                    {categoryName}
+                    {
+                        categoryName
+                    }
                 </p>
 
-                <h3>
-                    {product.name}
-                </h3>
+                <span
+                    className="catalog-product-name"
+                    role="heading"
+                    aria-level={
+                        3
+                    }
+                >
+                    {
+                        product.name
+                    }
+                </span>
 
-                {product.description ? (
-                    <p className="catalog-product-description">
-                        {
-                            product.description
-                        }
-                    </p>
-                ) : (
-                    <p className="catalog-product-description catalog-product-description-empty">
-                        Sin descripción
-                        pública disponible.
-                    </p>
-                )}
-            </div>
+                {
+                    product.description
+                        ? (
+                            <p className="catalog-product-description">
+                                {
+                                    product.description
+                                }
+                            </p>
+                        )
+                        : (
+                            <p className="catalog-product-description catalog-product-description-empty">
+                                Sin
+                                descripción
+                                pública
+                                disponible.
+                            </p>
+                        )
+                }
 
-            <Link
-                className="catalog-product-link"
-                to={`/productos/${product.id}${returnQuery}`}
-                aria-label={`Ver detalle de ${product.name}`}
-            >
-                Ver detalle
+                <span className="catalog-product-link">
+                    Ver información
 
-                <ArrowIcon />
-            </Link>
+                    <ArrowIcon />
+                </span>
+            </button>
         </article>
     );
 }

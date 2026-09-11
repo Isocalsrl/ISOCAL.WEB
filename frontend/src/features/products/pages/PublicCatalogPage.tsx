@@ -1,5 +1,7 @@
 import {
+    useCallback,
     useMemo,
+    useState,
 } from "react";
 
 import {
@@ -15,6 +17,10 @@ import {
 } from "../../../shared/seo/PageSeo";
 
 import {
+    toSlug,
+} from "../../../shared/utils/toSlug";
+
+import {
     ContactSection,
 } from "../../public-site/components/ContactSection";
 
@@ -25,6 +31,10 @@ import {
 import {
     CatalogCategoryFilter,
 } from "../components/public/CatalogCategoryFilter";
+
+import {
+    ProductDetailModal,
+} from "../components/public/ProductDetailModal";
 
 import {
     PublicProductCard,
@@ -51,11 +61,37 @@ const CATALOG_STRUCTURED_DATA = {
         "Catálogo público de equipos e insumos disponibles en ISOCAL.",
 };
 
+function parseRequestedProductId(
+    value:
+        string | null,
+): number | null {
+    if (!value) {
+        return null;
+    }
+
+    const parsedValue =
+        Number(
+            value,
+        );
+
+    return Number.isInteger(
+        parsedValue,
+    ) &&
+        parsedValue > 0
+        ? parsedValue
+        : null;
+}
+
 export function PublicCatalogPage() {
     const [
         searchParams,
         setSearchParams,
     ] = useSearchParams();
+
+    const [
+        searchTerm,
+        setSearchTerm,
+    ] = useState("");
 
     const {
         products,
@@ -71,6 +107,13 @@ export function PublicCatalogPage() {
             "categoria",
         );
 
+    const requestedProductId =
+        parseRequestedProductId(
+            searchParams.get(
+                "producto",
+            ),
+        );
+
     const selectedCategory =
         useMemo(
             () =>
@@ -84,29 +127,6 @@ export function PublicCatalogPage() {
             [
                 categories,
                 requestedCategorySlug,
-            ],
-        );
-
-    const filteredProducts =
-        useMemo(
-            () => {
-                if (
-                    !selectedCategory
-                ) {
-                    return products;
-                }
-
-                return products.filter(
-                    (
-                        product,
-                    ) =>
-                        product.categoryId ===
-                        selectedCategory.id,
-                );
-            },
-            [
-                products,
-                selectedCategory,
             ],
         );
 
@@ -128,6 +148,90 @@ export function PublicCatalogPage() {
             ],
         );
 
+    const normalizedSearchTerm =
+        toSlug(
+            searchTerm,
+        );
+
+    const filteredProducts =
+        useMemo(
+            () =>
+                products.filter(
+                    (
+                        product,
+                    ) => {
+                        if (
+                            selectedCategory &&
+                            product.categoryId !==
+                                selectedCategory.id
+                        ) {
+                            return false;
+                        }
+
+                        if (
+                            !normalizedSearchTerm
+                        ) {
+                            return true;
+                        }
+
+                        const categoryName =
+                            product.categoryId ===
+                            null
+                                ? ""
+                                : categoryNamesById.get(
+                                      product.categoryId,
+                                  ) ?? "";
+
+                        return toSlug(
+                            [
+                                product.name,
+                                product.description ??
+                                    "",
+                                categoryName,
+                            ].join(
+                                " ",
+                            ),
+                        ).includes(
+                            normalizedSearchTerm,
+                        );
+                    },
+                ),
+            [
+                products,
+                selectedCategory,
+                normalizedSearchTerm,
+                categoryNamesById,
+            ],
+        );
+
+    const selectedProduct =
+        useMemo(
+            () =>
+                products.find(
+                    (
+                        product,
+                    ) =>
+                        product.id ===
+                        requestedProductId,
+                ) ?? null,
+            [
+                products,
+                requestedProductId,
+            ],
+        );
+
+    const selectedProductCategoryName =
+        selectedProduct
+            ?.categoryId ===
+        null
+            ? "Sin categoría"
+            : categoryNamesById.get(
+                  selectedProduct
+                      ?.categoryId ??
+                      -1,
+              ) ??
+              "Catálogo ISOCAL";
+
     function selectCategory(
         categorySlug:
             string | null,
@@ -136,6 +240,10 @@ export function PublicCatalogPage() {
             new URLSearchParams(
                 searchParams,
             );
+
+        nextSearchParams.delete(
+            "producto",
+        );
 
         if (
             categorySlug
@@ -155,11 +263,71 @@ export function PublicCatalogPage() {
         );
     }
 
+    const openProduct =
+        useCallback(
+            (
+                productId:
+                    number,
+            ): void => {
+                const nextSearchParams =
+                    new URLSearchParams(
+                        searchParams,
+                    );
+
+                nextSearchParams.set(
+                    "producto",
+                    String(
+                        productId,
+                    ),
+                );
+
+                setSearchParams(
+                    nextSearchParams,
+                );
+            },
+            [
+                searchParams,
+                setSearchParams,
+            ],
+        );
+
+    const closeProduct =
+        useCallback(
+            (): void => {
+                const nextSearchParams =
+                    new URLSearchParams(
+                        searchParams,
+                    );
+
+                nextSearchParams.delete(
+                    "producto",
+                );
+
+                setSearchParams(
+                    nextSearchParams,
+                    {
+                        replace:
+                            true,
+                    },
+                );
+            },
+            [
+                searchParams,
+                setSearchParams,
+            ],
+        );
+
     const resultLabel =
         filteredProducts.length ===
         1
             ? "1 producto"
             : `${filteredProducts.length} productos`;
+
+    const hasSearch =
+        searchTerm
+            .trim()
+            .length >
+        0;
 
     return (
         <main className="public-main">
@@ -195,73 +363,25 @@ export function PublicCatalogPage() {
                 <div className="public-container products-hero-content">
                     <div className="products-hero-copy">
                         <p className="products-hero-kicker">
-                            Productos ·
-                            ISOCAL
+                            Equipos e
+                            insumos
                         </p>
 
                         <h1 id="products-hero-title">
-                            Equipamiento para
-                            medir con mayor
-                            control.
+                            Encuentra el
+                            equipo que tu
+                            operación
+                            necesita.
                         </h1>
 
                         <p className="products-hero-description">
-                            Explora los
-                            productos
-                            disponibles y
-                            navega por
-                            categorías para
-                            encontrar
-                            alternativas
-                            relacionadas con
-                            la necesidad
-                            técnica de tu
-                            operación.
+                            Explora por
+                            categoría y
+                            consulta cada
+                            producto sin
+                            perder tu lugar
+                            en el catálogo.
                         </p>
-                    </div>
-                </div>
-            </section>
-
-            <section
-                className="catalog-intro public-section"
-                aria-labelledby="catalog-intro-title"
-            >
-                <div className="public-container catalog-intro-grid">
-                    <div className="catalog-intro-copy">
-                        <p className="eyebrow">
-                            Equipos e insumos
-                        </p>
-
-                        <h2 id="catalog-intro-title">
-                            Una consulta más
-                            clara desde el
-                            primer momento.
-                        </h2>
-
-                        <p>
-                            Consulta el
-                            catálogo completo
-                            o filtra los
-                            productos por
-                            categoría. Cada
-                            producto dispone
-                            de una vista
-                            individual para
-                            facilitar la
-                            consulta con el
-                            equipo de ISOCAL.
-                        </p>
-                    </div>
-
-                    <div className="catalog-intro-image">
-                        <img
-                            src="/images/products/catalogo-editorial.webp"
-                            alt="Selección de equipos e instrumentos técnicos"
-                            width="1400"
-                            height="1000"
-                            loading="lazy"
-                            decoding="async"
-                        />
                     </div>
                 </div>
             </section>
@@ -280,9 +400,11 @@ export function PublicCatalogPage() {
                             </p>
 
                             <h2 id="catalog-title">
-                                {selectedCategory
-                                    ? selectedCategory.name
-                                    : "Todos los productos"}
+                                {
+                                    selectedCategory
+                                        ? selectedCategory.name
+                                        : "Todos los productos"
+                                }
                             </h2>
                         </div>
 
@@ -294,24 +416,29 @@ export function PublicCatalogPage() {
                             </strong>
 
                             <p>
-                                {selectedCategory
-                                    ?.description ??
-                                    "Selecciona una categoría para reducir el catálogo a los productos relacionados con esa área."}
+                                {
+                                    selectedCategory
+                                        ?.description ??
+                                    "Filtra por categoría o busca directamente por el nombre del equipo."
+                                }
                             </p>
                         </div>
                     </div>
 
-                    {isLoading && (
-                        <div className="catalog-state">
-                            <SectionState
-                                title="Cargando catálogo"
-                                description="Estamos consultando los productos y categorías disponibles."
-                                isLoading
-                            />
-                        </div>
-                    )}
+                    {
+                        isLoading && (
+                            <div className="catalog-state">
+                                <SectionState
+                                    title="Cargando catálogo"
+                                    description="Estamos consultando los productos y categorías disponibles."
+                                    isLoading
+                                />
+                            </div>
+                        )
+                    }
 
-                    {!isLoading &&
+                    {
+                        !isLoading &&
                         errorMessage && (
                             <div className="catalog-state">
                                 <SectionState
@@ -325,9 +452,11 @@ export function PublicCatalogPage() {
                                     }
                                 />
                             </div>
-                        )}
+                        )
+                    }
 
-                    {!isLoading &&
+                    {
+                        !isLoading &&
                         !errorMessage && (
                             <div className="catalog-layout">
                                 <aside className="catalog-sidebar">
@@ -349,62 +478,171 @@ export function PublicCatalogPage() {
                                     />
                                 </aside>
 
-                                <div
-                                    id="catalog-results"
-                                    className="catalog-results"
-                                    aria-live="polite"
-                                >
-                                    {filteredProducts.length ===
-                                    0 ? (
-                                        <SectionState
-                                            title="No hay productos en esta categoría"
-                                            description="Actualmente no existen productos públicos disponibles dentro de esta categoría."
-                                            actionLabel="Ver todos los productos"
-                                            onAction={() =>
-                                                selectCategory(
-                                                    null,
+                                <div className="catalog-main">
+                                    <div className="catalog-toolbar">
+                                        <label className="catalog-search">
+                                            <span className="catalog-search-label">
+                                                Buscar
+                                                producto
+                                            </span>
+
+                                            <span className="catalog-search-control">
+                                                <input
+                                                    className="catalog-search-input"
+                                                    type="search"
+                                                    value={
+                                                        searchTerm
+                                                    }
+                                                    placeholder="Ej. termómetro, balanza o pH"
+                                                    onChange={(
+                                                        event,
+                                                    ) => {
+                                                        setSearchTerm(
+                                                            event
+                                                                .target
+                                                                .value,
+                                                        );
+                                                    }}
+                                                />
+
+                                                {
+                                                    hasSearch && (
+                                                        <button
+                                                            className="catalog-search-clear"
+                                                            type="button"
+                                                            aria-label="Limpiar búsqueda"
+                                                            onClick={() => {
+                                                                setSearchTerm(
+                                                                    "",
+                                                                );
+                                                            }}
+                                                        >
+                                                            ×
+                                                        </button>
+                                                    )
+                                                }
+                                            </span>
+                                        </label>
+
+                                        <p
+                                            className="catalog-result-count"
+                                            aria-live="polite"
+                                        >
+                                            Mostrando{" "}
+
+                                            <strong>
+                                                {
+                                                    resultLabel
+                                                }
+                                            </strong>
+                                        </p>
+                                    </div>
+
+                                    <div id="catalog-results">
+                                        {
+                                            filteredProducts.length ===
+                                            0
+                                                ? (
+                                                    <div className="catalog-empty-filter">
+                                                        <h3>
+                                                            {
+                                                                hasSearch
+                                                                    ? "No encontramos coincidencias"
+                                                                    : "No hay productos en esta categoría"
+                                                            }
+                                                        </h3>
+
+                                                        <p>
+                                                            {
+                                                                hasSearch
+                                                                    ? "Prueba con un nombre más corto o limpia la búsqueda para volver a ver el catálogo."
+                                                                    : "Actualmente no existen productos públicos disponibles dentro de esta categoría."
+                                                            }
+                                                        </p>
+
+                                                        <button
+                                                            className="ui-button ui-button-secondary"
+                                                            type="button"
+                                                            onClick={() => {
+                                                                if (
+                                                                    hasSearch
+                                                                ) {
+                                                                    setSearchTerm(
+                                                                        "",
+                                                                    );
+                                                                } else {
+                                                                    selectCategory(
+                                                                        null,
+                                                                    );
+                                                                }
+                                                            }}
+                                                        >
+                                                            {
+                                                                hasSearch
+                                                                    ? "Limpiar búsqueda"
+                                                                    : "Ver todos los productos"
+                                                            }
+                                                        </button>
+                                                    </div>
                                                 )
-                                            }
-                                        />
-                                    ) : (
-                                        <div className="catalog-products-grid">
-                                            {filteredProducts.map(
-                                                (
-                                                    product,
-                                                ) => (
-                                                    <PublicProductCard
-                                                        key={
-                                                            product.id
+                                                : (
+                                                    <div className="catalog-products-grid">
+                                                        {
+                                                            filteredProducts.map(
+                                                                (
+                                                                    product,
+                                                                ) => (
+                                                                    <PublicProductCard
+                                                                        key={
+                                                                            product.id
+                                                                        }
+                                                                        product={
+                                                                            product
+                                                                        }
+                                                                        categoryName={
+                                                                            product.categoryId ===
+                                                                            null
+                                                                                ? "Sin categoría"
+                                                                                : categoryNamesById.get(
+                                                                                      product.categoryId,
+                                                                                  ) ??
+                                                                                  "Categoría"
+                                                                        }
+                                                                        onOpen={
+                                                                            openProduct
+                                                                        }
+                                                                    />
+                                                                ),
+                                                            )
                                                         }
-                                                        product={
-                                                            product
-                                                        }
-                                                        categoryName={
-                                                            product.categoryId ===
-                                                            null
-                                                                ? "Sin categoría"
-                                                                : categoryNamesById.get(
-                                                                      product.categoryId,
-                                                                  ) ??
-                                                                  "Categoría"
-                                                        }
-                                                        returnCategorySlug={
-                                                            selectedCategory
-                                                                ?.slug ??
-                                                            null
-                                                        }
-                                                    />
-                                                ),
-                                            )}
-                                        </div>
-                                    )}
+                                                    </div>
+                                                )
+                                        }
+                                    </div>
                                 </div>
                             </div>
-                        )}
+                        )
+                    }
                 </div>
             </section>
 
             <ContactSection />
+
+            {
+                selectedProduct && (
+                    <ProductDetailModal
+                        product={
+                            selectedProduct
+                        }
+                        categoryName={
+                            selectedProductCategoryName
+                        }
+                        onClose={
+                            closeProduct
+                        }
+                    />
+                )
+            }
         </main>
     );
 }
