@@ -1,3 +1,11 @@
+/*
+ * Breakpoints temporales para componentes y páginas
+ * públicas que todavía no han sido migradas por completo.
+ *
+ * Home, Nosotros y Servicios mantienen actualmente
+ * sus propios breakpoints en sus respectivos CSS.
+ */
+
 @media (
     max-width: 900px
 ) {
@@ -6,19 +14,6 @@
     .public-catalog-placeholder {
         grid-template-columns:
             1fr;
-    }
-
-    .public-service-card {
-        grid-template-columns:
-            4rem
-            minmax(
-                0,
-                1fr
-            );
-    }
-
-    .public-service-detail {
-        grid-column: 2;
     }
 }
 
@@ -60,20 +55,6 @@
     .public-story-marker {
         min-height: 22rem;
     }
-
-    .public-service-card {
-        grid-template-columns:
-            3rem
-            minmax(
-                0,
-                1fr
-            );
-    }
-
-    .public-service-number {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
 }
 
 @media (
@@ -87,15 +68,6 @@
     .public-contrast-content
     .ui-button {
         width: 100%;
-    }
-
-    .public-service-card {
-        grid-template-columns:
-            1fr;
-    }
-
-    .public-service-detail {
-        grid-column: auto;
     }
 }
 
