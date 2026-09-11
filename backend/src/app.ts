@@ -23,6 +23,9 @@ import {
     createAdminProductsRouter,
     productsRouter,
 } from "./modules/products/products.routes.js";
+import {
+    quotesRouter,
+} from "./modules/quotes/quotes.routes.js";
 
 const app = express();
 
@@ -68,6 +71,11 @@ app.use(
 app.use(
     "/api/categories",
     categoriesRouter,
+);
+
+app.use(
+    "/api/quotes",
+    quotesRouter,
 );
 
 app.use(
