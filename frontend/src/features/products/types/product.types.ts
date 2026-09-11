@@ -9,6 +9,16 @@ export interface Product {
     updatedAt: string;
 }
 
+export type PublicProduct =
+    Pick<
+        Product,
+        | "id"
+        | "name"
+        | "slug"
+        | "description"
+        | "categoryId"
+    >;
+
 export interface ProductInput {
     name: string;
     slug: string;
