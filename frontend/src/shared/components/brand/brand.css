@@ -9,6 +9,13 @@
     text-decoration: none;
 }
 
+.brand-mark-image {
+    display: block;
+    width: auto;
+    height: 2.5rem;
+    object-fit: contain;
+}
+
 .brand-word {
     display: inline-flex;
     align-items: center;
@@ -21,7 +28,8 @@
 .brand-chevrons {
     font-size: 1.25em;
     letter-spacing: -0.25em;
-    transform: translateY(-0.04em);
+    transform:
+        translateY(-0.04em);
 }
 
 .brand-subtitle {

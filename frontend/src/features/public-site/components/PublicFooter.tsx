@@ -10,6 +10,10 @@ import {
     PUBLIC_NAVIGATION_ITEMS,
 } from "../constants/publicNavigation";
 
+import {
+    COMPANY,
+} from "../data/company";
+
 export function PublicFooter() {
     const currentYear =
         new Date().getFullYear();
@@ -18,27 +22,38 @@ export function PublicFooter() {
         <footer className="public-footer">
             <div className="public-container public-footer-grid">
                 <div className="public-footer-brand">
-                    <BrandMark />
+                    <BrandMark
+                        imageSrc="/images/brand/isocal-logo-white.svg"
+                    />
 
                     <p>
-                        Soluciones de consultoría
-                        y metrología orientadas a
-                        procesos de medición más
-                        confiables.
+                        {COMPANY.slogan}
                     </p>
                 </div>
 
                 <div className="public-footer-column">
-                    <h2>Navegación</h2>
+                    <h2>
+                        Navegación
+                    </h2>
 
-                    <nav aria-label="Navegación del pie de página">
+                    <nav
+                        aria-label="Navegación del pie de página"
+                    >
                         {PUBLIC_NAVIGATION_ITEMS.map(
-                            (navigationItem) => (
+                            (
+                                navigationItem,
+                            ) => (
                                 <Link
-                                    key={navigationItem.to}
-                                    to={navigationItem.to}
+                                    key={
+                                        navigationItem.to
+                                    }
+                                    to={
+                                        navigationItem.to
+                                    }
                                 >
-                                    {navigationItem.label}
+                                    {
+                                        navigationItem.label
+                                    }
                                 </Link>
                             ),
                         )}
@@ -46,20 +61,49 @@ export function PublicFooter() {
                 </div>
 
                 <div className="public-footer-column">
-                    <h2>ISOCAL</h2>
+                    <h2>
+                        Contacto
+                    </h2>
 
-                    <p>
-                        Conoce nuestras soluciones
-                        y encuentra la alternativa
-                        adecuada para tu proceso.
-                    </p>
-
-                    <Link
-                        className="public-footer-highlight"
-                        to="/servicios"
+                    <a
+                        href={
+                            COMPANY.primaryPhoneHref
+                        }
                     >
-                        Explorar servicios
-                    </Link>
+                        {
+                            COMPANY.primaryPhone
+                        }
+                    </a>
+
+                    <a
+                        href={
+                            COMPANY.secondaryPhoneHref
+                        }
+                    >
+                        {
+                            COMPANY.secondaryPhone
+                        }
+                    </a>
+
+                    <a
+                        href={
+                            COMPANY.salesEmailHref
+                        }
+                    >
+                        {
+                            COMPANY.salesEmail
+                        }
+                    </a>
+
+                    <a
+                        href={
+                            COMPANY.metrologyEmailHref
+                        }
+                    >
+                        {
+                            COMPANY.metrologyEmail
+                        }
+                    </a>
                 </div>
             </div>
 
@@ -71,6 +115,15 @@ export function PublicFooter() {
                         reservados.
                     </p>
 
+                    <a
+                        href={
+                            COMPANY.website
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        www.isocal.pe
+                    </a>
                 </div>
             </div>
         </footer>
