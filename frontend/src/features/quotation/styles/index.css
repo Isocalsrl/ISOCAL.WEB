@@ -349,6 +349,9 @@
     border:
         1px solid
         var(--public-line);
+    border-top:
+        0.2rem solid
+        var(--public-navy-deep);
     grid-template-columns:
         minmax(
             0,
@@ -356,28 +359,11 @@
         );
     gap: 1.5rem;
     background: #ffffff;
-    transition:
-        border-color
-        150ms
-        ease,
-        box-shadow
-        150ms
-        ease;
 }
 
 .quotation-product-item:hover {
     border-color:
-        #aaa9a3;
-    box-shadow:
-        0
-        1rem
-        2.4rem
-        rgba(
-            13,
-            26,
-            42,
-            0.07
-        );
+        var(--public-red);
 }
 
 .quotation-product-category {
@@ -477,8 +463,11 @@
     border:
         1px solid
         var(--public-line);
+    border-top:
+        0.25rem solid
+        var(--public-red);
     background:
-        var(--public-soft);
+        var(--public-cream);
 }
 
 .quotation-summary h2 {
