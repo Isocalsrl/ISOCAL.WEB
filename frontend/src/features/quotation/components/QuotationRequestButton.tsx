@@ -1,40 +1,15 @@
-import {
-    useState,
-} from "react";
+import { QuotationIcon } from "./QuotationIcon";
 
-import {
-    QuotationIcon,
-} from "./QuotationIcon";
+interface QuotationRequestButtonProps {
+    onRequest: () => void;
+    disabled?: boolean;
+}
 
-export function QuotationRequestButton() {
-    const [
-        hasInteracted,
-        setHasInteracted,
-    ] = useState(false);
-
+export function QuotationRequestButton({ onRequest, disabled = false }: QuotationRequestButtonProps) {
     return (
-        <button
-            className={
-                hasInteracted
-                    ? "quotation-request-button quotation-request-button-feedback"
-                    : "quotation-request-button"
-            }
-            type="button"
-            onClick={() => {
-                setHasInteracted(
-                    true,
-                );
-            }}
-        >
+        <button className="quotation-request-button" type="button" onClick={onRequest} disabled={disabled}>
             <QuotationIcon />
-
-            <span
-                aria-live="polite"
-            >
-                {hasInteracted
-                    ? "Envío próximamente"
-                    : "Solicitar cotización"}
-            </span>
+            <span>Solicitar cotización</span>
         </button>
     );
 }

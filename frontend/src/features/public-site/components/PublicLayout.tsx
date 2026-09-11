@@ -25,6 +25,7 @@ import {
 import "../styles/index.css";
 import "../../favorites/styles/index.css";
 import "../../quotation/styles/index.css";
+import "../../quotation/styles/request.css";
 
 export function PublicLayout() {
     return (
