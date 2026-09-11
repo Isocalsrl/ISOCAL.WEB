@@ -1,3 +1,4 @@
+import { resolve } from "node:path";
 import "dotenv/config";
 
 function positiveNumber(
@@ -36,4 +37,9 @@ export const env = {
                 .ADMIN_SESSION_DURATION_HOURS,
             12,
         ),
+
+    fileStorageRoot: resolve(
+        process.cwd(),
+        process.env.FILE_STORAGE_ROOT ?? "storage",
+    ),
 };
