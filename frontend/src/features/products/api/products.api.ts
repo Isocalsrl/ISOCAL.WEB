@@ -18,6 +18,17 @@ export function listProducts():
     );
 }
 
+function buildProductFormData(input: ProductInput | ProductUpdateInput): FormData {
+    const formData = new FormData();
+    if (input.name !== undefined) formData.append("name", input.name);
+    if (input.slug !== undefined) formData.append("slug", input.slug);
+    if (input.description !== undefined) formData.append("description", input.description ?? "");
+    if (input.categoryId !== undefined) formData.append("categoryId", input.categoryId === null ? "" : String(input.categoryId));
+    if ("isActive" in input && input.isActive !== undefined) formData.append("isActive", String(input.isActive));
+    if (input.image) formData.append("image", input.image);
+    return formData;
+}
+
 export function getProduct(
     id: number,
 ): Promise<Product> {
@@ -33,7 +44,7 @@ export function createProduct(
         ADMIN_PRODUCTS_PATH,
         {
             method: "POST",
-            body: JSON.stringify(input),
+            body: buildProductFormData(input),
         },
     );
 }
@@ -46,7 +57,7 @@ export function updateProduct(
         `${ADMIN_PRODUCTS_PATH}/${id}`,
         {
             method: "PATCH",
-            body: JSON.stringify(input),
+            body: buildProductFormData(input),
         },
     );
 }

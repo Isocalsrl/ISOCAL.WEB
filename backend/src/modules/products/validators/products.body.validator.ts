@@ -128,10 +128,6 @@ export function validateUpdateProductBody(
         validationError("El cuerpo de la solicitud debe ser un objeto JSON.");
     }
 
-    if (Object.keys(value).length === 0) {
-        validationError("Debes enviar al menos un campo para actualizar.");
-    }
-
     assertAllowedFields(value);
 
     if (value.name !== undefined) {

@@ -12,6 +12,8 @@ import {
     FavoriteToggleButton,
 } from "../../../favorites/components/FavoriteToggleButton";
 
+import { resolveApiUrl } from "../../../../shared/api/apiUrl";
+
 import {
     QuotationToggleButton,
 } from "../../../quotation/components/QuotationToggleButton";
@@ -49,6 +51,7 @@ export function ProductDetailModal({
     categoryName,
     onClose,
 }: ProductDetailModalProps) {
+    const imageUrl = resolveApiUrl(product.imageUrl);
     const titleId =
         useId();
 
@@ -188,26 +191,10 @@ export function ProductDetailModal({
                     descriptionId
                 }
             >
-                <div
-                    className="product-modal-accent"
-                    aria-hidden="true"
-                >
-                    <span>
-                        ISOCAL
-                    </span>
-
-                    <strong>
-                        {
-                            String(
-                                product.id,
-                            ).padStart(
-                                2,
-                                "0",
-                            )
-                        }
-                    </strong>
+                <div className="product-modal-media" aria-hidden="true">
+                    {imageUrl ? <img src={imageUrl} alt="" /> : <div className="product-modal-media-fallback"><strong>ISOCAL</strong><span>Imagen pendiente</span></div>}
+                    <div className="product-modal-media-meta"><span>ISOCAL</span><strong>{String(product.id).padStart(2, "0")}</strong></div>
                 </div>
-
                 <div className="product-modal-content">
                     <button
                         ref={

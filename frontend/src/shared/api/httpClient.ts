@@ -67,6 +67,7 @@ export async function request<T>(
     options: RequestInit = {},
 ): Promise<T> {
     let response: Response;
+    const isFormData = options.body instanceof FormData;
 
     try {
         response = await fetch(
@@ -77,7 +78,7 @@ export async function request<T>(
                 credentials: "include",
 
                 headers: {
-                    ...(options.body
+                    ...(options.body && !isFormData
                         ? {
                               "Content-Type":
                                   "application/json",

@@ -1,10 +1,11 @@
+import type { PoolClient } from "pg";
 import { db } from "../../../database/db.js";
 import { toProduct, type ProductRow } from "../products.mapper.js";
 import type { Product, UpdateProductInput } from "../products.types.js";
 import { PRODUCT_COLUMNS } from "./products.repository.constants.js";
-import { findById } from "./products.read.repository.js";
 
 export async function update(
+    client: PoolClient,
     id: number,
     input: UpdateProductInput,
 ): Promise<Product | null> {
@@ -40,14 +41,14 @@ export async function update(
     }
 
     if (fields.length === 0) {
-        return findById(id);
+        return null;
     }
 
     fields.push("updated_at = CURRENT_TIMESTAMP");
 
     values.push(id);
 
-    const result = await db.query<ProductRow>(
+    const result = await client.query<ProductRow>(
         `
             UPDATE products
             SET ${fields.join(", ")}
@@ -59,6 +60,13 @@ export async function update(
     );
 
     return result.rows[0] ? toProduct(result.rows[0]) : null;
+}
+
+export async function touch(client: PoolClient, id: number): Promise<void> {
+    await client.query(
+        `UPDATE products SET updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+        [id],
+    );
 }
 
 export async function deactivate(id: number): Promise<Product | null> {

@@ -12,6 +12,8 @@ import {
     ApiError,
 } from "../../../shared/api/httpClient";
 
+import { resolveApiUrl } from "../../../shared/api/apiUrl";
+
 import * as categoriesApi
     from "../../categories/api/categories.api";
 
@@ -56,6 +58,9 @@ export function useProductForm() {
     } = useProductEditor(
         isEditing,
     );
+
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
 
     const [
         categories,
@@ -137,6 +142,7 @@ export function useProductForm() {
                     hydrateProduct(
                         product,
                     );
+                    setExistingImageUrl(resolveApiUrl(product.imageUrl));
                 }
             } catch (error) {
                 if (isActive) {
@@ -175,6 +181,8 @@ export function useProductForm() {
         const validationMessage =
             validateProductForm(
                 form,
+                imageFile,
+                Boolean(existingImageUrl),
             );
 
         if (
@@ -190,7 +198,7 @@ export function useProductForm() {
             true,
         );
 
-        const input = {
+        const fields = {
             name: form.name.trim(),
             slug: form.slug.trim(),
             description:
@@ -205,17 +213,20 @@ export function useProductForm() {
         };
 
         try {
-            if (isEditing) {
-                await productsApi
-                    .updateProduct(
-                        numericProductId,
-                        input,
-                    );
-            } else {
-                await productsApi
-                    .createProduct(
-                        input,
-                    );
+                if (isEditing) {
+                    await productsApi
+                        .updateProduct(
+                            numericProductId,
+                            {
+                                ...fields,
+                                ...(imageFile ? { image: imageFile } : {}),
+                            },
+                        );
+                } else {
+                    await productsApi
+                        .createProduct(
+                            { ...fields, image: imageFile! },
+                        );
             }
 
             navigate(
@@ -255,6 +266,9 @@ export function useProductForm() {
         updateSlug,
         updateCategoryId,
         updateDescription,
+        imageFile,
+        existingImageUrl,
+        updateImage: setImageFile,
         submit,
         goBack: () => {
             navigate(

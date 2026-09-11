@@ -2,6 +2,8 @@ import {
     Link,
 } from "react-router-dom";
 
+import { resolveApiUrl } from "../../../../shared/api/apiUrl";
+
 import {
     SectionState,
 } from "../../../../shared/components/ui/SectionState";
@@ -54,6 +56,7 @@ export function PublicProductDetail({
     returnLabel,
     onGoToReturnPage,
 }: PublicProductDetailProps) {
+    const imageUrl = resolveApiUrl(product?.imageUrl);
     return (
         <section className="product-detail-page">
             <div className="public-container">
@@ -105,6 +108,9 @@ export function PublicProductDetail({
                     product && (
                         <div className="product-detail-layout">
                             <div className="product-detail-content">
+                                <div className="product-detail-image">
+                                    {imageUrl ? <img src={imageUrl} alt={`Imagen de ${product.name}`} /> : <div className="product-detail-image-fallback"><strong>ISOCAL</strong><span>Imagen pendiente</span></div>}
+                                </div>
                                 <p className="eyebrow">
                                     Producto
                                 </p>
