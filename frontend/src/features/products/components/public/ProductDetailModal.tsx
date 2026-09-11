@@ -9,6 +9,10 @@ import {
 } from "react-dom";
 
 import {
+    FavoriteToggleButton,
+} from "../../../favorites/components/FavoriteToggleButton";
+
+import {
     contactUrl,
 } from "../../../public-site/data/company";
 
@@ -270,19 +274,31 @@ export function ProductDetailModal({
                             </p>
                         </div>
 
-                        <a
-                            className="ui-button ui-button-primary"
-                            href={
-                                contactUrl(
-                                    product.name,
-                                )
-                            }
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Consultar
-                            producto
-                        </a>
+                        <div className="product-modal-actions">
+                            <FavoriteToggleButton
+                                productId={
+                                    product.id
+                                }
+                                productName={
+                                    product.name
+                                }
+                                showText
+                            />
+
+                            <a
+                                className="ui-button ui-button-primary"
+                                href={
+                                    contactUrl(
+                                        product.name,
+                                    )
+                                }
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Consultar
+                                producto
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
