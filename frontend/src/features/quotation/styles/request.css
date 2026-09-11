@@ -1,122 +1,13 @@
-.quotation-request-form {
-    display: grid;
-    gap: 1.75rem;
-    margin-top: 2rem;
-    padding: clamp(1.5rem, 4vw, 3rem);
-    border: 1px solid var(--public-line);
-    background: #fff;
-}
-
-.quotation-request-form-heading h2 {
-    margin: 0.6rem 0 0;
-    color: var(--public-navy-deep);
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-}
-
-.quotation-request-form-heading p:last-child {
-    max-width: 42rem;
-    margin: 0.75rem 0 0;
-    color: var(--public-muted);
-    line-height: 1.65;
-}
-
-.quotation-request-fields {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
-}
-
-.quotation-request-items {
-    display: grid;
-    gap: 1.25rem;
-}
-
-.quotation-request-item {
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--public-line);
-}
-
-.quotation-request-item h3 {
-    margin: 0 0 1rem;
-    color: var(--public-navy-deep);
-    font-size: 1.05rem;
-}
-
-.quotation-request-item-fields {
-    display: grid;
-    grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1fr);
-    gap: 1.25rem;
-}
-
-.quotation-request-form > .form-field textarea {
-    min-height: 7rem;
-}
-
-.quotation-request-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-}
-
-.quotation-request-success {
-    display: grid;
-    max-width: 52rem;
-    margin-top: 2rem;
-    padding: clamp(2rem, 5vw, 4rem);
-    border: 1px solid var(--public-line);
-    background: var(--public-soft);
-}
-
-.quotation-request-success h2 {
-    margin: 0.7rem 0 0;
-    color: var(--public-navy-deep);
-    font-size: clamp(1.8rem, 4vw, 3rem);
-}
-
-.quotation-request-success > p:not(.eyebrow) {
-    max-width: 40rem;
-    margin: 1rem 0 0;
-    color: var(--public-muted);
-    line-height: 1.7;
-}
-
-.quotation-request-receipt {
-    display: grid;
-    gap: 0.8rem;
-    margin: 2rem 0;
-}
-
-.quotation-request-receipt div {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.85rem 0;
-    border-top: 1px solid var(--public-line);
-}
-
-.quotation-request-receipt dt {
-    color: var(--public-muted);
-}
-
-.quotation-request-receipt dd {
-    margin: 0;
-    color: var(--public-navy-deep);
-    font-weight: 800;
-    text-align: right;
-}
-
-@media (max-width: 700px) {
-    .quotation-request-fields,
-    .quotation-request-item-fields {
-        grid-template-columns: 1fr;
-    }
-
-    .quotation-request-actions {
-        flex-direction: column-reverse;
-    }
-
-    .quotation-request-actions .ui-button {
-        width: 100%;
-    }
-}
+.quotation-request-form { display: grid; gap: 1.8rem; margin-top: 2.5rem; padding: clamp(1.7rem,4vw,3rem); border: 1px solid var(--public-line); border-top: .25rem solid var(--public-red); background: #fff; }
+.quotation-request-form-heading { padding-bottom: 1.7rem; border-bottom: 1px solid var(--public-line); }
+.quotation-request-form-heading h2 { margin: .6rem 0 0; color: var(--public-navy-deep); font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 850; letter-spacing: -.045em; line-height: 1; }
+.quotation-request-form-heading p:last-child { max-width: 42rem; margin: .9rem 0 0; color: var(--public-muted); line-height: 1.7; }
+.quotation-request-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; }
+.quotation-request-items { display: grid; } .quotation-request-item { padding: 1.5rem 0; border-top: 1px solid var(--public-line); } .quotation-request-item h3 { margin: 0 0 1rem; color: var(--public-navy-deep); font-size: 1.08rem; font-weight: 820; } .quotation-request-item-fields { display: grid; grid-template-columns: minmax(8rem,.35fr) minmax(0,1fr); gap: 1.25rem; }
+.quotation-request-form > .form-field textarea { min-height: 7rem; }
+.quotation-request-actions { display: flex; padding-top: 1.5rem; border-top: 1px solid var(--public-line); justify-content: flex-end; gap: .75rem; flex-wrap: wrap; }
+.quotation-request-success { display: grid; max-width: 54rem; margin-top: 2.5rem; padding: clamp(2rem,5vw,4rem); border: 1px solid var(--public-line); border-top: .25rem solid var(--public-red); background: var(--public-cream); }
+.quotation-request-success h2 { margin: .7rem 0 0; color: var(--public-navy-deep); font-size: clamp(2rem,4vw,3.3rem); font-weight: 850; letter-spacing: -.055em; line-height: 1; }
+.quotation-request-success > p:not(.eyebrow) { max-width: 40rem; margin: 1rem 0 0; color: var(--public-muted); line-height: 1.75; }
+.quotation-request-receipt { display: grid; margin: 2rem 0; border-top: 1px solid var(--public-line); } .quotation-request-receipt div { display: flex; padding: .9rem 0; border-bottom: 1px solid var(--public-line); justify-content: space-between; gap: 1rem; } .quotation-request-receipt dt { color: var(--public-muted); } .quotation-request-receipt dd { margin: 0; color: var(--public-navy-deep); font-weight: 850; text-align: right; }
+@media (max-width: 700px) { .quotation-request-fields, .quotation-request-item-fields { grid-template-columns: 1fr; } .quotation-request-actions { flex-direction: column-reverse; } .quotation-request-actions .ui-button { width: 100%; } }
