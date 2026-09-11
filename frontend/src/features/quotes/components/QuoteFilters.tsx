@@ -1,0 +1,3 @@
+import type { QuoteStatus } from "../types/quote.types";
+interface Props { value: QuoteStatus | undefined; onChange: (value: QuoteStatus | undefined) => void; }
+export function QuoteFilters({ value, onChange }: Props) { return <label className="quote-filter">Estado<select value={value ?? ""} onChange={(event) => onChange((event.target.value || undefined) as QuoteStatus | undefined)}><option value="">Todos</option><option value="pending">Pendiente</option><option value="in_review">En revisión</option><option value="priced">Valorizada</option><option value="ready_to_send">Lista para envío</option><option value="sent">Enviada</option><option value="rejected">Rechazada</option></select></label>; }
