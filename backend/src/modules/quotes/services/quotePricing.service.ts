@@ -2,7 +2,7 @@ import { AppError } from "../../../shared/errors/AppError.js";
 import type { AdminRole } from "../../auth/auth.types.js";
 import { findAdminQuoteById } from "../repositories/quotes.admin.read.repository.js";
 import { updatePricing, type PricingUpdateRecord } from "../repositories/quotes.admin.update.repository.js";
-import type { QuotePricingInput } from "../quotes.types.js";
+import type { QuoteItem, QuotePricingInput } from "../quotes.types.js";
 import { fromCents, toCents } from "../utils/money.js";
 
 function requireSuperAdmin(role: AdminRole): void {
@@ -56,4 +56,36 @@ export async function applyPricing(
     const taxCents = Math.round(taxableCents * taxRate / 100);
     const record: PricingUpdateRecord = { items: pricedItems, subtotal: fromCents(subtotalCents), discountAmount: fromCents(discountCents), taxRate, taxAmount: fromCents(taxCents), total: fromCents(taxableCents + taxCents) };
     await updatePricing(quoteId, actorAdminId, record);
+}
+
+export interface CalculatedQuotePricing {
+    items: Array<{ itemId: number; unitPrice: number; discountAmount: number; subtotal: number }>;
+    subtotal: number;
+    discountAmount: number;
+    taxRate: number;
+    taxAmount: number;
+    total: number;
+}
+
+export function recalculateStoredQuotePricing(
+    storedItems: readonly QuoteItem[],
+    discountAmount: number,
+    taxRate: number,
+): CalculatedQuotePricing {
+    let subtotalCents = 0;
+    const items = storedItems.map((item) => {
+        if (item.unitPrice === null || item.subtotal === null) throw new AppError(409, `El producto ${item.productName} todavía no tiene un precio definido.`, "QUOTE_PRICING_INCOMPLETE");
+        const unitPriceCents = nonNegativeMoney(item.unitPrice, "El precio unitario");
+        const itemDiscountCents = nonNegativeMoney(item.discountAmount, "El descuento del producto");
+        const grossCents = unitPriceCents * item.quantity;
+        if (itemDiscountCents > grossCents) throw new AppError(409, `El descuento del producto ${item.productName} no es válido.`, "QUOTE_PRICING_INCOMPLETE");
+        const itemSubtotalCents = grossCents - itemDiscountCents;
+        subtotalCents += itemSubtotalCents;
+        return { itemId: item.id, unitPrice: fromCents(unitPriceCents), discountAmount: fromCents(itemDiscountCents), subtotal: fromCents(itemSubtotalCents) };
+    });
+    const globalDiscountCents = nonNegativeMoney(discountAmount, "El descuento general");
+    if (globalDiscountCents > subtotalCents) throw new AppError(409, "El descuento general no puede superar el subtotal.", "QUOTE_PRICING_INCOMPLETE");
+    if (!Number.isFinite(taxRate) || taxRate < 0 || taxRate > 100) throw new AppError(409, "El porcentaje de impuesto no es válido.", "QUOTE_PRICING_INCOMPLETE");
+    const taxCents = Math.round((subtotalCents - globalDiscountCents) * taxRate / 100);
+    return { items, subtotal: fromCents(subtotalCents), discountAmount: fromCents(globalDiscountCents), taxRate, taxAmount: fromCents(taxCents), total: fromCents(subtotalCents - globalDiscountCents + taxCents) };
 }

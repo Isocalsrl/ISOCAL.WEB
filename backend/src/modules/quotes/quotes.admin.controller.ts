@@ -29,7 +29,17 @@ export async function updateCommercialDetails(req: Request, res: Response): Prom
 }
 
 export async function prepareQuote(req: Request, res: Response): Promise<void> {
-    const quote = await adminService.prepare(parsePositiveInt(req.params.id), req.admin!.id, req.admin!.role);
+    const quote = await adminService.prepare(parsePositiveInt(req.params.id), req.admin!);
+    sendSuccess(res, quote);
+}
+
+export async function sendQuote(req: Request, res: Response): Promise<void> {
+    const quote = await adminService.send(parsePositiveInt(req.params.id), req.admin!);
+    sendSuccess(res, quote);
+}
+
+export async function resendQuote(req: Request, res: Response): Promise<void> {
+    const quote = await adminService.resend(parsePositiveInt(req.params.id), req.admin!);
     sendSuccess(res, quote);
 }
 

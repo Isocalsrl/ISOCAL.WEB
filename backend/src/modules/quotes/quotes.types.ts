@@ -1,6 +1,6 @@
 export type QuoteStatus = "pending" | "in_review" | "priced" | "ready_to_send" | "sent" | "rejected";
 export type QuoteCurrency = "PEN";
-export type QuoteEventType = "review_started" | "pricing_updated" | "commercial_details_updated" | "prepared" | "rejected";
+export type QuoteEventType = "review_started" | "pricing_updated" | "commercial_details_updated" | "prepared" | "rejected" | "document_generated" | "email_sent" | "email_failed" | "email_resent";
 export type QuoteAdminAccess = "admin" | "super_admin";
 
 export interface QuoteCustomerInput { fullName: string; email: string; phone: string; companyName?: string | null; ruc?: string | null; jobTitle?: string | null; location?: string | null; notes?: string | null; }

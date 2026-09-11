@@ -13,6 +13,11 @@ function positiveNumber(
         : fallback;
 }
 
+function optionalString(value: string | undefined): string | null {
+    const normalized = value?.trim();
+    return normalized ? normalized : null;
+}
+
 export const env = {
     nodeEnv:
         process.env.NODE_ENV ??
@@ -42,4 +47,14 @@ export const env = {
         process.cwd(),
         process.env.FILE_STORAGE_ROOT ?? "storage",
     ),
+
+    resendApiKey: optionalString(process.env.RESEND_API_KEY),
+    emailFrom: optionalString(process.env.EMAIL_FROM),
+    emailReplyTo: optionalString(process.env.EMAIL_REPLY_TO),
+    companyLegalName: optionalString(process.env.ISOCAL_LEGAL_NAME),
+    companyRuc: optionalString(process.env.ISOCAL_RUC),
+    companyPhone: optionalString(process.env.ISOCAL_PHONE) ?? "+51 991 084 825",
+    companyEmail: optionalString(process.env.ISOCAL_EMAIL) ?? "ventas@isocal.pe",
+    companyWebsite: optionalString(process.env.ISOCAL_WEBSITE) ?? "https://www.isocal.pe",
+    companyAddress: optionalString(process.env.ISOCAL_ADDRESS),
 };

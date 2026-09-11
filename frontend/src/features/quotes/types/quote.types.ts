@@ -1,5 +1,5 @@
 export type QuoteStatus = "pending" | "in_review" | "priced" | "ready_to_send" | "sent" | "rejected";
-export type QuoteEventType = "review_started" | "pricing_updated" | "commercial_details_updated" | "prepared" | "rejected";
+export type QuoteEventType = "review_started" | "pricing_updated" | "commercial_details_updated" | "prepared" | "rejected" | "document_generated" | "email_sent" | "email_failed" | "email_resent";
 export interface QuoteCustomer { name: string; companyName: string | null; email: string; phone: string; ruc?: string | null; jobTitle?: string | null; location?: string | null; }
 export interface QuoteItem { id: number; productId: number; productName: string; quantity: number; customerNotes: string | null; unitPrice?: number | null; discountAmount?: number; subtotal?: number | null; }
 export interface QuoteCommercial { subtotal: number | null; discountAmount: number; taxRate: number; taxAmount: number | null; total: number | null; currency: "PEN"; validUntil: string | null; paymentTerms: string | null; commercialNotes: string | null; internalNotes: string | null; pricedBy: number | null; pricedAt: string | null; sentAt: string | null; }
