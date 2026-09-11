@@ -8,6 +8,15 @@ export interface Category {
     updatedAt: string;
 }
 
+export type PublicCategory =
+    Pick<
+        Category,
+        | "id"
+        | "name"
+        | "slug"
+        | "description"
+    >;
+
 export interface CategoryInput {
     name: string;
     slug: string;

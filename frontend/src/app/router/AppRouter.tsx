@@ -60,6 +60,10 @@ import {
     ServicesPage,
 } from "../../features/public-site/pages/ServicesPage";
 
+import {
+    PublicProductDetailPage,
+} from "../../features/products/pages/PublicProductDetailPage";
+
 export function AppRouter() {
     return (
         <Routes>
@@ -125,6 +129,13 @@ export function AppRouter() {
                             <ProductsPage />
                         }
                     />
+
+    <Route
+        path="productos/:productId"
+        element={
+            <PublicProductDetailPage />
+        }
+    />
 
                     <Route
                         path="products/new"
