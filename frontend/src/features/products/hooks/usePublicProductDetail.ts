@@ -146,10 +146,10 @@ export function usePublicProductDetail() {
             "categoria",
         );
 
-    const comesFromFavorites =
+    const origin =
         searchParams.get(
             "origen",
-        ) === "favoritos";
+        );
 
     const catalogReturnUrl =
         returnCategory
@@ -158,15 +158,33 @@ export function usePublicProductDetail() {
               )}`
             : "/productos";
 
-    const returnUrl =
-        comesFromFavorites
-            ? "/favoritos"
-            : catalogReturnUrl;
+    let returnUrl =
+        catalogReturnUrl;
 
-    const returnLabel =
-        comesFromFavorites
-            ? "Volver a favoritos"
-            : "Volver al catálogo";
+    let returnLabel =
+        "Volver al catálogo";
+
+    if (
+        origin ===
+        "favoritos"
+    ) {
+        returnUrl =
+            "/favoritos";
+
+        returnLabel =
+            "Volver a favoritos";
+    }
+
+    if (
+        origin ===
+        "cotizacion"
+    ) {
+        returnUrl =
+            "/cotizacion";
+
+        returnLabel =
+            "Volver a cotización";
+    }
 
     useEffect(() => {
         let isActive =

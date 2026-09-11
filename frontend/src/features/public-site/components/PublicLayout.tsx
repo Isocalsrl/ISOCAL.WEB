@@ -7,6 +7,10 @@ import {
 } from "../../favorites/context/FavoritesProvider";
 
 import {
+    QuotationProvider,
+} from "../../quotation/context/QuotationProvider";
+
+import {
     PublicFooter,
 } from "./PublicFooter";
 
@@ -20,19 +24,22 @@ import {
 
 import "../styles/index.css";
 import "../../favorites/styles/index.css";
+import "../../quotation/styles/index.css";
 
 export function PublicLayout() {
     return (
         <FavoritesProvider>
-            <div className="public-site-shell">
-                <ScrollToTop />
+            <QuotationProvider>
+                <div className="public-site-shell">
+                    <ScrollToTop />
 
-                <PublicHeader />
+                    <PublicHeader />
 
-                <Outlet />
+                    <Outlet />
 
-                <PublicFooter />
-            </div>
+                    <PublicFooter />
+                </div>
+            </QuotationProvider>
         </FavoritesProvider>
     );
 }

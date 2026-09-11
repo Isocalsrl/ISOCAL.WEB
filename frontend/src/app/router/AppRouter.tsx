@@ -68,6 +68,10 @@ import {
     ServicesPage,
 } from "../../features/public-site/pages/ServicesPage";
 
+import {
+    QuotationPage,
+} from "../../features/quotation/pages/QuotationPage";
+
 export function AppRouter() {
     return (
         <Routes>
@@ -115,6 +119,13 @@ export function AppRouter() {
                     path="favoritos"
                     element={
                         <FavoritesPage />
+                    }
+                />
+
+                <Route
+                    path="cotizacion"
+                    element={
+                        <QuotationPage />
                     }
                 />
             </Route>

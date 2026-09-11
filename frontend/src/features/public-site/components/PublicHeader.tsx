@@ -9,6 +9,10 @@ import {
 } from "../../favorites/components/FavoritesHeaderLink";
 
 import {
+    QuotationHeaderLink,
+} from "../../quotation/components/QuotationHeaderLink";
+
+import {
     BrandMark,
 } from "../../../shared/components/brand/BrandMark";
 
@@ -142,6 +146,12 @@ export function PublicHeader() {
                     />
 
                     <FavoritesHeaderLink
+                        onNavigate={
+                            closeNavigation
+                        }
+                    />
+
+                    <QuotationHeaderLink
                         onNavigate={
                             closeNavigation
                         }

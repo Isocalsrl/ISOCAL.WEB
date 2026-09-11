@@ -13,6 +13,10 @@ import {
 } from "../../../favorites/components/FavoriteToggleButton";
 
 import {
+    QuotationToggleButton,
+} from "../../../quotation/components/QuotationToggleButton";
+
+import {
     contactUrl,
 } from "../../../public-site/data/company";
 
@@ -283,6 +287,15 @@ export function ProductDetailModal({
                                     product.name
                                 }
                                 showText
+                            />
+
+                            <QuotationToggleButton
+                                productId={
+                                    product.id
+                                }
+                                productName={
+                                    product.name
+                                }
                             />
 
                             <a
