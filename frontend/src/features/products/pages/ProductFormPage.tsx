@@ -22,6 +22,8 @@ export function ProductFormPage() {
     const {
         form,
         categories,
+        imageFile,
+        existingImageUrl,
         isEditing,
         isLoading,
         isSubmitting,
@@ -30,6 +32,7 @@ export function ProductFormPage() {
         updateSlug,
         updateCategoryId,
         updateDescription,
+        updateImage,
         submit,
         goBack,
     } =
@@ -91,6 +94,8 @@ export function ProductFormPage() {
                 categories={
                     categories
                 }
+                imageFile={imageFile}
+                existingImageUrl={existingImageUrl}
                 isEditing={
                     isEditing
                 }
@@ -112,6 +117,7 @@ export function ProductFormPage() {
                 onDescriptionChange={
                     updateDescription
                 }
+                onImageChange={updateImage}
                 onSubmit={() => {
                     void submit();
                 }}

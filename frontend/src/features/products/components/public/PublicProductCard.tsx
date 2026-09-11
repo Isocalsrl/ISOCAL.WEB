@@ -2,6 +2,8 @@ import {
     FavoriteToggleButton,
 } from "../../../favorites/components/FavoriteToggleButton";
 
+import { resolveApiUrl } from "../../../../shared/api/apiUrl";
+
 import {
     QuotationToggleButton,
 } from "../../../quotation/components/QuotationToggleButton";
@@ -37,6 +39,7 @@ export function PublicProductCard({
     onOpen,
     opensDialog = true,
 }: PublicProductCardProps) {
+    const imageUrl = resolveApiUrl(product.imageUrl);
     return (
         <article className="catalog-product-card">
             <FavoriteToggleButton
@@ -64,6 +67,11 @@ export function PublicProductCard({
                     );
                 }}
             >
+                <div className="catalog-product-image">
+                    {imageUrl ? <img src={imageUrl} alt="" loading="lazy" /> : <div className="catalog-product-image-fallback"><strong>ISOCAL</strong><span>Imagen pendiente</span></div>}
+                </div>
+
+                <div className="catalog-product-card-content">
                 <p className="catalog-product-category">
                     {
                         categoryName
@@ -106,6 +114,7 @@ export function PublicProductCard({
 
                     <ArrowIcon />
                 </span>
+                </div>
             </button>
 
             <QuotationToggleButton

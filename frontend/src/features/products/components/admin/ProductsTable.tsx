@@ -2,6 +2,8 @@ import {
     ActionLink,
 } from "../../../../shared/components/ui/ActionLink";
 
+import { resolveApiUrl } from "../../../../shared/api/apiUrl";
+
 import {
     Button,
 } from "../../../../shared/components/ui/Button";
@@ -87,6 +89,7 @@ export function ProductsTable({
                 <table className="data-table">
                     <thead>
                         <tr>
+                            <th>Imagen</th>
                             <th>Producto</th>
                             <th>Categoría</th>
                             <th>Descripción</th>
@@ -112,6 +115,13 @@ export function ProductsTable({
                                         product.id
                                     }
                                 >
+                                    <td>
+                                        <div className="data-product-image">
+                                            {resolveApiUrl(product.imageUrl) ? (
+                                                <img src={resolveApiUrl(product.imageUrl) ?? undefined} alt="" loading="lazy" />
+                                            ) : <span>Sin imagen</span>}
+                                        </div>
+                                    </td>
                                     <td>
                                         <div className="data-primary">
                                             <strong>

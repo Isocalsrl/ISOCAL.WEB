@@ -1,4 +1,5 @@
 import type { ErrorRequestHandler, Response } from "express";
+import multer from "multer";
 import { AppError } from "../shared/errors/AppError.js";
 import type { ApiError } from "../shared/types/api.types.js";
 
@@ -38,6 +39,15 @@ export const errorMiddleware: ErrorRequestHandler = (error, _req, res, _next) =>
             error.details,
         );
 
+        return;
+    }
+
+    if (error instanceof multer.MulterError) {
+        if (error.code === "LIMIT_FILE_SIZE") {
+            sendError(res, 413, "PRODUCT_IMAGE_TOO_LARGE", "La imagen del producto no puede superar los 5 MB.");
+            return;
+        }
+        sendError(res, 400, "INVALID_MULTIPART_REQUEST", "No se pudo procesar el archivo enviado.", { multerCode: error.code });
         return;
     }
 

@@ -1,13 +1,14 @@
+import type { PoolClient } from "pg";
 import { db } from "../../../database/db.js";
 import { toProduct, type ProductRow } from "../products.mapper.js";
 import type { Product } from "../products.types.js";
-import { PRODUCT_COLUMNS } from "./products.repository.constants.js";
+import { PRODUCT_COLUMNS, PRODUCT_SELECT_COLUMNS } from "./products.repository.constants.js";
 
 export async function findAllActive(): Promise<Product[]> {
     const result = await db.query<ProductRow>(`
-        SELECT ${PRODUCT_COLUMNS}
-        FROM products
-        WHERE is_active = TRUE
+        SELECT ${PRODUCT_SELECT_COLUMNS}
+        FROM products p
+        WHERE p.is_active = TRUE
         ORDER BY id ASC
     `);
 
@@ -16,8 +17,8 @@ export async function findAllActive(): Promise<Product[]> {
 
 export async function findAll(): Promise<Product[]> {
     const result = await db.query<ProductRow>(`
-        SELECT ${PRODUCT_COLUMNS}
-        FROM products
+        SELECT ${PRODUCT_SELECT_COLUMNS}
+        FROM products p
         ORDER BY id ASC
     `);
 
@@ -27,10 +28,10 @@ export async function findAll(): Promise<Product[]> {
 export async function findActiveById(id: number): Promise<Product | null> {
     const result = await db.query<ProductRow>(
         `
-            SELECT ${PRODUCT_COLUMNS}
-            FROM products
-            WHERE id = $1
-                AND is_active = TRUE
+            SELECT ${PRODUCT_SELECT_COLUMNS}
+            FROM products p
+            WHERE p.id = $1
+                AND p.is_active = TRUE
             LIMIT 1
         `,
         [id],
@@ -42,11 +43,24 @@ export async function findActiveById(id: number): Promise<Product | null> {
 export async function findById(id: number): Promise<Product | null> {
     const result = await db.query<ProductRow>(
         `
-            SELECT ${PRODUCT_COLUMNS}
-            FROM products
-            WHERE id = $1
+            SELECT ${PRODUCT_SELECT_COLUMNS}
+            FROM products p
+            WHERE p.id = $1
             LIMIT 1
         `,
+        [id],
+    );
+
+    return result.rows[0] ? toProduct(result.rows[0]) : null;
+}
+
+export async function findByIdForUpdate(client: PoolClient, id: number): Promise<Product | null> {
+    const result = await client.query<ProductRow>(
+        `SELECT ${PRODUCT_COLUMNS}
+         FROM products
+         WHERE id = $1
+         LIMIT 1
+         FOR UPDATE`,
         [id],
     );
 

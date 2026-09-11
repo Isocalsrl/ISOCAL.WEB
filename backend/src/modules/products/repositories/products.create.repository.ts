@@ -1,10 +1,10 @@
-import { db } from "../../../database/db.js";
+import type { PoolClient } from "pg";
 import { toProduct, type ProductRow } from "../products.mapper.js";
 import type { CreateProductInput, Product } from "../products.types.js";
 import { PRODUCT_COLUMNS } from "./products.repository.constants.js";
 
-export async function create(input: CreateProductInput): Promise<Product> {
-    const result = await db.query<ProductRow>(
+export async function create(client: PoolClient, input: CreateProductInput): Promise<Product> {
+    const result = await client.query<ProductRow>(
         `
             INSERT INTO products (
                 name,
