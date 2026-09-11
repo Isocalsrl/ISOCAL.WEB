@@ -198,3 +198,34 @@ en frontend y backend.
    en una frase.
 7. No se divide un archivo de datos estáticos únicamente por cantidad de líneas
    si sigue representando un único conjunto coherente.
+
+## Estado persistido entre features
+
+Favoritos y cotización representan dominios diferentes, pero ambos persisten
+una colección de IDs de productos en `localStorage`. La mecánica reutilizable
+vive en `shared/storage/persistedProductIds.ts` y
+`shared/hooks/usePersistedProductIds.ts`; cada feature conserva su propio
+provider y vocabulario (`favoriteProductIds`, `quotationProductIds`, etc.).
+
+La regla es compartir el mecanismo, no fusionar dominios. Una nueva colección
+persistida debe reutilizar esa infraestructura solo si tiene las mismas
+semánticas de almacenamiento y sincronización entre pestañas.
+
+## Propiedad de estilos entre features
+
+Una feature no debe modificar desde su hoja de estilos la estructura interna de
+otra. Favoritos y cotización definen la apariencia de sus propios controles;
+Productos define en `features/products/styles/public-actions.css` cómo esos
+controles se acomodan dentro de tarjetas, modales y vistas de detalle de
+productos.
+
+Esto evita dependencias invisibles donde editar `favorites/styles` pueda romper
+la composición de un modal perteneciente a Productos.
+
+## Comportamiento compartido de diálogos
+
+El comportamiento técnico de un diálogo accesible (Escape, focus trap,
+restauración del foco y bloqueo del scroll) vive en
+`shared/hooks/useAccessibleDialog.ts`. Los componentes siguen siendo dueños de
+su contenido y markup; el hook comparte únicamente el comportamiento que se
+repite entre `ProductDetailModal`, `ConfirmDialog` y futuros diálogos.

@@ -71,3 +71,9 @@ textarea:focus-visible {
     letter-spacing: 0.11em;
     text-transform: uppercase;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

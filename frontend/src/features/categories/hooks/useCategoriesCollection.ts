@@ -7,175 +7,69 @@ import {
 import {
     ApiError,
 } from "../../../shared/api/httpClient";
-
-import * as categoriesApi
-    from "../api/categories.api";
-
+import * as categoriesApi from "../api/categories.api";
 import type {
     Category,
 } from "../types/category.types";
 
-function sortCategories(
-    categories:
-        Category[],
-): Category[] {
-    return [...categories].sort(
-        (
-            firstCategory,
-            secondCategory,
-        ) =>
-            firstCategory.name.localeCompare(
-                secondCategory.name,
-                "es",
-            ),
+function sortCategories(categories: Category[]): Category[] {
+    return [...categories].sort((firstCategory, secondCategory) =>
+        firstCategory.name.localeCompare(secondCategory.name, "es"),
     );
 }
 
-function getLoadErrorMessage(
-    error:
-        unknown,
-): string {
+function getLoadErrorMessage(error: unknown): string {
     return error instanceof ApiError
         ? error.message
         : "No se pudo cargar el listado de categorías.";
 }
 
 export function useCategoriesCollection() {
-    const [
-        categories,
-        setCategories,
-    ] = useState<Category[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadErrorMessage, setLoadErrorMessage] = useState<string | null>(
+        null,
+    );
 
-    const [
-        isLoading,
-        setIsLoading,
-    ] = useState(true);
+    const loadCategories = useCallback(async (): Promise<void> => {
+        setLoadErrorMessage(null);
+        setIsLoading(true);
 
-    const [
-        loadErrorMessage,
-        setLoadErrorMessage,
-    ] = useState<string | null>(null);
-
-    const loadCategories =
-        useCallback(
-            async (): Promise<void> => {
-                setLoadErrorMessage(
-                    null,
-                );
-                setIsLoading(true);
-
-                try {
-                    setCategories(
-                        await categoriesApi
-                            .listCategories(),
-                    );
-                } catch (error) {
-                    setLoadErrorMessage(
-                        getLoadErrorMessage(
-                            error,
-                        ),
-                    );
-                } finally {
-                    setIsLoading(false);
-                }
-            },
-            [],
-        );
-
-    useEffect(() => {
-        let isActive = true;
-
-        void categoriesApi
-            .listCategories()
-            .then((nextCategories) => {
-                if (isActive) {
-                    setLoadErrorMessage(
-                        null,
-                    );
-                    setCategories(
-                        nextCategories,
-                    );
-                }
-            })
-            .catch((error: unknown) => {
-                if (isActive) {
-                    setLoadErrorMessage(
-                        getLoadErrorMessage(
-                            error,
-                        ),
-                    );
-                }
-            })
-            .finally(() => {
-                if (isActive) {
-                    setIsLoading(false);
-                }
-            });
-
-        return () => {
-            isActive = false;
-        };
+        try {
+            setCategories(await categoriesApi.listCategories());
+        } catch (error) {
+            setLoadErrorMessage(getLoadErrorMessage(error));
+        } finally {
+            setIsLoading(false);
+        }
     }, []);
 
-    function addCategory(
-        category:
-            Category,
-    ): void {
-        setCategories(
-            (
-                currentCategories,
-            ) =>
-                sortCategories([
-                    ...currentCategories,
-                    category,
-                ]),
+    useEffect(() => {
+        void loadCategories();
+    }, [loadCategories]);
+
+    function addCategory(category: Category): void {
+        setCategories((currentCategories) =>
+            sortCategories([...currentCategories, category]),
         );
     }
 
     function replaceCategory(
-        category:
-            Category,
+        category: Category,
         shouldSort = true,
     ): void {
-        setCategories(
-            (
-                currentCategories,
-            ) => {
-                const nextCategories =
-                    currentCategories.map(
-                        (
-                            currentCategory,
-                        ) =>
-                            currentCategory.id ===
-                            category.id
-                                ? category
-                                : currentCategory,
-                    );
+        setCategories((currentCategories) => {
+            const nextCategories = currentCategories.map((currentCategory) =>
+                currentCategory.id === category.id ? category : currentCategory,
+            );
 
-                return shouldSort
-                    ? sortCategories(
-                          nextCategories,
-                      )
-                    : nextCategories;
-            },
-        );
+            return shouldSort ? sortCategories(nextCategories) : nextCategories;
+        });
     }
 
-    function removeCategory(
-        categoryId:
-            number,
-    ): void {
-        setCategories(
-            (
-                currentCategories,
-            ) =>
-                currentCategories.filter(
-                    (
-                        category,
-                    ) =>
-                        category.id !==
-                        categoryId,
-                ),
+    function removeCategory(categoryId: number): void {
+        setCategories((currentCategories) =>
+            currentCategories.filter((category) => category.id !== categoryId),
         );
     }
 

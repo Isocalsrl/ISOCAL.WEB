@@ -1,0 +1,144 @@
+.quotation-hero {
+    position: relative;
+    min-height: clamp(30rem, 58vh, 39rem);
+    overflow: hidden;
+    color: #ffffff;
+    background: var(--public-navy-deep);
+}
+
+.quotation-hero-image,
+.quotation-hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.quotation-hero-image {
+    object-fit: cover;
+    object-position: center;
+}
+
+.quotation-hero-overlay {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7, 15, 24, 0.9) 0%,
+            rgba(7, 15, 24, 0.72) 50%,
+            rgba(7, 15, 24, 0.18) 84%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(7, 15, 24, 0.44) 0%,
+            transparent 56%
+        );
+}
+
+.quotation-hero-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    min-height: clamp(30rem, 58vh, 39rem);
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+    grid-template-columns:
+        minmax(
+            0,
+            1.1fr
+        )
+        minmax(
+            18rem,
+            0.6fr
+        );
+    align-items: end;
+    gap:
+        clamp(
+            2rem,
+            7vw,
+            6rem
+        );
+}
+
+.quotation-hero
+.eyebrow {
+    color: #ff6d80;
+}
+
+.quotation-hero h1 {
+    max-width: 48rem;
+    margin: 0;
+    font-size:
+        clamp(
+            3rem,
+            7vw,
+            6rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.065em;
+    line-height: 0.94;
+}
+
+.quotation-hero-description {
+    max-width: 31rem;
+    margin: 0;
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.72
+        );
+    line-height: 1.75;
+}
+
+.quotation-section {
+    padding:
+        clamp(
+            3.5rem,
+            7vw,
+            6rem
+        )
+        0
+        clamp(
+            5rem,
+            9vw,
+            8rem
+        );
+    background: #ffffff;
+}
+
+.quotation-heading {
+    display: flex;
+    align-items: end;
+    justify-content:
+        space-between;
+    gap: 2rem;
+}
+
+.quotation-heading h2 {
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3.6rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.055em;
+    line-height: 1;
+}
+
+.quotation-count {
+    margin: 0;
+    color:
+        var(--public-muted);
+    font-size: 0.78rem;
+}
+
+.quotation-count strong {
+    color:
+        var(--public-navy-deep);
+}

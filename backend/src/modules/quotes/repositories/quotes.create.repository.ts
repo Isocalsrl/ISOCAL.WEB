@@ -1,4 +1,4 @@
-import { db } from "../../../database/db.js";
+import { withTransaction } from "../../../database/transaction.js";
 import { toQuote, type QuoteRow } from "../quotes.mapper.js";
 import type { CreateQuoteRecordInput, Quote } from "../quotes.types.js";
 import { QUOTE_COLUMNS } from "./quotes.repository.constants.js";
@@ -6,11 +6,7 @@ import { QUOTE_COLUMNS } from "./quotes.repository.constants.js";
 export async function createQuoteWithItems(
     input: CreateQuoteRecordInput,
 ): Promise<Quote> {
-    const client = await db.connect();
-
-    try {
-        await client.query("BEGIN");
-
+    return withTransaction(async (client) => {
         const quoteResult = await client.query<QuoteRow>(
             `
                 INSERT INTO quotes (
@@ -65,12 +61,6 @@ export async function createQuoteWithItems(
             );
         }
 
-        await client.query("COMMIT");
         return quote;
-    } catch (error) {
-        await client.query("ROLLBACK");
-        throw error;
-    } finally {
-        client.release();
-    }
+    });
 }

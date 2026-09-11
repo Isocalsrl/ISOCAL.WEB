@@ -126,3 +126,5 @@ export function useQuoteRequest({ products, onSuccess }: UseQuoteRequestOptions)
         submitRequest,
     };
 }
+
+export type QuoteRequestState = ReturnType<typeof useQuoteRequest>;

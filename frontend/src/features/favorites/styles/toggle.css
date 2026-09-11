@@ -1,0 +1,80 @@
+.favorite-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: 0 0 auto;
+}
+
+.favorite-toggle {
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border:
+        1px solid
+        var(--public-line);
+    align-items: center;
+    justify-content: center;
+    color:
+        var(--public-navy-deep);
+    background: #ffffff;
+    cursor: pointer;
+    transition:
+        border-color
+        150ms
+        ease,
+        color
+        150ms
+        ease,
+        background
+        150ms
+        ease,
+        transform
+        150ms
+        ease;
+}
+
+.favorite-toggle:hover {
+    border-color:
+        var(--public-red);
+    color:
+        var(--public-red);
+}
+
+.favorite-toggle:active {
+    transform:
+        scale(
+            0.96
+        );
+}
+
+.favorite-toggle-active {
+    border-color:
+        var(--public-red);
+    color: #ffffff;
+    background:
+        var(--public-red);
+}
+
+.favorite-toggle-active:hover {
+    color: #ffffff;
+    background:
+        #a80018;
+}
+
+.favorite-toggle-with-text {
+    width: auto;
+    min-height: 3rem;
+    padding:
+        0.78rem
+        1rem;
+    gap: 0.65rem;
+}
+
+.favorite-toggle-label {
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing:
+        0.055em;
+    text-transform:
+        uppercase;
+}

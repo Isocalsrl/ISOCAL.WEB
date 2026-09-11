@@ -34,15 +34,19 @@ products/
 ├── products.types.ts
 ├── repositories/
 │   ├── products.create.repository.ts
+│   ├── products.image.repository.ts
 │   ├── products.read.repository.ts
 │   ├── products.update.repository.ts
 │   └── products.repository.constants.ts
 ├── services/
+│   ├── productImage.service.ts
 │   ├── products.normalizer.ts
+│   ├── products.permissions.ts
 │   └── products.service.ts
 └── validators/
     ├── products.body.validator.ts
-    └── products.business.validator.ts
+    ├── products.business.validator.ts
+    └── products.image.validator.ts
 ```
 
 Las rutas públicas exponen únicamente la consulta de productos activos. La
@@ -112,3 +116,50 @@ features futuras. Un módulo entra al árbol cuando existe al menos un caso de u
 real y su primera ruta puede respetar el flujo definido arriba. Las features
 planificadas se mantienen en issues o documentación, no como archivos fuente
 vacíos que aparenten una implementación inexistente.
+
+## Transacciones
+
+Las transacciones de casos de uso normales se ejecutan mediante
+`database/transaction.ts`. El helper centraliza adquisición/liberación del
+cliente y `BEGIN`/`COMMIT`/`ROLLBACK`, mientras el callback conserva el SQL en
+el repository o la coordinación explícita del service.
+
+El runner de migraciones es una excepción intencional: administra su propia
+conexión, advisory lock y ciclo transaccional porque forma parte del arranque de
+infraestructura y no de un caso de uso HTTP.
+
+## Productos e imágenes
+
+`products.service.ts` coordina el caso de uso. Las reglas de autorización
+propias del producto viven en `products.permissions.ts` y el almacenamiento
+binario/validación de la imagen en `productImage.service.ts`. El repository
+continúa siendo responsable de persistir los metadatos de la imagen en
+PostgreSQL.
+
+La compensación de almacenamiento sigue en el service: si la transacción de
+base de datos falla después de guardar un binario, el archivo recién creado se
+elimina para no dejar residuos sin referencia.
+
+## Cotizaciones administrativas
+
+El módulo de cotizaciones creció en varios subdominios y sus mutaciones se
+separan por motivo de cambio:
+
+```text
+repositories/
+├── quotes.status.repository.ts       cambios de estado
+├── quotes.pricing.repository.ts      precios y recálculos
+├── quotes.commercial.repository.ts   condiciones comerciales
+├── quotes.events.repository.ts       historial/auditoría
+├── quotes.document.repository.ts     documentos generados
+└── quotes.delivery.repository.ts     intentos de correo
+```
+
+`quotes.admin.update.repository.ts` se conserva como barrel de compatibilidad;
+no debe recibir nueva lógica. Los services nuevos importan directamente el
+repository dueño de la responsabilidad.
+
+Los tipos de cotización siguen pudiendo importarse desde `quotes.types.ts`,
+pero internamente están agrupados en `quotes/types/` por núcleo, solicitud,
+pricing y vistas administrativas. Esto mantiene una API de tipos estable sin
+volver a concentrar todos los contratos en un archivo monolítico.

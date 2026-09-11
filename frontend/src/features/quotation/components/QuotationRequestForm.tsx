@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import type { PublicProduct } from "../../products/types/product.types";
 import { Button } from "../../../shared/components/ui/Button";
 import { FormField } from "../../../shared/components/ui/FormField";
@@ -18,7 +19,7 @@ interface QuotationRequestFormProps {
     onCancel: () => void;
 }
 
-export function QuotationRequestForm({
+export const QuotationRequestForm = forwardRef<HTMLFormElement, QuotationRequestFormProps>(function QuotationRequestForm({
     products,
     form,
     isSubmitting,
@@ -27,9 +28,9 @@ export function QuotationRequestForm({
     onItemChange,
     onSubmit,
     onCancel,
-}: QuotationRequestFormProps) {
+}, ref) {
     return (
-        <form className="quotation-request-form" onSubmit={(event) => { event.preventDefault(); void onSubmit(); }}>
+        <form ref={ref} className="quotation-request-form" onSubmit={(event) => { event.preventDefault(); void onSubmit(); }}>
             <div className="quotation-request-form-heading">
                 <p className="eyebrow">Datos de contacto</p>
                 <h2>Completa tu solicitud</h2>
@@ -94,4 +95,4 @@ export function QuotationRequestForm({
             </div>
         </form>
     );
-}
+});
