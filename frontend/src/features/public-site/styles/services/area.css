@@ -1,0 +1,31 @@
+.services-area {
+    scroll-margin-top: 6rem;
+}
+
+.services-area-number {
+    margin:
+        0
+        0
+        3rem;
+    color:
+        var(--public-red);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing:
+        0.12em;
+}
+
+.services-area-number-light {
+    color:
+        #ff7185;
+}
+
+.services-lead {
+    font-size:
+        clamp(
+            1rem,
+            1.5vw,
+            1.12rem
+        );
+    line-height: 1.75;
+}

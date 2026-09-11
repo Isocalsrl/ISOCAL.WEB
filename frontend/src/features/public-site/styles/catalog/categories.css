@@ -1,0 +1,240 @@
+.catalog-section {
+    padding:
+        clamp(
+            3.8rem,
+            7vw,
+            6rem
+        )
+        0;
+    background: #ffffff;
+}
+
+.catalog-heading {
+    display: grid;
+    padding-bottom:
+        clamp(
+            2rem,
+            4vw,
+            3rem
+        );
+    border-bottom:
+        1px solid
+        var(--public-line);
+    grid-template-columns:
+        minmax(
+            0,
+            1.15fr
+        )
+        minmax(
+            18rem,
+            0.65fr
+        );
+    align-items: end;
+    gap:
+        clamp(
+            2.5rem,
+            6vw,
+            5rem
+        );
+}
+
+.catalog-heading h2 {
+    max-width: 48rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2.4rem,
+            4.5vw,
+            4.2rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.06em;
+    line-height: 0.98;
+}
+
+.catalog-heading-meta {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.catalog-heading-meta strong {
+    color:
+        var(--public-red);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing:
+        0.08em;
+    text-transform:
+        uppercase;
+}
+
+.catalog-heading-meta p {
+    margin: 0;
+    color:
+        var(--public-muted);
+    line-height: 1.65;
+}
+
+.catalog-layout {
+    display: grid;
+    margin-top:
+        clamp(
+            2rem,
+            4vw,
+            3rem
+        );
+    grid-template-columns:
+        minmax(
+            14rem,
+            0.3fr
+        )
+        minmax(
+            0,
+            1fr
+        );
+    align-items: start;
+    gap:
+        clamp(
+            2.5rem,
+            5vw,
+            4.5rem
+        );
+}
+
+.catalog-sidebar,
+.catalog-main {
+    min-width: 0;
+}
+
+.catalog-category-filter {
+    position: sticky;
+    top: 7rem;
+    display: grid;
+    border-top:
+        1px solid
+        var(--public-navy-deep);
+}
+
+.catalog-category-filter-title {
+    margin: 0;
+    padding:
+        1.15rem
+        0;
+    border-bottom:
+        1px solid
+        var(--public-line);
+    color:
+        var(--public-muted);
+    font-size: 0.64rem;
+    font-weight: 900;
+    letter-spacing:
+        0.1em;
+    text-transform:
+        uppercase;
+}
+
+.catalog-category-button {
+    position: relative;
+    display: grid;
+    width: 100%;
+    padding:
+        1rem
+        0;
+    border: 0;
+    border-bottom:
+        1px solid
+        var(--public-line);
+    grid-template-columns:
+        minmax(
+            0,
+            1fr
+        )
+        auto;
+    align-items: center;
+    gap: 1rem;
+    color:
+        var(--public-muted);
+    background:
+        transparent;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 720;
+    line-height: 1.4;
+    text-align: left;
+    transition:
+        color
+        150ms
+        ease,
+        padding-left
+        150ms
+        ease;
+}
+
+.catalog-category-button::before {
+    position: absolute;
+    top: 50%;
+    left: -1rem;
+    width: 0.2rem;
+    height: 0;
+    background:
+        var(--public-red);
+    content: "";
+    transform:
+        translateY(
+            -50%
+        );
+    transition:
+        height
+        150ms
+        ease;
+}
+
+.catalog-category-button:hover {
+    padding-left: 0.35rem;
+    color:
+        var(--public-navy-deep);
+}
+
+.catalog-category-button:hover::before {
+    height: 1.4rem;
+}
+
+.catalog-category-button-active,
+.catalog-category-button[aria-pressed="true"] {
+    color:
+        var(--public-navy-deep);
+    font-weight: 850;
+}
+
+.catalog-category-button-active::before,
+.catalog-category-button[aria-pressed="true"]::before {
+    height: 1.8rem;
+}
+
+.catalog-category-count {
+    display: inline-grid;
+    min-width: 2rem;
+    min-height: 1.65rem;
+    padding:
+        0.25rem
+        0.45rem;
+    place-items: center;
+    color:
+        var(--public-muted);
+    background:
+        var(--public-soft);
+    font-size: 0.62rem;
+    font-weight: 850;
+}
+
+.catalog-category-button-active
+.catalog-category-count,
+.catalog-category-button[aria-pressed="true"]
+.catalog-category-count {
+    color: #ffffff;
+    background:
+        var(--public-red);
+}

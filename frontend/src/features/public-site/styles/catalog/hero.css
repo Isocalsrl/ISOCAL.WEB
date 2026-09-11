@@ -1,0 +1,131 @@
+.products-hero {
+    position: relative;
+    min-height:
+        clamp(
+            24rem,
+            48vh,
+            31rem
+        );
+    overflow: hidden;
+    color: #ffffff;
+    background:
+        var(--public-navy-deep);
+}
+
+.products-hero-image,
+.products-hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.products-hero-image {
+    object-fit: cover;
+    object-position:
+        center
+        48%;
+}
+
+.products-hero-overlay {
+    background:
+        rgba(
+            7,
+            15,
+            24,
+            0.76
+        );
+}
+
+.products-hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height:
+        clamp(
+            24rem,
+            48vh,
+            31rem
+        );
+    padding:
+        clamp(
+            3.5rem,
+            7vw,
+            5.5rem
+        )
+        0;
+    align-items: center;
+}
+
+.products-hero-copy {
+    max-width: 60rem;
+}
+
+.products-hero-kicker {
+    margin:
+        0
+        0
+        1rem;
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.88
+        );
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing:
+        0.11em;
+    text-transform:
+        uppercase;
+}
+
+.products-hero-kicker::before {
+    display: inline-block;
+    width: 2.8rem;
+    height: 0.18rem;
+    margin-right: 0.85rem;
+    vertical-align: middle;
+    background:
+        var(--public-red);
+    content: "";
+}
+
+.products-hero h1 {
+    max-width: 58rem;
+    margin: 0;
+    color: #ffffff;
+    font-size:
+        clamp(
+            3rem,
+            6vw,
+            5.5rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.06em;
+    line-height: 0.94;
+}
+
+.products-hero-description {
+    max-width: 41rem;
+    margin:
+        1.35rem
+        0
+        0;
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.8
+        );
+    font-size:
+        clamp(
+            1rem,
+            1.5vw,
+            1.1rem
+        );
+    line-height: 1.65;
+}

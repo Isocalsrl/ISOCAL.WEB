@@ -1,0 +1,159 @@
+.public-header {
+    position: sticky;
+    z-index: 40;
+    top: 0;
+    border-bottom:
+        1px solid
+        rgba(
+            19,
+            38,
+            61,
+            0.12
+        );
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.97
+        );
+    backdrop-filter:
+        blur(
+            0.75rem
+        );
+}
+
+.public-header::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 0.22rem;
+    background:
+        var(--public-red);
+    content: "";
+}
+
+.public-header-content {
+    position: relative;
+    display: flex;
+    min-height: 5.4rem;
+    align-items: center;
+    justify-content:
+        space-between;
+    gap: 2rem;
+}
+
+.public-header
+.brand-mark-image {
+    height: 2.25rem;
+}
+
+.public-navigation-panel,
+.public-navigation,
+.public-navigation-item {
+    display: flex;
+    align-items: center;
+}
+
+.public-navigation-panel {
+    gap: 1.4rem;
+}
+
+.public-navigation {
+    gap: 0.25rem;
+}
+
+.public-navigation-item {
+    position: relative;
+}
+
+.public-navigation-link {
+    position: relative;
+    display: inline-flex;
+    min-height: 2.8rem;
+    padding:
+        0
+        0.8rem;
+    align-items: center;
+    gap: 0.55rem;
+    color: #4f5358;
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing:
+        0.055em;
+    text-decoration: none;
+    text-transform:
+        uppercase;
+    transition:
+        color
+        150ms
+        ease;
+}
+
+.public-navigation-link::after {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.35rem;
+    left: 0.8rem;
+    height: 0.14rem;
+    background:
+        var(--public-red);
+    content: "";
+    transform:
+        scaleX(
+            0
+        );
+    transform-origin: left;
+    transition:
+        transform
+        150ms
+        ease;
+}
+
+.public-navigation-link:hover,
+.public-navigation-link-active {
+    color:
+        var(--public-navy-deep);
+}
+
+.public-navigation-link:hover::after,
+.public-navigation-link-active::after {
+    transform:
+        scaleX(
+            1
+        );
+}
+
+.public-navigation-caret {
+    width: 0.42rem;
+    height: 0.42rem;
+    margin-top: -0.2rem;
+    border-right:
+        0.1rem solid
+        currentColor;
+    border-bottom:
+        0.1rem solid
+        currentColor;
+    transform:
+        rotate(
+            45deg
+        );
+    transition:
+        transform
+        150ms
+        ease;
+}
+
+.public-navigation-item-has-children:hover
+.public-navigation-caret,
+.public-navigation-item-has-children:focus-within
+.public-navigation-caret {
+    transform:
+        translateY(
+            0.2rem
+        )
+        rotate(
+            225deg
+        );
+}

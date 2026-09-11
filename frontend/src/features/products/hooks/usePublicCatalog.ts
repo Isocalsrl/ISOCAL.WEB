@@ -92,8 +92,14 @@ export function usePublicCatalog():
         let isActive =
             true;
 
-        setIsLoading(true);
-        setErrorMessage(null);
+        queueMicrotask(() => {
+            if (!isActive) {
+                return;
+            }
+
+            setIsLoading(true);
+            setErrorMessage(null);
+        });
 
         void Promise.all([
             listPublicProducts(),

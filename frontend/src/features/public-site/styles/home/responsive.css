@@ -1,0 +1,145 @@
+@media (
+    max-width: 960px
+) {
+    .home-intro-grid,
+    .home-section-heading,
+    .home-network-grid,
+    .home-products-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .home-services-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+    }
+
+    .home-service-card:last-child {
+        grid-column:
+            1 / -1;
+        width:
+            calc(
+                50% - 0.5rem
+            );
+    }
+
+    .home-network-image,
+    .home-network-image img,
+    .home-products-image {
+        min-height: 28rem;
+    }
+}
+
+@media (
+    max-width: 760px
+) {
+    .home-hero,
+    .home-hero-content {
+        min-height: 38rem;
+    }
+
+    .home-hero-image {
+        object-position:
+            58% center;
+    }
+
+    .home-hero-overlay {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(
+                    7,
+                    15,
+                    24,
+                    0.88
+                )
+                    0%,
+                rgba(
+                    7,
+                    15,
+                    24,
+                    0.56
+                )
+                    74%,
+                rgba(
+                    7,
+                    15,
+                    24,
+                    0.34
+                )
+                    100%
+            ),
+            linear-gradient(
+                0deg,
+                rgba(
+                    7,
+                    15,
+                    24,
+                    0.55
+                )
+                    0%,
+                transparent
+                    55%
+            );
+    }
+
+    .home-services-grid,
+    .home-industries-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .home-service-card:last-child {
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .home-industry-item {
+        min-height: auto;
+        padding:
+            1.7rem
+            0;
+        border-right: 0;
+        border-bottom:
+            1px solid
+            var(--public-line);
+    }
+
+    .home-industry-item:last-child {
+        border-bottom: 0;
+    }
+
+    .home-industry-item h3 {
+        margin-top: 1.6rem;
+    }
+}
+
+@media (
+    max-width: 520px
+) {
+    .home-hero-actions,
+    .home-hero-actions
+    .ui-button,
+    .home-products-copy
+    .ui-button {
+        width: 100%;
+    }
+
+    .home-network-image,
+    .home-network-image img,
+    .home-products-image {
+        min-height: 22rem;
+    }
+
+    .home-products-copy {
+        padding:
+            2.2rem
+            1.4rem;
+    }
+}

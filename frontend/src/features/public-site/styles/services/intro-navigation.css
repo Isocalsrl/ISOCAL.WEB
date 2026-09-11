@@ -1,0 +1,147 @@
+.services-intro {
+    background:
+        var(--public-cream);
+}
+
+.services-intro-heading {
+    display: grid;
+    padding-bottom:
+        clamp(
+            2.5rem,
+            5vw,
+            4rem
+        );
+    grid-template-columns:
+        minmax(
+            0,
+            1.2fr
+        )
+        minmax(
+            18rem,
+            0.65fr
+        );
+    align-items: end;
+    gap:
+        clamp(
+            3rem,
+            8vw,
+            7rem
+        );
+}
+
+.services-intro-heading h2 {
+    max-width: 52rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2.6rem,
+            5.5vw,
+            5rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.06em;
+    line-height: 0.97;
+}
+
+.services-intro-heading
+> p {
+    margin: 0;
+    color:
+        var(--public-muted);
+    line-height: 1.75;
+}
+
+.services-area-navigation {
+    display: grid;
+    border-top:
+        1px solid
+        var(--public-navy-deep);
+}
+
+.services-area-navigation-item {
+    display: grid;
+    padding:
+        1.7rem
+        0;
+    border-bottom:
+        1px solid
+        var(--public-line);
+    grid-template-columns:
+        4rem
+        minmax(
+            0,
+            1fr
+        )
+        auto;
+    align-items: center;
+    gap: 1.4rem;
+    color:
+        var(--public-navy-deep);
+    text-decoration: none;
+    transition:
+        padding-left
+        160ms
+        ease,
+        color
+        160ms
+        ease;
+}
+
+.services-area-navigation-item:hover {
+    padding-left: 0.75rem;
+    color:
+        var(--public-red);
+}
+
+.services-area-navigation-number {
+    color:
+        var(--public-red);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing:
+        0.1em;
+}
+
+.services-area-navigation-item strong {
+    display: block;
+    font-size:
+        clamp(
+            1.4rem,
+            2.6vw,
+            2rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.04em;
+}
+
+.services-area-navigation-item p {
+    max-width: 48rem;
+    margin:
+        0.45rem
+        0
+        0;
+    color:
+        var(--public-muted);
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+.services-area-navigation-arrow {
+    font-size: 1.4rem;
+    transition:
+        transform
+        160ms
+        ease;
+}
+
+.services-area-navigation-item:hover
+.services-area-navigation-arrow {
+    transform:
+        translateY(
+            0.25rem
+        );
+}

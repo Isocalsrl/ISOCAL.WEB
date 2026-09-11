@@ -27,7 +27,7 @@ import {
     useAuth,
 } from "../../auth/hooks/useAuth";
 
-import "../styles/admin.css";
+import "../styles/admin/index.css";
 
 function navigationClass({
     isActive,
