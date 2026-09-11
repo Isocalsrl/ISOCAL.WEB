@@ -1,5 +1,3 @@
-/* Piezas visuales reutilizadas por más de una página pública. */
-
 .eyebrow-light {
     color: #ff6f83;
 }
@@ -16,7 +14,9 @@
 .public-contrast-content .ui-button,
 .public-catalog-copy .ui-button {
     min-height: 3.2rem;
-    padding: 0.9rem 1.2rem;
+    padding:
+        0.9rem
+        1.2rem;
 }
 
 .public-section {
@@ -49,8 +49,14 @@
         3px solid
         var(--color-ink);
     grid-template-columns:
-        minmax(0, 1fr)
-        minmax(18rem, 0.6fr);
+        minmax(
+            0,
+            1fr
+        )
+        minmax(
+            18rem,
+            0.6fr
+        );
     align-items: end;
     gap: 3rem;
 }
@@ -69,7 +75,8 @@
             4rem
         );
     font-weight: 900;
-    letter-spacing: -0.06em;
+    letter-spacing:
+        -0.06em;
     line-height: 1;
 }
 
@@ -87,7 +94,10 @@
     grid-template-columns:
         repeat(
             3,
-            minmax(0, 1fr)
+            minmax(
+                0,
+                1fr
+            )
         );
     gap: 1rem;
 }
@@ -100,18 +110,26 @@
     border:
         1px solid
         var(--color-border);
-    background: var(--color-surface);
+    background:
+        var(--color-surface);
     transition:
-        border-color 150ms ease,
-        transform 150ms ease;
+        border-color
+        150ms
+        ease,
+        transform
+        150ms
+        ease;
 }
 
 .public-value-card:hover,
 .public-principle-card:hover {
     border-color:
         var(--color-ink);
+
     transform:
-        translateY(-0.2rem);
+        translateY(
+            -0.2rem
+        );
 }
 
 .public-value-card > span {
@@ -119,20 +137,28 @@
         var(--color-brand);
     font-size: 0.68rem;
     font-weight: 900;
-    letter-spacing: 0.12em;
+    letter-spacing:
+        0.12em;
 }
 
 .public-value-card h3,
 .public-principle-card h3 {
-    margin: 3.5rem 0 0;
+    margin:
+        3.5rem
+        0
+        0;
     font-size: 1.3rem;
     font-weight: 900;
-    letter-spacing: -0.035em;
+    letter-spacing:
+        -0.035em;
 }
 
 .public-value-card p,
 .public-principle-card p {
-    margin: 0.8rem 0 0;
+    margin:
+        0.8rem
+        0
+        0;
     color:
         var(--color-text-muted);
     font-size: 0.9rem;
@@ -153,7 +179,8 @@
 .public-contrast-section {
     position: relative;
     overflow: hidden;
-    color: var(--color-surface);
+    color:
+        var(--color-surface);
     background:
         var(--color-ink);
 }
@@ -166,7 +193,12 @@
     height: 18rem;
     border:
         3.5rem solid
-        rgba(255, 255, 255, 0.035);
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
     border-radius: 50%;
     content: "";
 }
@@ -183,14 +215,14 @@
         )
         0;
     align-items: center;
-    justify-content: space-between;
+    justify-content:
+        space-between;
     gap: 3rem;
 }
 
 .public-contrast-content h2 {
     max-width: 47rem;
 }
-
 
 .public-callout-section {
     padding:
@@ -200,7 +232,8 @@
             5rem
         )
         0;
-    background: var(--color-surface);
+    background:
+        var(--color-surface);
 }
 
 .public-callout {
@@ -218,7 +251,8 @@
         0.5rem solid
         var(--color-brand);
     align-items: center;
-    justify-content: space-between;
+    justify-content:
+        space-between;
     gap: 3rem;
     background:
         var(--color-surface-muted);
@@ -226,4 +260,118 @@
 
 .public-callout h2 {
     max-width: 44rem;
+}
+
+.public-contact-section {
+    padding:
+        clamp(
+            4.5rem,
+            9vw,
+            7rem
+        )
+        0;
+    border-top:
+        1px solid
+        var(--public-line);
+    background:
+        var(--public-cream);
+}
+
+.public-contact-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(
+            0,
+            1.2fr
+        )
+        minmax(
+            18rem,
+            0.65fr
+        );
+    align-items: end;
+    gap:
+        clamp(
+            3rem,
+            8vw,
+            7rem
+        );
+}
+
+.public-contact-copy h2 {
+    max-width: 48rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2.4rem,
+            5.2vw,
+            4.8rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.055em;
+    line-height: 0.98;
+}
+
+.public-contact-copy
+> p:last-child {
+    max-width: 42rem;
+    margin:
+        1.5rem
+        0
+        0;
+    color:
+        var(--public-muted);
+    line-height: 1.75;
+}
+
+.public-contact-actions {
+    display: grid;
+    justify-items: start;
+    gap: 1.4rem;
+}
+
+.public-contact-actions
+.ui-button {
+    min-height: 3.15rem;
+    padding-inline:
+        1.25rem;
+}
+
+.public-contact-details {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.public-contact-details a {
+    color:
+        var(--public-navy-deep);
+    font-size: 0.83rem;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.public-contact-details a:hover {
+    color:
+        var(--public-red);
+}
+
+@media (
+    max-width: 960px
+) {
+    .public-contact-grid {
+        grid-template-columns:
+            1fr;
+    }
+}
+
+@media (
+    max-width: 520px
+) {
+    .public-contact-actions,
+    .public-contact-actions
+    .ui-button {
+        width: 100%;
+    }
 }

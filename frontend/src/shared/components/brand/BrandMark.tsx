@@ -7,11 +7,18 @@ import "./brand.css";
 interface BrandMarkProps {
     to?: string;
     onNavigate?: () => void;
+    imageSrc?: string;
+    imageAlt?: string;
+    subtitle?: string;
 }
 
 export function BrandMark({
     to = "/",
     onNavigate,
+    imageSrc,
+    imageAlt = "ISOCAL",
+    subtitle =
+        "Consultoría y metrología",
 }: BrandMarkProps) {
     return (
         <Link
@@ -20,20 +27,32 @@ export function BrandMark({
             aria-label="Ir al inicio de ISOCAL"
             onClick={onNavigate}
         >
-            <span className="brand-word">
-                ISOCAL
+            {imageSrc ? (
+                <img
+                    className="brand-mark-image"
+                    src={imageSrc}
+                    alt={imageAlt}
+                    width="176"
+                    height="46"
+                />
+            ) : (
+                <>
+                    <span className="brand-word">
+                        ISOCAL
 
-                <span
-                    className="brand-chevrons"
-                    aria-hidden="true"
-                >
-                    »
-                </span>
-            </span>
+                        <span
+                            className="brand-chevrons"
+                            aria-hidden="true"
+                        >
+                            »
+                        </span>
+                    </span>
 
-            <span className="brand-subtitle">
-                Consultoría y metrología
-            </span>
+                    <span className="brand-subtitle">
+                        {subtitle}
+                    </span>
+                </>
+            )}
         </Link>
     );
 }

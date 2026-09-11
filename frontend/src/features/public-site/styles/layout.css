@@ -1,11 +1,19 @@
-/* Estructura general, contenedores y cabeceras internas. */
-
 .public-site-shell {
+    --public-red: #c9001c;
+    --public-red-dark: #9d0016;
+    --public-navy: #13263d;
+    --public-navy-deep: #0d1a2a;
+    --public-cream: #f4f1e8;
+    --public-soft: #f6f6f3;
+    --public-line: #d9d9d4;
+    --public-muted: #666862;
+
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     color: var(--color-ink);
-    background: var(--color-surface);
+    background:
+        var(--color-surface);
 }
 
 .public-container {
@@ -20,7 +28,6 @@
     flex: 1;
 }
 
-
 .public-page-hero {
     position: relative;
     overflow: hidden;
@@ -28,13 +35,6 @@
         1px solid
         var(--color-border);
     background:
-        linear-gradient(
-            90deg,
-            rgba(27, 27, 27, 0.04)
-                1px,
-            transparent 1px
-        )
-        0 0 / 4rem 100%,
         var(--color-surface-muted);
 }
 

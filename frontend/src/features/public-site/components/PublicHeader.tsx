@@ -14,6 +14,10 @@ import {
     PUBLIC_NAVIGATION_ITEMS,
 } from "../constants/publicNavigation";
 
+import {
+    contactUrl,
+} from "../data/company";
+
 function navigationLinkClass({
     isActive,
 }: {
@@ -31,14 +35,19 @@ export function PublicHeader() {
     ] = useState(false);
 
     function closeNavigation(): void {
-        setIsNavigationOpen(false);
+        setIsNavigationOpen(
+            false,
+        );
     }
 
     return (
         <header className="public-header">
             <div className="public-container public-header-content">
                 <BrandMark
-                    onNavigate={closeNavigation}
+                    imageSrc="/images/brand/isocal-logo.svg"
+                    onNavigate={
+                        closeNavigation
+                    }
                 />
 
                 <button
@@ -50,42 +59,84 @@ export function PublicHeader() {
                             : "Abrir menú de navegación"
                     }
                     aria-controls="public-navigation"
-                    aria-expanded={isNavigationOpen}
+                    aria-expanded={
+                        isNavigationOpen
+                    }
                     onClick={() => {
                         setIsNavigationOpen(
-                            (currentValue) =>
+                            (
+                                currentValue,
+                            ) =>
                                 !currentValue,
                         );
                     }}
                 >
-                    <span aria-hidden="true" />
-                    <span aria-hidden="true" />
-                    <span aria-hidden="true" />
+                    <span
+                        aria-hidden="true"
+                    />
+
+                    <span
+                        aria-hidden="true"
+                    />
+
+                    <span
+                        aria-hidden="true"
+                    />
                 </button>
 
-                <nav
+                <div
                     id="public-navigation"
                     className={
                         isNavigationOpen
-                            ? "public-navigation public-navigation-open"
-                            : "public-navigation"
+                            ? "public-navigation-panel public-navigation-panel-open"
+                            : "public-navigation-panel"
                     }
-                    aria-label="Navegación principal"
                 >
-                    {PUBLIC_NAVIGATION_ITEMS.map(
-                        (navigationItem) => (
-                            <NavLink
-                                key={navigationItem.to}
-                                className={navigationLinkClass}
-                                to={navigationItem.to}
-                                end={navigationItem.end}
-                                onClick={closeNavigation}
-                            >
-                                {navigationItem.label}
-                            </NavLink>
-                        ),
-                    )}
-                </nav>
+                    <nav
+                        className="public-navigation"
+                        aria-label="Navegación principal"
+                    >
+                        {PUBLIC_NAVIGATION_ITEMS.map(
+                            (
+                                navigationItem,
+                            ) => (
+                                <NavLink
+                                    key={
+                                        navigationItem.to
+                                    }
+                                    className={
+                                        navigationLinkClass
+                                    }
+                                    to={
+                                        navigationItem.to
+                                    }
+                                    end={
+                                        navigationItem.end
+                                    }
+                                    onClick={
+                                        closeNavigation
+                                    }
+                                >
+                                    {
+                                        navigationItem.label
+                                    }
+                                </NavLink>
+                            ),
+                        )}
+                    </nav>
+
+                    <a
+                        className="public-header-contact"
+                        href={contactUrl()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={
+                            closeNavigation
+                        }
+                    >
+                        Solicitar atención
+                    </a>
+                </div>
             </div>
         </header>
     );
