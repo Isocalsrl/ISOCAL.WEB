@@ -45,6 +45,10 @@ import {
 } from "../../features/products/pages/PublicCatalogPage";
 
 import {
+    PublicProductDetailPage,
+} from "../../features/products/pages/PublicProductDetailPage";
+
+import {
     PublicLayout,
 } from "../../features/public-site/components/PublicLayout";
 
@@ -60,32 +64,47 @@ import {
     ServicesPage,
 } from "../../features/public-site/pages/ServicesPage";
 
-import {
-    PublicProductDetailPage,
-} from "../../features/products/pages/PublicProductDetailPage";
-
 export function AppRouter() {
     return (
         <Routes>
-            <Route element={<PublicLayout />}>
+            <Route
+                element={
+                    <PublicLayout />
+                }
+            >
                 <Route
                     index
-                    element={<HomePage />}
+                    element={
+                        <HomePage />
+                    }
                 />
 
                 <Route
                     path="nosotros"
-                    element={<AboutPage />}
+                    element={
+                        <AboutPage />
+                    }
                 />
 
                 <Route
                     path="servicios"
-                    element={<ServicesPage />}
+                    element={
+                        <ServicesPage />
+                    }
                 />
 
                 <Route
                     path="productos"
-                    element={<PublicCatalogPage />}
+                    element={
+                        <PublicCatalogPage />
+                    }
+                />
+
+                <Route
+                    path="productos/:productId"
+                    element={
+                        <PublicProductDetailPage />
+                    }
                 />
             </Route>
 
@@ -129,13 +148,6 @@ export function AppRouter() {
                             <ProductsPage />
                         }
                     />
-
-    <Route
-        path="productos/:productId"
-        element={
-            <PublicProductDetailPage />
-        }
-    />
 
                     <Route
                         path="products/new"

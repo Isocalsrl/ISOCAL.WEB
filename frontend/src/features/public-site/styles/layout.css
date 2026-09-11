@@ -11,21 +11,31 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    color: var(--color-ink);
+    color:
+        var(--color-ink);
     background:
         var(--color-surface);
 }
 
 .public-container {
-    width: min(
-        calc(100% - 3rem),
-        var(--layout-public-width)
-    );
-    margin: 0 auto;
+    width:
+        min(
+            calc(
+                100% - 3rem
+            ),
+            var(--layout-public-width)
+        );
+    margin:
+        0
+        auto;
 }
 
 .public-main {
     flex: 1;
+}
+
+.public-main section[id] {
+    scroll-margin-top: 6rem;
 }
 
 .public-page-hero {

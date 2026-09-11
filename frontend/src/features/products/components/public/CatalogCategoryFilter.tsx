@@ -101,53 +101,57 @@ export function CatalogCategoryFilter({
                     productos
                 </span>
 
-                <strong>
-                    {products.length}
+                <strong className="catalog-category-count">
+                    {
+                        products.length
+                    }
                 </strong>
             </button>
 
-            {categories.map(
-                (
-                    category,
-                ) => (
-                    <button
-                        key={
-                            category.id
-                        }
-                        className={
-                            selectedCategorySlug ===
-                            category.slug
-                                ? "catalog-category-button catalog-category-button-active"
-                                : "catalog-category-button"
-                        }
-                        type="button"
-                        aria-pressed={
-                            selectedCategorySlug ===
-                            category.slug
-                        }
-                        aria-controls="catalog-results"
-                        onClick={() =>
-                            onSelectCategory(
-                                category.slug,
-                            )
-                        }
-                    >
-                        <span>
-                            {
-                                category.name
+            {
+                categories.map(
+                    (
+                        category,
+                    ) => (
+                        <button
+                            key={
+                                category.id
                             }
-                        </span>
+                            className={
+                                selectedCategorySlug ===
+                                category.slug
+                                    ? "catalog-category-button catalog-category-button-active"
+                                    : "catalog-category-button"
+                            }
+                            type="button"
+                            aria-pressed={
+                                selectedCategorySlug ===
+                                category.slug
+                            }
+                            aria-controls="catalog-results"
+                            onClick={() =>
+                                onSelectCategory(
+                                    category.slug,
+                                )
+                            }
+                        >
+                            <span>
+                                {
+                                    category.name
+                                }
+                            </span>
 
-                        <strong>
-                            {
-                                productCountByCategory.get(
-                                    category.id,
-                                ) ?? 0
-                            }
-                        </strong>
-                    </button>
-                ),
-            )}
+                            <strong className="catalog-category-count">
+                                {
+                                    productCountByCategory.get(
+                                        category.id,
+                                    ) ?? 0
+                                }
+                            </strong>
+                        </button>
+                    ),
+                )
+            }
         </nav>
     );
 }
