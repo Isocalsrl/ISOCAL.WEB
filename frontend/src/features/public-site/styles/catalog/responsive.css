@@ -1,0 +1,224 @@
+@media (
+    max-width: 1000px
+) {
+    .catalog-heading,
+    .product-detail-layout {
+        grid-template-columns:
+            1fr;
+    }
+
+    .product-detail-contact {
+        position: static;
+        max-width: 42rem;
+    }
+}
+
+@media (
+    max-width: 850px
+) {
+    .catalog-layout {
+        grid-template-columns:
+            1fr;
+    }
+
+    .catalog-category-filter {
+        position: static;
+        display: flex;
+        padding-bottom: 0.5rem;
+        overflow-x: auto;
+        border-top: 0;
+        border-bottom:
+            1px solid
+            var(--public-line);
+        gap: 0.45rem;
+        scrollbar-width: thin;
+    }
+
+    .catalog-category-filter-title {
+        display: none;
+    }
+
+    .catalog-category-button {
+        display: inline-flex;
+        width: auto;
+        min-width:
+            max-content;
+        padding:
+            0.7rem
+            0.85rem;
+        border:
+            1px solid
+            var(--public-line);
+        align-items: center;
+        gap: 0.7rem;
+        background: #ffffff;
+    }
+
+    .catalog-category-button::before {
+        display: none;
+    }
+
+    .catalog-category-button:hover {
+        padding:
+            0.7rem
+            0.85rem;
+    }
+
+    .catalog-category-button-active,
+    .catalog-category-button[aria-pressed="true"] {
+        border-color:
+            var(--public-navy-deep);
+        color: #ffffff;
+        background:
+            var(--public-navy-deep);
+    }
+
+    .catalog-category-button-active
+    .catalog-category-count,
+    .catalog-category-button[aria-pressed="true"]
+    .catalog-category-count {
+        color:
+            var(--public-navy-deep);
+        background: #ffffff;
+    }
+}
+
+@media (
+    max-width: 700px
+) {
+    .products-hero,
+    .products-hero-content {
+        min-height: 25rem;
+    }
+
+    .products-hero-image {
+        object-position:
+            60%
+            center;
+    }
+
+    .products-hero-overlay {
+        background:
+            rgba(
+                7,
+                15,
+                24,
+                0.82
+            );
+    }
+
+    .catalog-toolbar,
+    .catalog-products-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .catalog-toolbar {
+        align-items: start;
+        gap: 1rem;
+    }
+
+    .catalog-search {
+        max-width: none;
+    }
+
+    .catalog-result-count {
+        white-space: normal;
+    }
+
+    .product-modal {
+        display: block;
+        max-height:
+            calc(
+                100vh - 1.5rem
+            );
+    }
+
+    .product-modal-accent {
+        display: flex;
+        min-height: 0;
+        padding:
+            1rem
+            1.25rem;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .product-modal-accent span {
+        writing-mode:
+            initial;
+    }
+
+    .product-modal-accent strong {
+        font-size: 2rem;
+    }
+
+    .product-modal-content {
+        min-height: 0;
+        padding:
+            2rem
+            1.25rem
+            1.5rem;
+    }
+
+    .product-modal-close {
+        top: 0.8rem;
+        right: 0.8rem;
+    }
+
+    .product-modal-category {
+        padding-right: 3rem;
+    }
+
+    .product-modal h2 {
+        margin-top: 2rem;
+    }
+
+    .product-modal-footer {
+        margin-top: 2.5rem;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .product-modal-footer
+    .ui-button {
+        width: 100%;
+    }
+}
+
+@media (
+    max-width: 520px
+) {
+    .products-hero h1 {
+        font-size:
+            clamp(
+                2.8rem,
+                13vw,
+                4rem
+            );
+    }
+
+    .catalog-category-filter {
+        margin-right: -1rem;
+        padding-right: 1rem;
+    }
+
+    .catalog-product-card,
+    .catalog-product-card-button {
+        min-height: 16rem;
+    }
+
+    .product-modal-backdrop {
+        padding: 0.75rem;
+    }
+}
+
+@media (
+    prefers-reduced-motion:
+        reduce
+) {
+    .product-modal-backdrop,
+    .product-modal {
+        animation: none;
+    }
+}

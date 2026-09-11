@@ -1,0 +1,8 @@
+@media (
+    max-width: 560px
+) {
+    .confirm-dialog-actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+}

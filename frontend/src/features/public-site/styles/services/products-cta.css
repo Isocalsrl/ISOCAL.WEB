@@ -1,0 +1,77 @@
+.services-products-cta {
+    padding:
+        clamp(
+            4.5rem,
+            8vw,
+            6.5rem
+        )
+        0;
+    color: #ffffff;
+    background:
+        var(--public-red);
+}
+
+.services-products-cta-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(
+            0,
+            1.2fr
+        )
+        minmax(
+            18rem,
+            0.65fr
+        );
+    align-items: end;
+    gap:
+        clamp(
+            3rem,
+            8vw,
+            7rem
+        );
+}
+
+.services-products-cta
+.eyebrow {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.65
+        );
+}
+
+.services-products-cta h2 {
+    max-width: 50rem;
+    margin: 0;
+    color: #ffffff;
+    font-size:
+        clamp(
+            2.7rem,
+            5.5vw,
+            5rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.06em;
+    line-height: 0.97;
+}
+
+.services-products-cta-action {
+    display: grid;
+    justify-items: start;
+    gap: 1.6rem;
+}
+
+.services-products-cta-action p {
+    margin: 0;
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+    line-height: 1.7;
+}

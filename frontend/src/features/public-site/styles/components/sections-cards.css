@@ -1,0 +1,177 @@
+.eyebrow-light {
+    color: #ff6f83;
+}
+
+.public-actions {
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.public-actions .ui-button,
+.public-callout .ui-button,
+.public-contrast-content .ui-button,
+.public-catalog-copy .ui-button {
+    min-height: 3.2rem;
+    padding:
+        0.9rem
+        1.2rem;
+}
+
+.public-section {
+    padding:
+        clamp(
+            4.5rem,
+            9vw,
+            7.5rem
+        )
+        0;
+    background:
+        var(--color-surface);
+}
+
+.public-section-muted {
+    border-top:
+        1px solid
+        var(--color-border);
+    border-bottom:
+        1px solid
+        var(--color-border);
+    background:
+        var(--color-surface-muted);
+}
+
+.public-section-heading {
+    display: grid;
+    padding-bottom: 2.5rem;
+    border-bottom:
+        3px solid
+        var(--color-ink);
+    grid-template-columns:
+        minmax(
+            0,
+            1fr
+        )
+        minmax(
+            18rem,
+            0.6fr
+        );
+    align-items: end;
+    gap: 3rem;
+}
+
+.public-section-heading h2,
+.public-story-copy h2,
+.public-callout h2,
+.public-contrast-content h2,
+.public-catalog-copy h2 {
+    margin: 0;
+    color: inherit;
+    font-size:
+        clamp(
+            2.15rem,
+            4.7vw,
+            4rem
+        );
+    font-weight: 900;
+    letter-spacing:
+        -0.06em;
+    line-height: 1;
+}
+
+.public-section-heading > p {
+    margin: 0;
+    color:
+        var(--color-text-muted);
+    line-height: 1.7;
+}
+
+.public-value-grid,
+.public-principles-grid {
+    display: grid;
+    margin-top: 2rem;
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+    gap: 1rem;
+}
+
+.public-value-card,
+.public-principle-card {
+    position: relative;
+    min-height: 16rem;
+    padding: 2rem;
+    border:
+        1px solid
+        var(--color-border);
+    background:
+        var(--color-surface);
+    transition:
+        border-color
+        150ms
+        ease,
+        transform
+        150ms
+        ease;
+}
+
+.public-value-card:hover,
+.public-principle-card:hover {
+    border-color:
+        var(--color-ink);
+
+    transform:
+        translateY(
+            -0.2rem
+        );
+}
+
+.public-value-card > span {
+    color:
+        var(--color-brand);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing:
+        0.12em;
+}
+
+.public-value-card h3,
+.public-principle-card h3 {
+    margin:
+        3.5rem
+        0
+        0;
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing:
+        -0.035em;
+}
+
+.public-value-card p,
+.public-principle-card p {
+    margin:
+        0.8rem
+        0
+        0;
+    color:
+        var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.public-principle-card {
+    min-height: 13rem;
+    border-top:
+        0.35rem solid
+        var(--color-brand);
+}
+
+.public-principle-card h3 {
+    margin-top: 1.5rem;
+}

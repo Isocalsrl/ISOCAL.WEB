@@ -1,0 +1,304 @@
+.about-overview {
+    background: #ffffff;
+}
+
+.about-overview-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(
+            0,
+            1.2fr
+        )
+        minmax(
+            19rem,
+            0.75fr
+        );
+    align-items: end;
+    gap:
+        clamp(
+            3rem,
+            9vw,
+            8rem
+        );
+}
+
+.about-overview-heading h2 {
+    max-width: 55rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2.6rem,
+            5.5vw,
+            5rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.06em;
+    line-height: 0.97;
+}
+
+.about-overview-content
+> p {
+    margin: 0;
+    color:
+        var(--public-muted);
+    font-size:
+        clamp(
+            1rem,
+            1.4vw,
+            1.08rem
+        );
+    line-height: 1.8;
+}
+
+.about-accreditations {
+    margin-top: 2.2rem;
+    padding-top: 1.5rem;
+    border-top:
+        1px solid
+        var(--public-line);
+}
+
+.about-accreditations
+> span {
+    display: block;
+    margin-bottom: 0.9rem;
+    color:
+        var(--public-muted);
+    font-size: 0.64rem;
+    font-weight: 850;
+    letter-spacing:
+        0.09em;
+    text-transform:
+        uppercase;
+}
+
+.about-accreditations
+> div {
+    display: flex;
+    flex-wrap: wrap;
+    gap:
+        0.55rem
+        1.4rem;
+}
+
+.about-accreditations strong {
+    color:
+        var(--public-navy-deep);
+    font-size: 1.1rem;
+    font-weight: 850;
+    letter-spacing:
+        -0.02em;
+}
+
+
+.about-purpose {
+    padding:
+        clamp(
+            4.5rem,
+            9vw,
+            7.5rem
+        )
+        0;
+    background:
+        var(--public-cream);
+}
+
+.about-purpose-heading {
+    display: grid;
+    padding-bottom:
+        clamp(
+            2.5rem,
+            5vw,
+            4rem
+        );
+    grid-template-columns:
+        minmax(
+            0,
+            0.55fr
+        )
+        minmax(
+            0,
+            1.2fr
+        );
+    gap:
+        clamp(
+            2rem,
+            7vw,
+            6rem
+        );
+}
+
+.about-purpose-heading
+.eyebrow {
+    margin-top: 0.4rem;
+}
+
+.about-purpose-heading h2 {
+    max-width: 56rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2.5rem,
+            5vw,
+            4.7rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.06em;
+    line-height: 0.98;
+}
+
+.about-purpose-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+}
+
+.about-purpose-item {
+    display: grid;
+    min-height: 32rem;
+    padding:
+        clamp(
+            2rem,
+            4vw,
+            3.5rem
+        );
+    grid-template-columns:
+        auto
+        minmax(
+            0,
+            1fr
+        );
+    align-items:
+        end;
+    gap:
+        clamp(
+            2rem,
+            5vw,
+            4rem
+        );
+}
+
+.about-mission {
+    border:
+        1px solid
+        var(--public-line);
+    color:
+        var(--public-navy-deep);
+    background: #ffffff;
+}
+
+.about-vision {
+    color: #ffffff;
+    background:
+        var(--public-red);
+}
+
+.about-purpose-number {
+    align-self: start;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing:
+        0.12em;
+}
+
+.about-mission
+.about-purpose-number {
+    color:
+        var(--public-red);
+}
+
+.about-vision
+.about-purpose-number {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.68
+        );
+}
+
+.about-purpose-label {
+    margin:
+        0
+        0
+        1rem;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing:
+        0.11em;
+    text-transform:
+        uppercase;
+}
+
+.about-mission
+.about-purpose-label {
+    color:
+        var(--public-muted);
+}
+
+.about-vision
+.about-purpose-label {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.68
+        );
+}
+
+.about-purpose-item h3 {
+    max-width: 30rem;
+    margin: 0;
+    color: inherit;
+    font-size:
+        clamp(
+            2rem,
+            3.8vw,
+            3.5rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.055em;
+    line-height: 0.98;
+}
+
+.about-purpose-description {
+    max-width: 32rem;
+    margin:
+        1.4rem
+        0
+        0;
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+.about-mission
+.about-purpose-description {
+    color:
+        var(--public-muted);
+}
+
+.about-vision
+.about-purpose-description {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+}

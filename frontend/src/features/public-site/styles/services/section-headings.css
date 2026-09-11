@@ -1,0 +1,64 @@
+.services-calibrations,
+.services-training {
+    margin-top:
+        clamp(
+            5rem,
+            10vw,
+            9rem
+        );
+}
+
+.services-section-heading {
+    display: grid;
+    padding-bottom:
+        clamp(
+            2.2rem,
+            4vw,
+            3.5rem
+        );
+    border-bottom:
+        1px solid
+        var(--public-line);
+    grid-template-columns:
+        minmax(
+            0,
+            1.15fr
+        )
+        minmax(
+            18rem,
+            0.65fr
+        );
+    align-items: end;
+    gap:
+        clamp(
+            2.5rem,
+            7vw,
+            6rem
+        );
+}
+
+.services-section-heading h2,
+.services-section-heading h3 {
+    max-width: 50rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2.3rem,
+            4.6vw,
+            4.3rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.055em;
+    line-height: 0.98;
+}
+
+.services-section-heading
+> p {
+    margin: 0;
+    color:
+        var(--public-muted);
+    line-height: 1.72;
+}

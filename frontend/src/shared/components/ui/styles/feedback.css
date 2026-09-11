@@ -1,0 +1,78 @@
+.dialog-backdrop {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    display: grid;
+    padding: 1.5rem;
+    place-items: center;
+    background:
+        rgba(0, 0, 0, 0.58);
+}
+
+.confirm-dialog {
+    width: min(
+        100%,
+        31rem
+    );
+    padding: 2rem;
+    border-top: 0.45rem solid var(--color-brand);
+    background: var(--color-surface);
+    box-shadow:
+        0 1.5rem 4rem
+        rgba(0, 0, 0, 0.28);
+}
+
+.confirm-dialog h2 {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 1.65rem;
+    font-weight: 900;
+    letter-spacing: -0.035em;
+}
+
+.confirm-dialog > p:not(.eyebrow) {
+    margin: 0.9rem 0 0;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.confirm-dialog-actions {
+    display: flex;
+    margin-top: 1.7rem;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.section-state {
+    display: grid;
+    min-height: 18rem;
+    padding: 2.5rem;
+    border: 1px solid #dedede;
+    place-items: center;
+    align-content: center;
+    text-align: center;
+    background: var(--color-surface);
+}
+
+.section-state-spinner {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+    border-color:
+        rgba(201, 0, 28, 0.18);
+    border-top-color: var(--color-brand);
+}
+
+.section-state h2 {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 1.35rem;
+    font-weight: 900;
+}
+
+.section-state p {
+    max-width: 30rem;
+    margin: 0.6rem 0 1.2rem;
+    color: #686868;
+    line-height: 1.55;
+}

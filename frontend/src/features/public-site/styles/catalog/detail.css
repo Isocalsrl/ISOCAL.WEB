@@ -1,0 +1,204 @@
+.product-detail-page {
+    padding:
+        clamp(
+            4rem,
+            8vw,
+            7rem
+        )
+        0;
+    background: #ffffff;
+}
+
+.product-detail-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color:
+        var(--public-muted);
+    font-size: 0.66rem;
+    font-weight: 850;
+    letter-spacing:
+        0.075em;
+    text-decoration: none;
+    text-transform:
+        uppercase;
+}
+
+.product-detail-back:hover {
+    color:
+        var(--public-red);
+}
+
+.product-detail-layout {
+    display: grid;
+    margin-top:
+        clamp(
+            2.5rem,
+            5vw,
+            4.5rem
+        );
+    grid-template-columns:
+        minmax(
+            0,
+            1.2fr
+        )
+        minmax(
+            18rem,
+            0.55fr
+        );
+    align-items: start;
+    gap:
+        clamp(
+            3rem,
+            8vw,
+            7rem
+        );
+}
+
+.product-detail-content h1 {
+    max-width: 52rem;
+    margin:
+        1rem
+        0
+        0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            3rem,
+            6vw,
+            5.6rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.065em;
+    line-height: 0.94;
+}
+
+.product-detail-category {
+    margin: 0;
+    color:
+        var(--public-red);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing:
+        0.09em;
+    text-transform:
+        uppercase;
+}
+
+.product-detail-description {
+    margin:
+        2rem
+        0
+        0;
+    padding-top: 2rem;
+    border-top:
+        1px solid
+        var(--public-line);
+    color:
+        var(--public-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.product-detail-contact {
+    position: sticky;
+    top: 7rem;
+    padding: 2rem;
+    border-top:
+        0.25rem solid
+        var(--public-red);
+    color: #ffffff;
+    background:
+        var(--public-navy-deep);
+}
+
+.product-detail-contact-label {
+    margin: 0;
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.55
+        );
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing:
+        0.1em;
+    text-transform:
+        uppercase;
+}
+
+.product-detail-contact h2 {
+    margin:
+        1rem
+        0
+        0;
+    color: #ffffff;
+    font-size:
+        clamp(
+            1.55rem,
+            2.5vw,
+            2.15rem
+        );
+    letter-spacing:
+        -0.045em;
+    line-height: 1.05;
+}
+
+.product-detail-contact
+> p:not(
+    .product-detail-contact-label
+) {
+    margin:
+        1rem
+        0
+        1.5rem;
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.68
+        );
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.product-detail-meta {
+    display: grid;
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
+    gap: 0.35rem;
+}
+
+.product-detail-meta span {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.5
+        );
+    font-size: 0.6rem;
+    letter-spacing:
+        0.08em;
+    text-transform:
+        uppercase;
+}
+
+.product-detail-state {
+    padding:
+        4rem
+        0;
+}

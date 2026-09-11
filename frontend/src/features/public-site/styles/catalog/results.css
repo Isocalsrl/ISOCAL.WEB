@@ -1,0 +1,261 @@
+.catalog-products-grid {
+    display: grid;
+    margin-top: 1.5rem;
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+    gap: 1rem;
+}
+
+.catalog-product-card {
+    position: relative;
+    min-width: 0;
+    min-height: 17rem;
+    border:
+        1px solid
+        var(--public-line);
+    color:
+        var(--public-navy-deep);
+    background: #ffffff;
+    transition:
+        border-color
+        160ms
+        ease,
+        transform
+        160ms
+        ease,
+        box-shadow
+        160ms
+        ease;
+}
+
+.catalog-product-card::before {
+    position: absolute;
+    z-index: 1;
+    top: -1px;
+    right: -1px;
+    left: -1px;
+    height: 0.2rem;
+    background:
+        var(--public-navy-deep);
+    content: "";
+    transition:
+        background
+        160ms
+        ease;
+}
+
+.catalog-product-card:hover,
+.catalog-product-card:focus-within {
+    border-color: #aaa9a3;
+    box-shadow:
+        0
+        1rem
+        2.4rem
+        rgba(
+            13,
+            26,
+            42,
+            0.08
+        );
+    transform:
+        translateY(
+            -0.2rem
+        );
+}
+
+.catalog-product-card:hover::before,
+.catalog-product-card:focus-within::before {
+    background:
+        var(--public-red);
+}
+
+.catalog-product-card-button {
+    display: flex;
+    width: 100%;
+    min-height: 17rem;
+    padding:
+        clamp(
+            1.5rem,
+            3vw,
+            2rem
+        );
+    border: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    color: inherit;
+    background:
+        transparent;
+    cursor: pointer;
+    text-align: left;
+}
+
+.catalog-product-category {
+    margin: 0;
+    color:
+        var(--public-red);
+    font-size: 0.64rem;
+    font-weight: 900;
+    letter-spacing:
+        0.09em;
+    text-transform:
+        uppercase;
+}
+
+.catalog-product-name {
+    display: block;
+    max-width: 27rem;
+    margin-top:
+        clamp(
+            2rem,
+            4vw,
+            3rem
+        );
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            1.4rem,
+            2.2vw,
+            1.85rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.045em;
+    line-height: 1.08;
+}
+
+.catalog-product-description {
+    display:
+        -webkit-box;
+    margin:
+        0.9rem
+        0
+        0;
+    overflow: hidden;
+    color:
+        var(--public-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
+    -webkit-box-orient:
+        vertical;
+    -webkit-line-clamp: 3;
+}
+
+.catalog-product-description-empty,
+.product-modal-description-empty,
+.product-detail-description-empty {
+    font-style: italic;
+}
+
+.catalog-product-link {
+    display: inline-flex;
+    width: fit-content;
+    margin-top: auto;
+    padding-top: 1.6rem;
+    align-items: center;
+    gap: 0.65rem;
+    color:
+        var(--public-navy-deep);
+    font-size: 0.67rem;
+    font-weight: 900;
+    letter-spacing:
+        0.07em;
+    text-transform:
+        uppercase;
+}
+
+.catalog-product-link
+.action-arrow {
+    transition:
+        transform
+        160ms
+        ease;
+}
+
+.catalog-product-card-button:hover
+.catalog-product-link,
+.catalog-product-card-button:focus-visible
+.catalog-product-link {
+    color:
+        var(--public-red);
+}
+
+.catalog-product-card-button:hover
+.action-arrow,
+.catalog-product-card-button:focus-visible
+.action-arrow {
+    transform:
+        translateX(
+            0.25rem
+        );
+}
+
+.catalog-state {
+    margin-top: 2rem;
+}
+
+.catalog-state
+.section-state {
+    min-height: 22rem;
+    border-color:
+        var(--public-line);
+    background:
+        var(--public-soft);
+}
+
+.catalog-empty-filter {
+    display: grid;
+    min-height: 20rem;
+    margin-top: 1.5rem;
+    padding:
+        clamp(
+            2rem,
+            5vw,
+            4rem
+        );
+    border:
+        1px solid
+        var(--public-line);
+    place-items: start;
+    align-content: center;
+    background:
+        var(--public-soft);
+}
+
+.catalog-empty-filter h3 {
+    max-width: 35rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            1.8rem,
+            3vw,
+            2.7rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.05em;
+    line-height: 1;
+}
+
+.catalog-empty-filter p {
+    max-width: 34rem;
+    margin:
+        1rem
+        0
+        0;
+    color:
+        var(--public-muted);
+    line-height: 1.7;
+}
+
+.catalog-empty-filter button {
+    margin-top: 1.6rem;
+}

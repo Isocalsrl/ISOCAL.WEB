@@ -1,0 +1,157 @@
+.services-disclosure-list {
+    display: grid;
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+    column-gap: 3rem;
+}
+
+.services-disclosure {
+    border-bottom:
+        1px solid
+        var(--public-line);
+}
+
+.services-disclosure summary {
+    display: grid;
+    min-height: 5.2rem;
+    padding:
+        1.35rem
+        0;
+    grid-template-columns:
+        2.7rem
+        minmax(
+            0,
+            1fr
+        )
+        2rem;
+    align-items: center;
+    gap: 0.8rem;
+    color:
+        var(--public-navy-deep);
+    cursor: pointer;
+    list-style: none;
+}
+
+.services-disclosure summary::-webkit-details-marker {
+    display: none;
+}
+
+.services-disclosure-number {
+    color:
+        var(--public-red);
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing:
+        0.08em;
+}
+
+.services-disclosure-title {
+    font-size:
+        clamp(
+            1rem,
+            1.5vw,
+            1.18rem
+        );
+    font-weight: 820;
+    letter-spacing:
+        -0.025em;
+}
+
+.services-disclosure-toggle {
+    position: relative;
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.services-disclosure-toggle::before,
+.services-disclosure-toggle::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1rem;
+    height: 0.1rem;
+    background:
+        currentColor;
+    content: "";
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+    transition:
+        transform
+        160ms
+        ease;
+}
+
+.services-disclosure-toggle::after {
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        rotate(
+            90deg
+        );
+}
+
+.services-disclosure[open]
+.services-disclosure-toggle::after {
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        rotate(
+            0deg
+        );
+}
+
+.services-disclosure[open]
+summary {
+    color:
+        var(--public-red);
+}
+
+.services-disclosure-content {
+    padding:
+        0
+        2rem
+        1.8rem
+        3.5rem;
+}
+
+.services-disclosure-content ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    gap: 0.65rem;
+    list-style: none;
+}
+
+.services-disclosure-content li {
+    position: relative;
+    padding-left: 1rem;
+    color:
+        var(--public-muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.services-disclosure-content li::before {
+    position: absolute;
+    top: 0.68em;
+    left: 0;
+    width: 0.28rem;
+    height: 0.28rem;
+    background:
+        var(--public-red);
+    content: "";
+}

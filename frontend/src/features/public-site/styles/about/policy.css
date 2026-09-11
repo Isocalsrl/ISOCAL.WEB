@@ -1,0 +1,143 @@
+.about-policy {
+    background:
+        var(--public-soft);
+}
+
+.about-policy-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(
+            18rem,
+            0.7fr
+        )
+        minmax(
+            0,
+            1.3fr
+        );
+    align-items: start;
+    gap:
+        clamp(
+            3rem,
+            9vw,
+            8rem
+        );
+}
+
+.about-policy-heading-content {
+    position: sticky;
+    top: 8rem;
+}
+
+.about-policy-heading h2 {
+    max-width: 35rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2.5rem,
+            4.7vw,
+            4.4rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.06em;
+    line-height: 0.98;
+}
+
+.about-policy-heading-content
+> p:last-child {
+    max-width: 32rem;
+    margin:
+        1.5rem
+        0
+        0;
+    color:
+        var(--public-muted);
+    line-height: 1.75;
+}
+
+.about-policy-list {
+    border-top:
+        1px solid
+        var(--public-line);
+}
+
+.about-policy-item {
+    display: grid;
+    padding:
+        2rem
+        0;
+    border-bottom:
+        1px solid
+        var(--public-line);
+    grid-template-columns:
+        4rem
+        minmax(
+            0,
+            1fr
+        );
+    gap: 1.5rem;
+}
+
+.about-policy-number {
+    padding-top: 0.25rem;
+    color:
+        var(--public-red);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing:
+        0.1em;
+}
+
+.about-policy-item h3 {
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            1.35rem,
+            2.2vw,
+            1.8rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.04em;
+}
+
+.about-policy-item p {
+    max-width: 42rem;
+    margin:
+        0.7rem
+        0
+        0;
+    color:
+        var(--public-muted);
+    font-size: 0.92rem;
+    line-height: 1.72;
+}
+
+.about-policy-commitment {
+    margin:
+        2rem
+        0
+        0;
+    padding:
+        1.7rem
+        0
+        0
+        5.5rem;
+    border-top:
+        0.2rem solid
+        var(--public-red);
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            1.15rem,
+            2vw,
+            1.45rem
+        );
+    font-weight: 700;
+    line-height: 1.55;
+}

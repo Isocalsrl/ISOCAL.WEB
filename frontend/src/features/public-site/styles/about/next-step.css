@@ -1,0 +1,75 @@
+.about-next-step {
+    padding:
+        clamp(
+            4.5rem,
+            9vw,
+            7rem
+        )
+        0;
+    background: #ffffff;
+}
+
+.about-next-step-grid {
+    display: grid;
+    padding-bottom:
+        clamp(
+            2.5rem,
+            5vw,
+            4rem
+        );
+    border-bottom:
+        1px solid
+        var(--public-line);
+    grid-template-columns:
+        minmax(
+            0,
+            1.2fr
+        )
+        minmax(
+            18rem,
+            0.65fr
+        );
+    align-items: end;
+    gap:
+        clamp(
+            3rem,
+            8vw,
+            7rem
+        );
+}
+
+.about-next-step h2 {
+    max-width: 53rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2.4rem,
+            5vw,
+            4.6rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.06em;
+    line-height: 0.98;
+}
+
+.about-next-step-action {
+    display: grid;
+    justify-items: start;
+    gap: 1.5rem;
+}
+
+.about-next-step-action p {
+    margin: 0;
+    color:
+        var(--public-muted);
+    line-height: 1.75;
+}
+
+.about-next-step-action
+.ui-button {
+    min-height: 3.1rem;
+    padding-inline: 1.25rem;
+}

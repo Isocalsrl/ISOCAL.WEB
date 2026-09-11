@@ -1,0 +1,142 @@
+@media (
+    max-width: 1000px
+) {
+    .about-overview-grid,
+    .about-policy-grid,
+    .about-network-grid,
+    .about-next-step-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .about-policy-heading-content {
+        position: static;
+    }
+
+    .about-policy-heading-content
+    > p:last-child {
+        max-width: 44rem;
+    }
+
+    .about-network-image,
+    .about-network-image img {
+        min-height: 32rem;
+    }
+}
+
+
+@media (
+    max-width: 800px
+) {
+    .about-purpose-heading {
+        grid-template-columns:
+            1fr;
+    }
+
+    .about-purpose-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .about-purpose-item {
+        min-height: 26rem;
+    }
+}
+
+
+@media (
+    max-width: 620px
+) {
+    .about-hero,
+    .about-hero-content {
+        min-height: 36rem;
+    }
+
+    .about-hero-image {
+        object-position:
+            58% center;
+    }
+
+    .about-hero-overlay {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(
+                    7,
+                    15,
+                    24,
+                    0.88
+                )
+                    0%,
+                rgba(
+                    7,
+                    15,
+                    24,
+                    0.57
+                )
+                    100%
+            ),
+            linear-gradient(
+                0deg,
+                rgba(
+                    7,
+                    15,
+                    24,
+                    0.5
+                )
+                    0%,
+                transparent
+                    60%
+            );
+    }
+
+    .about-purpose-item {
+        min-height: auto;
+        padding:
+            2rem
+            1.5rem;
+        grid-template-columns:
+            1fr;
+        gap: 3rem;
+    }
+
+    .about-policy-item {
+        grid-template-columns:
+            2.5rem
+            minmax(
+                0,
+                1fr
+            );
+        gap: 0.9rem;
+    }
+
+    .about-policy-commitment {
+        padding-left: 0;
+    }
+
+    .about-network-image,
+    .about-network-image img {
+        min-height: 24rem;
+    }
+
+    .about-partner {
+        min-height: 6.5rem;
+        padding: 0.9rem;
+    }
+
+    .about-next-step-action,
+    .about-next-step-action
+    .ui-button {
+        width: 100%;
+    }
+}
+
+
+@media (
+    max-width: 420px
+) {
+    .about-partner-grid {
+        grid-template-columns:
+            1fr;
+    }
+}

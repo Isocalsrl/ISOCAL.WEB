@@ -2,6 +2,13 @@ import {
     useEffect,
 } from "react";
 
+import {
+    absoluteUrl,
+    appendStructuredData,
+    setCanonicalLink,
+    setMetaTag,
+} from "./seoDom";
+
 interface PageSeoProps {
     title: string;
     description: string;
@@ -11,87 +18,6 @@ interface PageSeoProps {
         string,
         unknown
     >;
-}
-
-const SITE_URL =
-    "https://www.isocal.pe";
-
-function absoluteUrl(
-    path: string,
-): string {
-    return new URL(
-        path,
-        SITE_URL,
-    ).toString();
-}
-
-function setMetaTag(
-    selector: string,
-    attributes: Record<
-        string,
-        string
-    >,
-): () => void {
-    let element =
-        document.head.querySelector<HTMLMetaElement>(
-            selector,
-        );
-
-    const wasCreated =
-        !element;
-
-    const previousContent =
-        element?.getAttribute(
-            "content",
-        ) ?? null;
-
-    if (!element) {
-        element =
-            document.createElement(
-                "meta",
-            );
-
-        document.head.appendChild(
-            element,
-        );
-    }
-
-    Object.entries(
-        attributes,
-    ).forEach(
-        ([name, value]) => {
-            element?.setAttribute(
-                name,
-                value,
-            );
-        },
-    );
-
-    return () => {
-        if (!element) {
-            return;
-        }
-
-        if (wasCreated) {
-            element.remove();
-
-            return;
-        }
-
-        if (
-            previousContent ===
-            null
-        ) {
-            element.removeAttribute(
-                "content",
-            );
-        } else {
-            element.setAttribute(
-                "content",
-                previousContent,
-            );
-        }
-    };
 }
 
 export function PageSeo({
@@ -109,6 +35,16 @@ export function PageSeo({
         document.title =
             title;
 
+        const imageUrl =
+            absoluteUrl(
+                image,
+            );
+
+        const canonicalUrl =
+            absoluteUrl(
+                canonicalPath,
+            );
+
         const cleanups = [
             setMetaTag(
                 'meta[name="description"]',
@@ -118,16 +54,15 @@ export function PageSeo({
                         description,
                 },
             ),
-
             setMetaTag(
                 'meta[property="og:title"]',
                 {
                     property:
                         "og:title",
-                    content: title,
+                    content:
+                        title,
                 },
             ),
-
             setMetaTag(
                 'meta[property="og:description"]',
                 {
@@ -137,7 +72,6 @@ export function PageSeo({
                         description,
                 },
             ),
-
             setMetaTag(
                 'meta[property="og:type"]',
                 {
@@ -147,31 +81,24 @@ export function PageSeo({
                         "website",
                 },
             ),
-
             setMetaTag(
                 'meta[property="og:url"]',
                 {
                     property:
                         "og:url",
                     content:
-                        absoluteUrl(
-                            canonicalPath,
-                        ),
+                        canonicalUrl,
                 },
             ),
-
             setMetaTag(
                 'meta[property="og:image"]',
                 {
                     property:
                         "og:image",
                     content:
-                        absoluteUrl(
-                            image,
-                        ),
+                        imageUrl,
                 },
             ),
-
             setMetaTag(
                 'meta[name="twitter:card"]',
                 {
@@ -181,16 +108,15 @@ export function PageSeo({
                         "summary_large_image",
                 },
             ),
-
             setMetaTag(
                 'meta[name="twitter:title"]',
                 {
                     name:
                         "twitter:title",
-                    content: title,
+                    content:
+                        title,
                 },
             ),
-
             setMetaTag(
                 'meta[name="twitter:description"]',
                 {
@@ -200,108 +126,33 @@ export function PageSeo({
                         description,
                 },
             ),
-
             setMetaTag(
                 'meta[name="twitter:image"]',
                 {
                     name:
                         "twitter:image",
                     content:
-                        absoluteUrl(
-                            image,
-                        ),
+                        imageUrl,
                 },
             ),
-        ];
-
-        let canonical =
-            document.head.querySelector<HTMLLinkElement>(
-                'link[rel="canonical"]',
-            );
-
-        const canonicalWasCreated =
-            !canonical;
-
-        const previousCanonicalHref =
-            canonical?.getAttribute(
-                "href",
-            ) ?? null;
-
-        if (!canonical) {
-            canonical =
-                document.createElement(
-                    "link",
-                );
-
-            canonical.rel =
-                "canonical";
-
-            document.head.appendChild(
-                canonical,
-            );
-        }
-
-        canonical.href =
-            absoluteUrl(
+            setCanonicalLink(
                 canonicalPath,
-            );
-
-        let structuredDataScript:
-            HTMLScriptElement | null =
-                null;
-
-        if (structuredData) {
-            structuredDataScript =
-                document.createElement(
-                    "script",
-                );
-
-            structuredDataScript.type =
-                "application/ld+json";
-
-            structuredDataScript.dataset.seo =
-                "page-structured-data";
-
-            structuredDataScript.text =
-                JSON.stringify(
-                    structuredData,
-                );
-
-            document.head.appendChild(
-                structuredDataScript,
-            );
-        }
+            ),
+            appendStructuredData(
+                structuredData,
+            ),
+        ];
 
         return () => {
             document.title =
                 previousTitle;
 
             cleanups.forEach(
-                (cleanup) =>
+                (
+                    cleanup,
+                ) =>
                     cleanup(),
             );
-
-            if (canonical) {
-                if (
-                    canonicalWasCreated
-                ) {
-                    canonical.remove();
-                } else if (
-                    previousCanonicalHref ===
-                    null
-                ) {
-                    canonical.removeAttribute(
-                        "href",
-                    );
-                } else {
-                    canonical.setAttribute(
-                        "href",
-                        previousCanonicalHref,
-                    );
-                }
-            }
-
-            structuredDataScript?.remove();
         };
     }, [
         canonicalPath,

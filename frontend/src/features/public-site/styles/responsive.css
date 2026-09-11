@@ -1,11 +1,3 @@
-/*
- * Breakpoints temporales para componentes y páginas
- * públicas que todavía no han sido migradas por completo.
- *
- * Home, Nosotros y Servicios mantienen actualmente
- * sus propios breakpoints en sus respectivos CSS.
- */
-
 @media (
     max-width: 900px
 ) {

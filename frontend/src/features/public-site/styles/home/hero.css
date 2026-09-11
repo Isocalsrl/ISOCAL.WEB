@@ -1,0 +1,169 @@
+.home-hero {
+    position: relative;
+    min-height:
+        clamp(
+            38rem,
+            78vh,
+            52rem
+        );
+    overflow: hidden;
+    background:
+        var(--public-navy-deep);
+}
+
+.home-hero-image,
+.home-hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.home-hero-image {
+    object-fit: cover;
+    object-position:
+        center 38%;
+}
+
+.home-hero-overlay {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(
+                7,
+                15,
+                24,
+                0.86
+            )
+                0%,
+            rgba(
+                7,
+                15,
+                24,
+                0.58
+            )
+                44%,
+            rgba(
+                7,
+                15,
+                24,
+                0.12
+            )
+                76%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(
+                7,
+                15,
+                24,
+                0.42
+            )
+                0%,
+            transparent
+                45%
+        );
+}
+
+.home-hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height:
+        clamp(
+            38rem,
+            78vh,
+            52rem
+        );
+    padding:
+        clamp(
+            5rem,
+            10vw,
+            8rem
+        )
+        0;
+    align-items:
+        flex-end;
+}
+
+.home-hero-copy {
+    max-width: 55rem;
+}
+
+.home-hero-kicker {
+    margin:
+        0
+        0
+        1rem;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 850;
+    letter-spacing:
+        0.1em;
+    text-transform:
+        uppercase;
+}
+
+.home-hero-kicker::before {
+    display:
+        inline-block;
+    width: 2.8rem;
+    height: 0.18rem;
+    margin-right: 0.8rem;
+    vertical-align: middle;
+    background:
+        var(--public-red);
+    content: "";
+}
+
+.home-hero h1 {
+    max-width: 52rem;
+    margin: 0;
+    color: #ffffff;
+    font-size:
+        clamp(
+            3.5rem,
+            7.8vw,
+            7rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.065em;
+    line-height: 0.91;
+}
+
+.home-hero-description {
+    max-width: 39rem;
+    margin:
+        1.7rem
+        0
+        0;
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.82
+        );
+    font-size:
+        clamp(
+            1rem,
+            1.8vw,
+            1.16rem
+        );
+    line-height: 1.7;
+}
+
+.home-hero-actions {
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.home-hero-actions
+.ui-button {
+    min-height: 3.1rem;
+    padding-inline:
+        1.25rem;
+}

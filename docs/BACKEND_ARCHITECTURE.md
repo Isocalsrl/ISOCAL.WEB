@@ -104,3 +104,11 @@ forma idempotente.
    entidades se coordinan desde el service.
 6. Una migración aplicada no se modifica: cualquier cambio posterior se agrega
    como una migración nueva.
+
+## Módulos futuros
+
+No se crean controllers, services, repositories o routes vacíos para reservar
+features futuras. Un módulo entra al árbol cuando existe al menos un caso de uso
+real y su primera ruta puede respetar el flujo definido arriba. Las features
+planificadas se mantienen en issues o documentación, no como archivos fuente
+vacíos que aparenten una implementación inexistente.
