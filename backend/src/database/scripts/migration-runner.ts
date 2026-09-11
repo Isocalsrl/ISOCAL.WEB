@@ -3,6 +3,12 @@ import { getMigrationFiles, type Migration } from "./migration-files.js";
 
 const migrationLock = "isocal_database_migrations";
 
+const legacyMigrationNames: Record<string, readonly string[]> = {
+    "004_create_admin.sql": ["003_create_admin.sql"],
+    "005_create_admin_login_events.sql": ["006_create_admin_login_events.sql"],
+    "005_create_admin_sessions.sql": ["004_create_admin_sessions.sql"],
+};
+
 async function createMigrationsTable(client: PoolClient) {
     await client.query(`
         CREATE TABLE IF NOT EXISTS schema_migrations (
@@ -19,6 +25,45 @@ async function migrationWasApplied(client: PoolClient, filename: string) {
     );
 
     return Boolean(result.rowCount);
+}
+
+async function reconcileLegacyMigration(
+    client: PoolClient,
+    filename: string,
+): Promise<string | null> {
+    const legacyNames = legacyMigrationNames[filename] ?? [];
+
+    if (legacyNames.length === 0) {
+        return null;
+    }
+
+    const result = await client.query<{ filename: string }>(
+        `
+            SELECT filename
+            FROM schema_migrations
+            WHERE filename = ANY($1::text[])
+            ORDER BY applied_at ASC
+            LIMIT 1
+        `,
+        [legacyNames],
+    );
+
+    const legacyFilename = result.rows[0]?.filename;
+
+    if (!legacyFilename) {
+        return null;
+    }
+
+    await client.query(
+        `
+            INSERT INTO schema_migrations (filename)
+            VALUES ($1)
+            ON CONFLICT (filename) DO NOTHING
+        `,
+        [filename],
+    );
+
+    return legacyFilename;
 }
 
 async function applyMigration(client: PoolClient, migration: Migration) {
@@ -47,6 +92,18 @@ export async function runMigrations(client: PoolClient) {
         for (const migration of migrations) {
             if (await migrationWasApplied(client, migration.filename)) {
                 console.log(`Migración omitida: ${migration.filename}`);
+                continue;
+            }
+
+            const legacyFilename = await reconcileLegacyMigration(
+                client,
+                migration.filename,
+            );
+
+            if (legacyFilename) {
+                console.log(
+                    `Legacy migration reconciled: ${migration.filename} (${legacyFilename})`,
+                );
                 continue;
             }
 
