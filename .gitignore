@@ -13,3 +13,6 @@ build/
 .idea/
 
 coverage/
+
+backend/storage/**
+!backend/storage/.gitkeep
