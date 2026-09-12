@@ -32,10 +32,19 @@ import {
 
 const app = express();
 
+app.disable("x-powered-by");
+
+if (env.trustProxyHops > 0) {
+    app.set(
+        "trust proxy",
+        env.trustProxyHops,
+    );
+}
+
 app.use(
     cors({
         origin:
-            env.frontendOrigin,
+            env.frontendOrigins,
 
         credentials: true,
     }),
@@ -105,6 +114,19 @@ app.use(
     createAdminQuotesRouter(
         authenticateAdmin,
     ),
+);
+
+app.use(
+    "/api",
+    (_req, res) => {
+        res.status(404).json({
+            success: false,
+            error: {
+                code: "ROUTE_NOT_FOUND",
+                message: "La ruta solicitada no existe.",
+            },
+        });
+    },
 );
 
 app.use(

@@ -1,19 +1,23 @@
 services:
   postgres:
-    image: postgres:17
+    image: postgres:17-alpine
     container_name: isocal-postgres
     restart: unless-stopped
 
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: isocal
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-isocal}
 
     ports:
-      - "5433:5432"
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
 
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d isocal"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}",
+        ]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -22,5 +26,90 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    container_name: isocal-backend
+    restart: unless-stopped
+
+    environment:
+      PORT: 3000
+      NODE_ENV: ${NODE_ENV:-development}
+      PGHOST: postgres
+      PGPORT: 5432
+      PGUSER: ${POSTGRES_USER:-postgres}
+      PGPASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PGDATABASE: ${POSTGRES_DB:-isocal}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:8080}
+      TRUST_PROXY_HOPS: ${TRUST_PROXY_HOPS:-1}
+      ADMIN_SESSION_DURATION_HOURS: ${ADMIN_SESSION_DURATION_HOURS:-12}
+      FILE_STORAGE_ROOT: /app/storage
+      BOOTSTRAP_ADMIN_NAME: ${BOOTSTRAP_ADMIN_NAME:-}
+      BOOTSTRAP_ADMIN_EMAIL: ${BOOTSTRAP_ADMIN_EMAIL:-}
+      BOOTSTRAP_ADMIN_PASSWORD: ${BOOTSTRAP_ADMIN_PASSWORD:-}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-}
+      EMAIL_REPLY_TO: ${EMAIL_REPLY_TO:-}
+      ISOCAL_LEGAL_NAME: ${ISOCAL_LEGAL_NAME:-}
+      ISOCAL_RUC: ${ISOCAL_RUC:-}
+      ISOCAL_PHONE: ${ISOCAL_PHONE:-+51 991 084 825}
+      ISOCAL_EMAIL: ${ISOCAL_EMAIL:-ventas@isocal.pe}
+      ISOCAL_WEBSITE: ${ISOCAL_WEBSITE:-https://www.isocal.pe}
+      ISOCAL_ADDRESS: ${ISOCAL_ADDRESS:-}
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    expose:
+      - "3000"
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+    volumes:
+      - backend_storage:/app/storage
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ""
+
+    container_name: isocal-frontend
+    restart: unless-stopped
+
+    depends_on:
+      backend:
+        condition: service_healthy
+
+    ports:
+      - "${APP_PORT:-8080}:80"
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget -q -O - http://127.0.0.1/ >/dev/null 2>&1 || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
 volumes:
   postgres_data:
+  backend_storage:

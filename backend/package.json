@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "db:init": "docker compose -f ../docker-compose.yml up -d --wait postgres && tsx src/database/init.ts",
+    "db:prepare": "tsx src/database/prepare.ts",
     "db:seed": "tsx src/database/scripts/seed.ts",
     "test": "vitest",
     "test:run": "vitest run"
