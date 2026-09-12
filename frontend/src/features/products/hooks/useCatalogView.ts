@@ -1,308 +1,83 @@
 import {
-    useCallback,
     useMemo,
     useState,
 } from "react";
-
-import {
-    useSearchParams,
-} from "react-router-dom";
-
-import {
-    toSlug,
-} from "../../../shared/utils/toSlug";
 
 import type {
     PublicCategory,
 } from "../../categories/types/category.types";
 
+import {
+    createCategoryNamesById,
+    filterCatalogProducts,
+    getProductCategoryName,
+} from "../model/catalogFilters";
+
 import type {
     PublicProduct,
 } from "../types/product.types";
 
-function parseRequestedProductId(
-    value:
-        string | null,
-): number | null {
-    if (!value) {
-        return null;
-    }
-
-    const parsedValue =
-        Number(
-            value,
-        );
-
-    return Number.isInteger(
-        parsedValue,
-    ) &&
-        parsedValue > 0
-        ? parsedValue
-        : null;
-}
+import {
+    useCatalogQueryParams,
+} from "./useCatalogQueryParams";
 
 export function useCatalogView(
-    products:
-        readonly PublicProduct[],
-    categories:
-        readonly PublicCategory[],
+    products: readonly PublicProduct[],
+    categories: readonly PublicCategory[],
 ) {
-    const [
-        searchParams,
-        setSearchParams,
-    ] = useSearchParams();
+    const [searchTerm, setSearchTerm] = useState("");
+    const query = useCatalogQueryParams();
 
-    const [
-        searchTerm,
-        setSearchTerm,
-    ] = useState("");
+    const selectedCategory = useMemo(
+        () =>
+            categories.find(
+                (category) => category.slug === query.selectedCategorySlug,
+            ) ?? null,
+        [categories, query.selectedCategorySlug],
+    );
 
-    const requestedCategorySlug =
-        searchParams.get(
-            "categoria",
-        );
+    const categoryNamesById = useMemo(
+        () => createCategoryNamesById(categories),
+        [categories],
+    );
 
-    const requestedProductId =
-        parseRequestedProductId(
-            searchParams.get(
-                "producto",
-            ),
-        );
-
-    const selectedCategory =
-        useMemo(
-            () =>
-                categories.find(
-                    (
-                        category,
-                    ) =>
-                        category.slug ===
-                        requestedCategorySlug,
-                ) ?? null,
-            [
-                categories,
-                requestedCategorySlug,
-            ],
-        );
-
-    const categoryNamesById =
-        useMemo(
-            () =>
-                new Map(
-                    categories.map(
-                        (
-                            category,
-                        ) => [
-                            category.id,
-                            category.name,
-                        ],
-                    ),
-                ),
-            [
-                categories,
-            ],
-        );
-
-    const normalizedSearchTerm =
-        toSlug(
-            searchTerm,
-        );
-
-    const filteredProducts =
-        useMemo(
-            () =>
-                products.filter(
-                    (
-                        product,
-                    ) => {
-                        if (
-                            selectedCategory &&
-                            product.categoryId !==
-                                selectedCategory.id
-                        ) {
-                            return false;
-                        }
-
-                        if (
-                            !normalizedSearchTerm
-                        ) {
-                            return true;
-                        }
-
-                        const categoryName =
-                            product.categoryId ===
-                            null
-                                ? ""
-                                : categoryNamesById.get(
-                                      product.categoryId,
-                                  ) ?? "";
-
-                        return toSlug(
-                            [
-                                product.name,
-                                product.description ??
-                                    "",
-                                categoryName,
-                            ].join(
-                                " ",
-                            ),
-                        ).includes(
-                            normalizedSearchTerm,
-                        );
-                    },
-                ),
-            [
+    const filteredProducts = useMemo(
+        () =>
+            filterCatalogProducts({
                 products,
                 selectedCategory,
-                normalizedSearchTerm,
+                searchTerm,
                 categoryNamesById,
-            ],
-        );
+            }),
+        [products, selectedCategory, searchTerm, categoryNamesById],
+    );
 
-    const selectedProduct =
-        useMemo(
-            () =>
-                products.find(
-                    (
-                        product,
-                    ) =>
-                        product.id ===
-                        requestedProductId,
-                ) ?? null,
-            [
-                products,
-                requestedProductId,
-            ],
-        );
-
-    const selectedProductCategoryName =
-        selectedProduct
-            ?.categoryId ===
-        null
-            ? "Sin categoría"
-            : categoryNamesById.get(
-                  selectedProduct
-                      ?.categoryId ??
-                      -1,
-              ) ??
-              "Catálogo ISOCAL";
-
-    const selectCategory =
-        useCallback(
-            (
-                categorySlug:
-                    string | null,
-            ): void => {
-                const nextSearchParams =
-                    new URLSearchParams(
-                        searchParams,
-                    );
-
-                nextSearchParams.delete(
-                    "producto",
-                );
-
-                if (
-                    categorySlug
-                ) {
-                    nextSearchParams.set(
-                        "categoria",
-                        categorySlug,
-                    );
-                } else {
-                    nextSearchParams.delete(
-                        "categoria",
-                    );
-                }
-
-                setSearchParams(
-                    nextSearchParams,
-                );
-            },
-            [
-                searchParams,
-                setSearchParams,
-            ],
-        );
-
-    const openProduct =
-        useCallback(
-            (
-                productId:
-                    number,
-            ): void => {
-                const nextSearchParams =
-                    new URLSearchParams(
-                        searchParams,
-                    );
-
-                nextSearchParams.set(
-                    "producto",
-                    String(
-                        productId,
-                    ),
-                );
-
-                setSearchParams(
-                    nextSearchParams,
-                );
-            },
-            [
-                searchParams,
-                setSearchParams,
-            ],
-        );
-
-    const closeProduct =
-        useCallback(
-            (): void => {
-                const nextSearchParams =
-                    new URLSearchParams(
-                        searchParams,
-                    );
-
-                nextSearchParams.delete(
-                    "producto",
-                );
-
-                setSearchParams(
-                    nextSearchParams,
-                    {
-                        replace:
-                            true,
-                    },
-                );
-            },
-            [
-                searchParams,
-                setSearchParams,
-            ],
-        );
-
-    const resultLabel =
-        filteredProducts.length ===
-        1
-            ? "1 producto"
-            : `${filteredProducts.length} productos`;
-
-    const hasSearch =
-        searchTerm
-            .trim()
-            .length >
-        0;
+    const selectedProduct = useMemo(
+        () =>
+            products.find(
+                (product) => product.id === query.selectedProductId,
+            ) ?? null,
+        [products, query.selectedProductId],
+    );
 
     return {
         searchTerm,
         setSearchTerm,
         selectedCategory,
         selectedProduct,
-        selectedProductCategoryName,
+        selectedProductCategoryName: getProductCategoryName(
+            selectedProduct,
+            categoryNamesById,
+        ),
         categoryNamesById,
         filteredProducts,
-        resultLabel,
-        hasSearch,
-        selectCategory,
-        openProduct,
-        closeProduct,
+        resultLabel:
+            filteredProducts.length === 1
+                ? "1 producto"
+                : `${filteredProducts.length} productos`,
+        hasSearch: searchTerm.trim().length > 0,
+        selectCategory: query.selectCategory,
+        openProduct: query.openProduct,
+        closeProduct: query.closeProduct,
     };
 }

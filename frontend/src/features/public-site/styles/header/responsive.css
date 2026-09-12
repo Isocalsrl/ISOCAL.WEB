@@ -21,7 +21,7 @@
 }
 
 @media (
-    max-width: 760px
+    max-width: 840px
 ) {
     .public-header-content {
         min-height: 4.8rem;

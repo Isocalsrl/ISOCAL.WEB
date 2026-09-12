@@ -4,6 +4,10 @@
 }
 
 .form-field label {
+    display: inline-flex;
+    align-items: baseline;
+    justify-self: start;
+    gap: 0.25rem;
     color: #282828;
     font-size: 0.7rem;
     font-weight: 900;
@@ -12,8 +16,10 @@
 }
 
 .form-field-required {
-    margin-left: 0.25rem;
+    display: inline-block;
+    margin: 0;
     color: var(--color-brand);
+    line-height: 1;
 }
 
 .form-field small {

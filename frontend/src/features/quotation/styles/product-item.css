@@ -1,0 +1,138 @@
+.quotation-layout {
+    display: grid;
+    margin-top: 2rem;
+    grid-template-columns:
+        minmax(
+            0,
+            1fr
+        )
+        minmax(
+            18rem,
+            22rem
+        );
+    align-items: start;
+    gap:
+        clamp(
+            1.5rem,
+            4vw,
+            3rem
+        );
+}
+
+.quotation-products-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.quotation-product-item {
+    display: grid;
+    padding:
+        clamp(
+            1.5rem,
+            3vw,
+            2rem
+        );
+    border:
+        1px solid
+        var(--public-line);
+    border-top:
+        0.2rem solid
+        var(--public-navy-deep);
+    grid-template-columns:
+        minmax(
+            0,
+            1fr
+        );
+    gap: 1.5rem;
+    background: #ffffff;
+}
+
+.quotation-product-item:hover {
+    border-color:
+        var(--public-red);
+}
+
+.quotation-product-category {
+    margin: 0;
+    color:
+        var(--public-red);
+    font-size: 0.64rem;
+    font-weight: 900;
+    letter-spacing:
+        0.09em;
+    text-transform:
+        uppercase;
+}
+
+.quotation-product-item h3 {
+    max-width: 42rem;
+    margin:
+        1rem
+        0
+        0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            1.45rem,
+            2.5vw,
+            2rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.045em;
+    line-height: 1.08;
+}
+
+.quotation-product-description {
+    max-width: 46rem;
+    margin:
+        0.85rem
+        0
+        0;
+    color:
+        var(--public-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.quotation-product-description-empty {
+    font-style: italic;
+}
+
+.quotation-product-actions {
+    display: flex;
+    padding-top: 1rem;
+    border-top:
+        1px solid
+        var(--public-line);
+    align-items: center;
+    justify-content:
+        space-between;
+    gap: 1rem;
+}
+
+.quotation-product-detail-link {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: 0.65rem;
+    color:
+        var(--public-navy-deep);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing:
+        0.06em;
+    text-decoration: none;
+    text-transform:
+        uppercase;
+}
+
+.quotation-product-detail-link:hover {
+    color:
+        var(--public-red);
+}
+
+.quotation-product-remove {
+    flex: 0 0 auto;
+}

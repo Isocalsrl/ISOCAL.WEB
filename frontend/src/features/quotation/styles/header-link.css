@@ -1,0 +1,63 @@
+.quotation-header-link {
+    display: inline-flex;
+    min-height: 2.8rem;
+    padding:
+        0
+        0.75rem;
+    border:
+        1px solid
+        var(--public-line);
+    align-items: center;
+    gap: 0.55rem;
+    color:
+        var(--public-navy-deep);
+    font-size: 0.67rem;
+    font-weight: 900;
+    letter-spacing:
+        0.055em;
+    text-decoration: none;
+    text-transform:
+        uppercase;
+    transition:
+        border-color
+        150ms
+        ease,
+        color
+        150ms
+        ease,
+        background
+        150ms
+        ease;
+}
+
+.quotation-header-link:hover,
+.quotation-header-link-active {
+    border-color:
+        var(--public-red);
+    color:
+        var(--public-red);
+    background:
+        #fff7f8;
+}
+
+.quotation-header-count {
+    display: grid;
+    min-width: 1.45rem;
+    height: 1.45rem;
+    padding:
+        0
+        0.3rem;
+    border-radius: 999px;
+    place-items: center;
+    color: #ffffff;
+    background:
+        var(--public-navy-deep);
+    font-size: 0.62rem;
+    line-height: 1;
+}
+
+.quotation-header-link-active
+.quotation-header-count {
+    background:
+        var(--public-red);
+}

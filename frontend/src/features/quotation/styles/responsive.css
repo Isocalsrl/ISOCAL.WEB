@@ -1,0 +1,91 @@
+@media (
+    max-width: 900px
+) {
+    .quotation-hero-content {
+        grid-template-columns:
+            1fr;
+    }
+
+    .quotation-hero-image {
+        object-position: 62% center;
+    }
+
+    .quotation-layout {
+        grid-template-columns:
+            1fr;
+    }
+
+    .quotation-summary {
+        position: static;
+    }
+}
+
+@media (
+    max-width: 840px
+) {
+    .quotation-hero,
+    .quotation-hero-content {
+        min-height: 31rem;
+    }
+
+    .quotation-hero-overlay {
+        background: rgba(7, 15, 24, 0.76);
+    }
+
+    .quotation-hero h1 {
+        font-size: clamp(2.9rem, 14vw, 4.4rem);
+    }
+
+    .quotation-header-link {
+        width: 100%;
+        min-height: 3rem;
+        padding:
+            0.7rem
+            0.85rem;
+    }
+
+    .quotation-header-count {
+        margin-left: auto;
+    }
+
+    .quotation-heading {
+        align-items:
+            flex-start;
+        flex-direction:
+            column;
+        gap: 1rem;
+    }
+
+    .quotation-product-actions {
+        align-items:
+            stretch;
+        flex-direction:
+            column;
+    }
+
+    .quotation-product-detail-link {
+        justify-content:
+            center;
+    }
+
+    .quotation-product-remove {
+        width: 100%;
+    }
+
+}
+
+@media (
+    min-width: 841px
+) and (
+    max-width: 1100px
+) {
+    .quotation-header-link {
+        padding:
+            0
+            0.6rem;
+    }
+
+    .quotation-header-label {
+        display: none;
+    }
+}

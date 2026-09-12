@@ -29,6 +29,11 @@ import type {
     PublicProduct,
 } from "../types/product.types";
 
+import {
+    getProductDetailReturnTarget,
+    parseProductId,
+} from "../model/productDetailNavigation";
+
 interface PublicProductDetail {
     product:
         PublicProduct;
@@ -76,31 +81,6 @@ async function fetchProductDetail(
     }
 }
 
-function parseProductId(
-    value:
-        string | undefined,
-): number | null {
-    if (!value) {
-        return null;
-    }
-
-    const parsed =
-        Number(
-            value,
-        );
-
-    if (
-        !Number.isInteger(
-            parsed,
-        ) ||
-        parsed <= 0
-    ) {
-        return null;
-    }
-
-    return parsed;
-}
-
 export function usePublicProductDetail() {
     const {
         productId,
@@ -141,50 +121,15 @@ export function usePublicProductDetail() {
         string | null
     >(null);
 
-    const returnCategory =
-        searchParams.get(
-            "categoria",
-        );
-
-    const origin =
-        searchParams.get(
-            "origen",
-        );
-
-    const catalogReturnUrl =
-        returnCategory
-            ? `/productos?categoria=${encodeURIComponent(
-                  returnCategory,
-              )}`
-            : "/productos";
-
-    let returnUrl =
-        catalogReturnUrl;
-
-    let returnLabel =
-        "Volver al catálogo";
-
-    if (
-        origin ===
-        "favoritos"
-    ) {
-        returnUrl =
-            "/favoritos";
-
-        returnLabel =
-            "Volver a favoritos";
-    }
-
-    if (
-        origin ===
-        "cotizacion"
-    ) {
-        returnUrl =
-            "/cotizacion";
-
-        returnLabel =
-            "Volver a cotización";
-    }
+    const returnTarget =
+        getProductDetailReturnTarget({
+            categorySlug: searchParams.get(
+                "categoria",
+            ),
+            origin: searchParams.get(
+                "origen",
+            ),
+        });
 
     useEffect(() => {
         let isActive =
@@ -297,12 +242,12 @@ export function usePublicProductDetail() {
         category,
         isLoading,
         errorMessage,
-        returnUrl,
-        returnLabel,
+        returnUrl: returnTarget.url,
+        returnLabel: returnTarget.label,
 
         goToReturnPage: () => {
             navigate(
-                returnUrl,
+                returnTarget.url,
             );
         },
     };

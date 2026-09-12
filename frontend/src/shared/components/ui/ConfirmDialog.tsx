@@ -1,4 +1,12 @@
 import {
+    useId,
+} from "react";
+
+import {
+    useAccessibleDialog,
+} from "../../hooks/useAccessibleDialog";
+
+import {
     Button,
 } from "./Button";
 
@@ -23,6 +31,13 @@ export function ConfirmDialog({
     onCancel,
     onConfirm,
 }: ConfirmDialogProps) {
+    const titleId = useId();
+    const descriptionId = useId();
+    const { dialogRef } = useAccessibleDialog<HTMLElement>({
+        isOpen,
+        onClose: onCancel,
+    });
+
     if (!isOpen) {
         return null;
     }
@@ -32,29 +47,23 @@ export function ConfirmDialog({
             className="dialog-backdrop"
             role="presentation"
             onMouseDown={(event) => {
-                if (
-                    event.target ===
-                    event.currentTarget
-                ) {
+                if (event.target === event.currentTarget) {
                     onCancel();
                 }
             }}
         >
             <section
+                ref={dialogRef}
                 className="confirm-dialog"
                 role="dialog"
                 aria-modal="true"
-                aria-labelledby="confirm-dialog-title"
+                aria-labelledby={titleId}
+                aria-describedby={descriptionId}
             >
-                <p className="eyebrow">
-                    Confirmación
-                </p>
+                <p className="eyebrow">Confirmación</p>
 
-                <h2 id="confirm-dialog-title">
-                    {title}
-                </h2>
-
-                <p>{description}</p>
+                <h2 id={titleId}>{title}</h2>
+                <p id={descriptionId}>{description}</p>
 
                 <div className="confirm-dialog-actions">
                     <Button
@@ -71,7 +80,7 @@ export function ConfirmDialog({
                         variant="danger"
                         onClick={onConfirm}
                         isLoading={isConfirming}
-                        loadingLabel="Desactivando..."
+                        loadingLabel="Procesando..."
                     >
                         {confirmLabel}
                     </Button>

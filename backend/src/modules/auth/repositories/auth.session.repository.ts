@@ -1,14 +1,7 @@
-import {
-    db,
-} from "../../../database/db.js";
-
-import type {
-    CreateLoginEventInput,
-} from "../auth.types.js";
-
-import {
-    recordLoginEvent,
-} from "./auth.login-event.repository.js";
+import { db } from "../../../database/db.js";
+import { withTransaction } from "../../../database/transaction.js";
+import type { CreateLoginEventInput } from "../auth.types.js";
+import { recordLoginEvent } from "./auth.login-event.repository.js";
 
 export async function createSession(
     adminId: number,
@@ -16,11 +9,7 @@ export async function createSession(
     expiresAt: Date,
     loginEvent: CreateLoginEventInput,
 ): Promise<void> {
-    const client = await db.connect();
-
-    try {
-        await client.query("BEGIN");
-
+    await withTransaction(async (client) => {
         await client.query(
             `
                 INSERT INTO admin_sessions (
@@ -30,44 +19,25 @@ export async function createSession(
                 )
                 VALUES ($1, $2, $3)
             `,
-            [
-                adminId,
-                tokenHash,
-                expiresAt,
-            ],
+            [adminId, tokenHash, expiresAt],
         );
 
         await client.query(
             `
                 UPDATE admins
                 SET
-                    last_login_at =
-                        CURRENT_TIMESTAMP,
-                    updated_at =
-                        CURRENT_TIMESTAMP
+                    last_login_at = CURRENT_TIMESTAMP,
+                    updated_at = CURRENT_TIMESTAMP
                 WHERE id = $1
             `,
             [adminId],
         );
 
-        await recordLoginEvent(
-            loginEvent,
-            client,
-        );
-
-        await client.query("COMMIT");
-    } catch (error) {
-        await client.query("ROLLBACK");
-
-        throw error;
-    } finally {
-        client.release();
-    }
+        await recordLoginEvent(loginEvent, client);
+    });
 }
 
-export async function deleteSession(
-    tokenHash: string,
-): Promise<void> {
+export async function deleteSession(tokenHash: string): Promise<void> {
     await db.query(
         `
             DELETE FROM admin_sessions
@@ -77,13 +47,11 @@ export async function deleteSession(
     );
 }
 
-export async function deleteExpiredSessions():
-    Promise<void> {
+export async function deleteExpiredSessions(): Promise<void> {
     await db.query(
         `
             DELETE FROM admin_sessions
-            WHERE expires_at <=
-                CURRENT_TIMESTAMP
+            WHERE expires_at <= CURRENT_TIMESTAMP
         `,
     );
 }

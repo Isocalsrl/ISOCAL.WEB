@@ -618,6 +618,27 @@ la API.
 
 ---
 
+# 6. Favoritos y cotización
+
+## `/images/favorites/hero-favoritos.webp`
+
+Uso:
+
+Hero de `/favoritos` con una selección ordenada de
+instrumentos de medición y espacio visual para el texto.
+
+## `/images/quotation/hero-cotizacion.webp`
+
+Uso:
+
+Hero de `/cotizacion` con instrumentos, documentación
+técnica y una revisión comercial sutil.
+
+Ambas fotografías evitan texto, marcas, precios e
+interfaces incrustadas.
+
+---
+
 # Checklist para Codex / responsable de assets
 
 1. Crear todas las carpetas faltantes respetando

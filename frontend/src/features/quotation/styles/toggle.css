@@ -1,0 +1,79 @@
+.quotation-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: 0 0 auto;
+}
+
+.quotation-toggle {
+    display: inline-flex;
+    min-height: 3rem;
+    padding:
+        0.75rem
+        1rem;
+    border:
+        1px solid
+        var(--public-line);
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    color:
+        var(--public-navy-deep);
+    background: #ffffff;
+    cursor: pointer;
+    font-family: inherit;
+    transition:
+        border-color
+        150ms
+        ease,
+        color
+        150ms
+        ease,
+        background-color
+        150ms
+        ease,
+        transform
+        150ms
+        ease;
+}
+
+.quotation-toggle:hover {
+    border-color:
+        var(--public-red);
+    color:
+        var(--public-red);
+    background:
+        #fff7f8;
+}
+
+.quotation-toggle:active {
+    transform:
+        scale(
+            0.98
+        );
+}
+
+.quotation-toggle-active {
+    border-color:
+        var(--public-red);
+    color: #ffffff;
+    background:
+        var(--public-red);
+}
+
+.quotation-toggle-active:hover {
+    border-color:
+        #a80018;
+    color: #ffffff;
+    background:
+        #a80018;
+}
+
+.quotation-toggle-label {
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing:
+        0.055em;
+    line-height: 1.2;
+    text-transform:
+        uppercase;
+}

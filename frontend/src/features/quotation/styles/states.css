@@ -1,0 +1,64 @@
+.quotation-state {
+    margin-top: 2rem;
+}
+
+.quotation-state
+.section-state {
+    min-height: 22rem;
+    border-color:
+        var(--public-line);
+    background:
+        var(--public-soft);
+}
+
+.quotation-empty {
+    display: grid;
+    min-height: 22rem;
+    margin-top: 2rem;
+    padding:
+        clamp(
+            2rem,
+            6vw,
+            4.5rem
+        );
+    border:
+        1px solid
+        var(--public-line);
+    align-content: center;
+    justify-items: start;
+    background:
+        var(--public-soft);
+}
+
+.quotation-empty h3 {
+    max-width: 42rem;
+    margin: 0;
+    color:
+        var(--public-navy-deep);
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3.4rem
+        );
+    font-weight: 850;
+    letter-spacing:
+        -0.055em;
+    line-height: 1;
+}
+
+.quotation-empty p {
+    max-width: 38rem;
+    margin:
+        1.2rem
+        0
+        0;
+    color:
+        var(--public-muted);
+    line-height: 1.75;
+}
+
+.quotation-empty
+.ui-button {
+    margin-top: 1.75rem;
+}

@@ -1,4 +1,13 @@
 .product-modal-backdrop {
+    --public-red: var(--color-brand);
+    --public-red-dark: var(--color-brand-dark);
+    --public-navy: var(--color-navy);
+    --public-navy-deep: var(--color-navy-deep);
+    --public-cream: var(--color-cream);
+    --public-soft: var(--color-surface-muted);
+    --public-line: var(--color-border);
+    --public-muted: var(--color-text-muted);
+
     position: fixed;
     z-index: 100;
     inset: 0;
