@@ -13,9 +13,35 @@ function positiveNumber(
         : fallback;
 }
 
+function nonNegativeInteger(
+    value: string | undefined,
+    fallback: number,
+): number {
+    const parsedValue = Number(value);
+
+    return Number.isInteger(parsedValue) &&
+        parsedValue >= 0
+        ? parsedValue
+        : fallback;
+}
+
 function optionalString(value: string | undefined): string | null {
     const normalized = value?.trim();
     return normalized ? normalized : null;
+}
+
+function stringList(
+    value: string | undefined,
+    fallback: readonly string[],
+): string[] {
+    const values = value
+        ?.split(",")
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+    return values?.length
+        ? values
+        : [...fallback];
 }
 
 export const env = {
@@ -29,12 +55,22 @@ export const env = {
     ),
 
     databaseUrl:
-        process.env.DATABASE_URL ??
-        "postgresql://postgres:postgres@localhost:5433/isocal",
+        optionalString(
+            process.env.DATABASE_URL,
+        ) ??
+        (process.env.PGHOST
+            ? null
+            : "postgresql://postgres:postgres@localhost:5433/isocal"),
 
-    frontendOrigin:
-        process.env.FRONTEND_ORIGIN ??
-        "http://localhost:5173",
+    frontendOrigins: stringList(
+        process.env.FRONTEND_ORIGIN,
+        ["http://localhost:5173"],
+    ),
+
+    trustProxyHops: nonNegativeInteger(
+        process.env.TRUST_PROXY_HOPS,
+        0,
+    ),
 
     adminSessionDurationHours:
         positiveNumber(
@@ -46,6 +82,16 @@ export const env = {
     fileStorageRoot: resolve(
         process.cwd(),
         process.env.FILE_STORAGE_ROOT ?? "storage",
+    ),
+
+    bootstrapAdminName: optionalString(
+        process.env.BOOTSTRAP_ADMIN_NAME,
+    ),
+    bootstrapAdminEmail: optionalString(
+        process.env.BOOTSTRAP_ADMIN_EMAIL,
+    ),
+    bootstrapAdminPassword: optionalString(
+        process.env.BOOTSTRAP_ADMIN_PASSWORD,
     ),
 
     resendApiKey: optionalString(process.env.RESEND_API_KEY),
