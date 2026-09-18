@@ -1,0 +1,126 @@
+.public-site-shell .public-container {
+    width: min(100% - 48px, var(--ix-container));
+    max-width: var(--ix-container);
+    margin-inline: auto;
+}
+.public-site-shell main {
+    background: var(--ix-paper);
+}
+.public-site-shell main h1,
+.public-site-shell main h2,
+.public-site-shell main h3 {
+    color: var(--ix-ink);
+}
+.public-site-shell main p {
+    color: var(--ix-text);
+}
+.public-site-shell a,
+.public-site-shell button {
+    -webkit-tap-highlight-color: transparent;
+}
+.public-site-shell .co-eyebrow,
+.public-site-shell .ix-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0 0 0.85rem;
+    color: var(--ix-red);
+    font-weight: 850;
+    text-transform: uppercase;
+}
+.public-site-shell .co-eyebrow::before,
+.public-site-shell .ix-kicker::before {
+    width: 28px;
+    height: 2px;
+    flex: 0 0 auto;
+    background: currentColor;
+    content: "";
+}
+.public-site-shell .ix-kicker-light {
+    color: rgba(255, 255, 255, 0.78);
+}
+.public-site-shell .ix-section-intro-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.65fr);
+    align-items: end;
+}
+.public-site-shell .ix-section-intro h2 {
+    max-width: 780px;
+    margin: 0.25rem 0 0;
+}
+.public-site-shell .ix-section-action-copy > p,
+.public-site-shell .ix-section-intro-split > p {
+    max-width: 520px;
+    margin: 0 0 1rem;
+}
+.public-site-shell .co-button,
+.public-site-shell .ix-button {
+    display: inline-flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0 1.3rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        color 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease;
+}
+.public-site-shell .co-button svg,
+.public-site-shell .ix-button svg,
+.public-site-shell .ix-inline-link svg {
+    transition: transform 180ms ease;
+}
+.public-site-shell .co-button:hover,
+.public-site-shell .ix-button:hover {
+    transform: translateY(-2px);
+}
+.public-site-shell .co-button:hover svg,
+.public-site-shell .ix-button:hover svg,
+.public-site-shell .ix-inline-link:hover svg {
+    transform: translateX(4px);
+}
+.public-site-shell .co-button,
+.public-site-shell .ix-button-primary {
+    color: #fff;
+    background: var(--ix-red);
+    box-shadow: 0 12px 30px rgba(211, 16, 47, 0.22);
+}
+.public-site-shell .co-button:hover,
+.public-site-shell .ix-button-primary:hover {
+    color: #fff;
+    background: var(--ix-red-dark);
+    box-shadow: 0 16px 38px rgba(211, 16, 47, 0.28);
+}
+.public-site-shell .ix-button-light {
+    color: var(--ix-red);
+    background: #fff;
+    border-color: #fff;
+}
+.public-site-shell .ix-button-ghost-light {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.36);
+    backdrop-filter: blur(8px);
+}
+.public-site-shell .ix-button-ghost-light:hover {
+    color: var(--ix-ink);
+    background: #fff;
+}
+.public-site-shell .co-text-link,
+.public-site-shell .ix-inline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--ix-red);
+    font-size: 0.78rem;
+    font-weight: 850;
+    text-decoration: none;
+}

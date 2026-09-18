@@ -1,0 +1,451 @@
+.public-site-shell main h1,
+.public-site-shell main h2,
+.public-site-shell main h3 {
+    text-wrap: pretty;
+}
+.public-site-shell main h2 {
+    font-size: clamp(2rem, 3.05vw, 3.35rem);
+    line-height: 1.01;
+    letter-spacing: -0.047em;
+}
+.public-site-shell main p {
+    font-size: clamp(0.92rem, 0.82vw, 1rem);
+    line-height: 1.72;
+}
+.public-site-shell .ix-section {
+    padding-block: clamp(4.35rem, 6.5vw, 6.8rem);
+}
+.public-site-shell .ix-section-intro {
+    margin-bottom: clamp(2rem, 3vw, 3rem);
+}
+.public-site-shell .ix-section-intro-split {
+    gap: clamp(2rem, 4vw, 4.5rem);
+}
+.public-site-shell .co-eyebrow,
+.public-site-shell .ix-kicker {
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+}
+.public-site-shell .ix-header {
+    background: var(--ix-red);
+    box-shadow:
+        0 1px 0 rgba(109, 0, 18, 0.3),
+        0 10px 30px rgba(12, 22, 29, 0.08);
+}
+.public-site-shell .ix-header-scrolled .ix-nav-shell,
+.public-site-shell .ix-nav-shell {
+    background: var(--ix-red);
+    backdrop-filter: none;
+}
+.public-site-shell .ix-nav-row {
+    min-height: 70px;
+}
+.public-site-shell .ix-header-scrolled .ix-nav-row {
+    min-height: 64px;
+}
+.public-site-shell .ix-header-scrolled .ix-logo img,
+.public-site-shell .ix-logo img {
+    width: 144px;
+    max-height: 44px;
+    object-fit: contain;
+    filter: none;
+}
+.public-site-shell .ix-nav {
+    gap: 1.45rem;
+}
+.public-site-shell .ix-nav > a,
+.public-site-shell .ix-nav-service-title > a {
+    min-height: 70px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.76rem;
+    font-weight: 760;
+}
+.public-site-shell .ix-header-scrolled .ix-nav > a,
+.public-site-shell .ix-header-scrolled .ix-nav-service-title > a {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.76rem;
+    font-weight: 760;
+    min-height: 64px;
+}
+.public-site-shell .ix-nav > a::after,
+.public-site-shell .ix-nav-service-title > a::after {
+    bottom: 0;
+    height: 3px;
+    background: #fff;
+}
+.public-site-shell .ix-nav > a.active,
+.public-site-shell .ix-nav > a:hover,
+.public-site-shell .ix-nav-service-title > a.active,
+.public-site-shell .ix-nav-service-title > a:hover {
+    color: #fff;
+}
+.public-site-shell .ix-nav-service-title button {
+    color: rgba(255, 255, 255, 0.82);
+}
+.public-site-shell .favorites-header-link,
+.public-site-shell .ix-menu-button,
+.public-site-shell .ix-nav-search-link {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.42);
+}
+.public-site-shell .favorites-header-link:hover,
+.public-site-shell .ix-menu-button:hover,
+.public-site-shell .ix-nav-search-link.is-open,
+.public-site-shell .ix-nav-search-link:hover {
+    color: var(--ix-red);
+    background: #fff;
+    border-color: #fff;
+}
+.public-site-shell .ix-nav-quote {
+    min-height: 44px;
+    color: var(--ix-red);
+    background: #fff;
+    box-shadow: 0 10px 22px rgba(100, 0, 15, 0.13);
+}
+.public-site-shell .ix-nav-quote:hover {
+    color: var(--ix-red-dark);
+    background: #fff8f9;
+    box-shadow: 0 12px 28px rgba(91, 0, 14, 0.2);
+}
+.public-site-shell .ix-nav-quote-count {
+    color: #fff;
+    background: var(--ix-red);
+}
+.public-site-shell .ix-services-menu {
+    border-top: 4px solid var(--ix-red);
+    border-radius: 0 0 14px 14px;
+}
+.public-site-shell .ix-services-menu-all {
+    background: var(--ix-red);
+}
+.public-site-shell .ix-services-menu-all:hover {
+    background: var(--ix-red-dark);
+}
+.public-site-shell .ix-home-hero,
+.public-site-shell .ix-home-hero-grid {
+    min-height: clamp(560px, 70vh, 700px);
+}
+.public-site-shell .ix-home-hero-copy {
+    width: min(610px, 58vw);
+    max-width: 610px;
+    padding: 3.6rem 0 6.4rem;
+}
+.public-site-shell .ix-home-hero-copy h1 {
+    max-width: 610px;
+    margin: 0.15rem 0 1.2rem;
+    font-size: clamp(3.45rem, 5.25vw, 5.6rem);
+    line-height: 0.88;
+    letter-spacing: -0.066em;
+}
+.public-site-shell .ix-home-hero-copy .ix-lead {
+    max-width: 545px;
+    font-size: clamp(0.96rem, 1.05vw, 1.08rem);
+    line-height: 1.65;
+}
+.public-site-shell .ix-home-search-dock-inner {
+    border: 1px solid rgba(20, 35, 46, 0.11);
+    box-shadow: 0 24px 60px rgba(11, 27, 37, 0.12);
+}
+.public-site-shell .ix-home-search-dock-copy h2 {
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    letter-spacing: -0.04em;
+}
+.public-site-shell .ix-assurance-strip {
+    background: linear-gradient(180deg, #f8f4eb, #f2eee4);
+}
+.public-site-shell .ix-assurance-heading h2 {
+    max-width: 670px;
+    font-size: clamp(2rem, 3vw, 3.15rem);
+}
+.public-site-shell .ix-assurance-card {
+    border: 1px solid rgba(20, 35, 46, 0.12);
+    border-top: 3px solid rgba(210, 11, 45, 0.82);
+    box-shadow: 0 12px 34px rgba(12, 29, 40, 0.055);
+}
+.public-site-shell .ix-home-advisor-grid,
+.public-site-shell .ix-home-category-card,
+.public-site-shell .ix-service-story-row,
+.public-site-shell .ix-testimonial {
+    border-color: rgba(20, 35, 46, 0.13);
+    box-shadow: 0 14px 36px rgba(12, 29, 40, 0.055);
+}
+.public-site-shell .ix-testimonials {
+    background: #f8f9f9;
+}
+.public-site-shell .ix-about-page .ix-about-hero-copy h1,
+.public-site-shell .ix-services-page .ix-services-hero h1,
+.public-site-shell .ix-utility-hero h1 {
+    font-size: clamp(2.75rem, 4.45vw, 4.7rem) !important;
+    line-height: 0.94 !important;
+    letter-spacing: -0.058em !important;
+}
+.public-site-shell .ix-about-page .ix-about-hero-grid,
+.public-site-shell .ix-about-page .ix-about-hero-media,
+.public-site-shell .ix-about-page .ix-about-hero-media img,
+.public-site-shell .ix-services-page .ix-services-hero-grid,
+.public-site-shell .ix-services-page .ix-services-hero-media,
+.public-site-shell .ix-services-page .ix-services-hero-media img {
+    min-height: 455px;
+}
+.public-site-shell .ix-about-page .ix-about-network h2,
+.public-site-shell .ix-about-page .ix-about-overview-copy h2,
+.public-site-shell .ix-services-page .ix-services-advisor-intro h2 {
+    font-size: clamp(2rem, 3.15vw, 3.25rem) !important;
+    line-height: 1 !important;
+}
+.public-site-shell .ix-about-page .ix-about-pillar-card,
+.public-site-shell .ix-about-page .ix-about-sector-card {
+    position: relative;
+    overflow: hidden;
+    border-color: rgba(20, 35, 46, 0.13);
+    box-shadow: 0 14px 34px rgba(12, 29, 40, 0.045);
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+.public-site-shell .ix-about-page .ix-about-pillar-card::before,
+.public-site-shell .ix-about-page .ix-about-sector-card::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: var(--ix-red);
+    content: "";
+}
+.public-site-shell .ix-about-page .ix-about-pillar-card:hover,
+.public-site-shell .ix-about-page .ix-about-sector-card:hover {
+    border-color: rgba(210, 11, 45, 0.28);
+    box-shadow: 0 20px 46px rgba(12, 29, 40, 0.08);
+    transform: translateY(-3px);
+}
+.public-site-shell .ix-about-page .ix-about-service-architecture,
+.public-site-shell .ix-services-page .ix-services-advisor {
+    background: #eef2f3;
+}
+.public-site-shell .ix-services-page .ix-services-advisor-intro {
+    background: var(--ix-red);
+}
+.public-site-shell .ix-services-page .ix-services-advisor-workbench {
+    border-color: rgba(20, 35, 46, 0.12);
+    box-shadow: 0 18px 46px rgba(12, 29, 40, 0.08);
+}
+.public-site-shell .ix-services-page .ix-audit-section h2,
+.public-site-shell .ix-services-page .ix-consulting-section h2,
+.public-site-shell .ix-services-page .ix-metrology-section h2,
+.public-site-shell .ix-services-page .ix-support-section h2 {
+    font-size: clamp(2rem, 3vw, 3.2rem);
+}
+.public-site-shell .ix-services-page .co-calibration-explorer {
+    border: 1px solid rgba(20, 35, 46, 0.12);
+    border-left: 4px solid var(--ix-red);
+    box-shadow: 0 18px 46px rgba(12, 29, 40, 0.06);
+}
+.public-site-shell .ix-services-page .ix-consulting-section {
+    background: #eef2f3;
+}
+.public-site-shell .ix-services-page .ix-support-section {
+    background: #f3f5f5;
+}
+.public-site-shell .catalog-heading h2 {
+    margin: 0;
+    font-size: clamp(1.7rem, 2.5vw, 2.5rem);
+}
+.public-site-shell .catalog-product-card {
+    border-color: rgba(20, 35, 46, 0.13);
+    box-shadow: 0 12px 32px rgba(12, 29, 40, 0.055);
+}
+.public-site-shell .catalog-product-card-content .catalog-product-name {
+    font-size: clamp(1.02rem, 1.15vw, 1.2rem);
+    line-height: 1.2;
+}
+.public-site-shell .catalog-product-description {
+    font-size: 0.82rem;
+    line-height: 1.55;
+}
+.public-site-shell .technical-page-hero {
+    padding: 4.4rem 0;
+    background: var(--ix-navy-deep);
+}
+.public-site-shell .technical-page-hero h1 {
+    max-width: 720px;
+    color: #fff !important;
+    font-size: clamp(2.55rem, 4.1vw, 4.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+}
+.public-site-shell .technical-page-hero p:not(.ix-kicker):not(.ix-breadcrumb) {
+    color: rgba(255, 255, 255, 0.78) !important;
+}
+.public-site-shell .metrology-converter-intro h2,
+.public-site-shell .service-advisor-header h2 {
+    font-size: clamp(2rem, 3.2vw, 3.2rem);
+    line-height: 1;
+}
+.public-site-shell .technical-tools-section {
+    padding-top: 4.4rem;
+    padding-bottom: 5rem;
+}
+.public-site-shell .service-advisor-panel {
+    border: 1px solid rgba(20, 35, 46, 0.12);
+    border-left: 4px solid var(--ix-red);
+    box-shadow: 0 18px 44px rgba(12, 29, 40, 0.075);
+}
+.public-site-shell .technical-tools-section-soft {
+    background: #eef2f3;
+}
+.public-site-shell .ix-contact-workspace {
+    padding-block: clamp(3.8rem, 5.5vw, 5.5rem);
+}
+.public-site-shell .ix-contact-workspace-grid {
+    grid-template-columns: minmax(330px, 0.72fr) minmax(0, 1.28fr);
+    gap: 1.2rem;
+}
+.public-site-shell .ix-contact-aside {
+    padding: clamp(2rem, 3vw, 3rem);
+    background: var(--ix-navy-deep);
+}
+.public-site-shell .ix-contact-aside h1 {
+    max-width: 100%;
+    margin: 0.45rem 0 1rem;
+    font-size: clamp(2.45rem, 3.55vw, 3.65rem);
+    line-height: 0.97;
+    letter-spacing: -0.052em;
+    overflow-wrap: anywhere;
+}
+.public-site-shell .ix-contact-form-panel {
+    padding: clamp(1.65rem, 2.7vw, 2.55rem);
+    border-top: 4px solid var(--ix-red);
+}
+.public-site-shell .ix-contact-scope {
+    background: #f7f3ea;
+}
+.public-site-shell .ix-contact-guidance {
+    background: #fff;
+}
+.public-site-shell .ix-contact-process {
+    background: #eef2f3;
+}
+.public-site-shell .ix-contact-process-card,
+.public-site-shell .ix-contact-scope-card {
+    border-top: 3px solid var(--ix-red);
+    box-shadow: 0 12px 32px rgba(12, 29, 40, 0.05);
+}
+.public-site-shell .ix-contact-process-card:nth-child(2) {
+    border-top-color: var(--ix-navy);
+}
+.public-site-shell .ix-contact-process-card:nth-child(3) {
+    color: #fff;
+    background: var(--ix-navy);
+    border-top-color: var(--ix-red);
+}
+.public-site-shell .ix-contact-process-card:nth-child(3) h3 {
+    color: #fff;
+}
+.public-site-shell .ix-contact-process-card:nth-child(3) p {
+    color: rgba(255, 255, 255, 0.68);
+}
+.public-site-shell .ix-footer {
+    border-top: 4px solid var(--ix-red);
+}
+@media (max-width: 1120px) {
+    .public-site-shell .ix-nav {
+        gap: 1rem;
+    }
+    .public-site-shell .ix-nav > a,
+    .public-site-shell .ix-nav-service-title > a {
+        font-size: 0.72rem;
+    }
+    .public-site-shell .ix-header-scrolled .ix-logo img,
+    .public-site-shell .ix-logo img {
+        width: 132px;
+    }
+    .public-site-shell .ix-contact-workspace-grid {
+        grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.2fr);
+    }
+}
+@media (max-width: 900px) {
+    .public-site-shell .ix-header-scrolled .ix-nav-row,
+    .public-site-shell .ix-nav-row {
+        min-height: 64px;
+    }
+    .public-site-shell .ix-nav {
+        background: var(--ix-red);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    .public-site-shell .ix-nav.ix-nav-open {
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 24px 60px rgba(77, 0, 13, 0.28);
+    }
+    .public-site-shell .ix-header-scrolled .ix-nav > a,
+    .public-site-shell .ix-header-scrolled .ix-nav-service-title > a,
+    .public-site-shell .ix-nav > a,
+    .public-site-shell .ix-nav-service-title > a,
+    .public-site-shell .ix-nav-service-title button {
+        color: #fff;
+        border-bottom-color: rgba(255, 255, 255, 0.18);
+    }
+    .public-site-shell .ix-services-menu {
+        background: #fff;
+        border-top: 0;
+    }
+    .public-site-shell .ix-home-hero,
+    .public-site-shell .ix-home-hero-grid {
+        min-height: 610px;
+    }
+    .public-site-shell .ix-home-hero-copy {
+        width: min(570px, 84vw);
+        max-width: 570px;
+        padding-bottom: 5.8rem;
+    }
+    .public-site-shell .ix-home-hero-copy h1 {
+        font-size: clamp(3rem, 8vw, 4.6rem);
+    }
+    .public-site-shell .ix-contact-workspace-grid {
+        grid-template-columns: 1fr;
+    }
+    .public-site-shell .technical-page-hero h1 {
+        max-width: 620px;
+    }
+}
+@media (max-width: 650px) {
+    .public-site-shell main h2 {
+        font-size: clamp(1.85rem, 8.5vw, 2.65rem);
+    }
+    .public-site-shell .ix-section {
+        padding-block: 3.8rem;
+    }
+    .public-site-shell .ix-header-scrolled .ix-logo img,
+    .public-site-shell .ix-logo img {
+        width: 110px;
+    }
+    .public-site-shell .ix-home-hero,
+    .public-site-shell .ix-home-hero-grid {
+        min-height: 570px;
+    }
+    .public-site-shell .ix-home-hero-copy {
+        padding: 2.7rem 0 5.3rem;
+    }
+    .public-site-shell .ix-home-hero-copy h1 {
+        font-size: clamp(2.75rem, 13.5vw, 4rem);
+        line-height: 0.91;
+    }
+    .public-site-shell .ix-about-page .ix-about-hero-copy h1,
+    .public-site-shell .ix-services-page .ix-services-hero h1,
+    .public-site-shell .technical-page-hero h1 {
+        font-size: clamp(2.45rem, 11vw, 3.5rem) !important;
+        line-height: 0.96 !important;
+    }
+    .public-site-shell .ix-contact-aside h1 {
+        font-size: clamp(2.2rem, 10.5vw, 3.15rem);
+        overflow-wrap: normal;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .public-site-shell .ix-about-pillar-card,
+    .public-site-shell .ix-about-sector-card {
+        transition: none;
+    }
+}

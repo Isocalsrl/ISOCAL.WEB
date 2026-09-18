@@ -1,0 +1,283 @@
+.public-site-shell main {
+    flex: 1;
+}
+@media (max-width: 760px) {
+    .public-site-shell .product-modal {
+        grid-template-columns: 1fr;
+    }
+    .public-site-shell .product-modal-media,
+    .public-site-shell .product-modal-media > img {
+        min-height: 200px;
+        max-height: 240px;
+    }
+    .public-site-shell .product-modal-content {
+        min-height: 0;
+        padding: 28px 22px;
+    }
+    .public-site-shell .product-modal h2 {
+        font-size: 28px;
+        margin-top: 28px;
+    }
+    .public-site-shell .product-detail-content h1 {
+        font-size: 31px;
+    }
+    .public-site-shell .product-detail-layout {
+        grid-template-columns: 1fr;
+    }
+    .public-site-shell .product-detail-page {
+        padding: 35px 0;
+    }
+    .public-site-shell .catalog-product-card-content {
+        min-height: 150px;
+    }
+}
+.reveal-ready {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+        opacity 0.75s ease,
+        transform 0.75s ease;
+}
+.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+@keyframes co-enter {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@media (max-width: 1100px) {
+    .public-site-shell .public-container {
+        width: calc(100% - 56px);
+    }
+    .co-network-grid {
+        gap: 65px;
+    }
+    .public-site-shell .catalog-products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .co-carousel-track > .catalog-product-card {
+        flex-basis: calc(33.33333% - 16px);
+    }
+    .co-request-form {
+        padding: 30px;
+    }
+}
+@media (max-width: 760px) {
+    .public-site-shell .public-container {
+        width: calc(100% - 40px);
+    }
+    .co-section {
+        padding: 55px 0;
+    }
+    .public-site-shell main h2 {
+        font-size: 31px;
+        letter-spacing: -1px;
+    }
+    .co-section-heading {
+        gap: 18px;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 24px;
+    }
+    .co-section-heading > .co-text-link {
+        margin-top: 0;
+    }
+    .co-section-heading p {
+        font-size: 12px;
+    }
+    .co-carousel-track > * {
+        flex-basis: 82%;
+    }
+    .co-carousel-controls > span {
+        margin-right: auto;
+        font-size: 9px;
+    }
+    .co-stat strong {
+        font-size: 35px;
+    }
+    .co-stat > span {
+        font-size: 9px;
+    }
+    .co-network {
+        padding: 50px 0;
+    }
+    .co-network-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .co-cta {
+        padding: 45px 0;
+    }
+    .co-cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .co-cta h2 {
+        font-size: 30px !important;
+    }
+    .co-cta p {
+        max-width: 300px;
+    }
+    .co-cta .co-button {
+        margin-top: 10px;
+    }
+    .co-floating-tools {
+        right: 15px;
+        bottom: 16px;
+    }
+    .co-floating-cart {
+        padding: 12px 15px;
+        gap: 9px;
+        font-size: 11px;
+    }
+    .co-page-hero {
+        min-height: 330px;
+        padding: 28px 0 40px;
+    }
+    .co-page-hero > img {
+        width: 100%;
+        opacity: 0.45;
+    }
+    .co-page-hero:before {
+        background: linear-gradient(90deg, #6c162aef, #16283a9e);
+    }
+    .co-page-hero h1 {
+        font-size: 36px;
+        max-width: 450px;
+        letter-spacing: -1.2px;
+    }
+    .co-page-hero p {
+        font-size: 12px;
+        max-width: 340px;
+    }
+    .co-partners {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    .co-partners > div {
+        padding: 20px;
+    }
+    .co-partners img {
+        height: 48px;
+    }
+    .co-service-nav {
+        overflow-x: auto;
+        gap: 25px;
+        white-space: nowrap;
+        padding: 20px 0;
+    }
+    .co-service-nav a {
+        gap: 10px;
+        font-size: 11px;
+    }
+    .co-request-form {
+        padding: 25px;
+    }
+    .co-form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+    .co-request-form h2 {
+        font-size: 25px !important;
+    }
+    .co-request-product {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .co-request-product > img {
+        width: 45px;
+        height: 55px;
+    }
+    .co-request-product > div {
+        flex-basis: calc(100% - 60px);
+    }
+    .co-request-product > label {
+        width: 80px;
+    }
+    .co-request-product > button {
+        margin-left: auto;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    .co-form-success {
+        padding: 40px 22px;
+    }
+    .co-legal > .co-request-form {
+        padding: 23px 17px;
+    }
+    .co-legal p {
+        font-size: 13px;
+    }
+    .public-site-shell .catalog-section {
+        padding: 1.5rem 0 3rem;
+    }
+    .public-site-shell .catalog-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+    .public-site-shell .catalog-products-grid {
+        gap: 13px;
+    }
+    .public-site-shell .catalog-product-card-button {
+        padding: 13px;
+    }
+    .public-site-shell .catalog-product-image {
+        height: 145px;
+        margin-bottom: 14px;
+    }
+    .public-site-shell .catalog-product-name {
+        font-size: 13px;
+    }
+    .public-site-shell .catalog-product-description {
+        font-size: 10px;
+    }
+    .public-site-shell .catalog-product-category {
+        font-size: 7px;
+        letter-spacing: 0.5px;
+    }
+    .public-site-shell .catalog-product-quotation {
+        font-size: 9px;
+        margin: 0 12px 13px;
+        width: calc(100% - 24px);
+        padding: 8px 5px;
+    }
+    .public-site-shell .catalog-product-quotation svg {
+        width: 15px;
+    }
+    .co-carousel-track > .catalog-product-card {
+        flex-basis: 65%;
+    }
+    .co-carousel-track > .catalog-product-card .catalog-product-image {
+        height: 195px;
+    }
+    .public-site-shell .catalog-heading {
+        display: block;
+    }
+    .public-site-shell .catalog-heading-meta {
+        margin-top: 15px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .public-site-shell * {
+        animation: none !important;
+        transition: none !important;
+    }
+    .public-site-shell *:after,
+    .public-site-shell *:before {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+    .reveal-ready {
+        opacity: 1;
+        transform: none;
+    }
+}

@@ -1,0 +1,59 @@
+.public-site-shell {
+    --public-red-dark: #9d0016;
+    --public-cream: #f4f1e8;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    --public-red: #ce1533;
+    --public-navy: #172c40;
+    --public-navy-deep: #16283a;
+    --public-line: #e4e8ec;
+    --public-soft: #f4f6f8;
+    --public-muted: #637080;
+    --color-brand: #ce1533;
+    --ix-ink-2: #22323e;
+    --ix-olive: #77765f;
+    --ix-ivory-2: #ece8de;
+    --ix-white: #ffffff;
+    --ix-text: #5d6870;
+    --ix-muted: #839098;
+    --ix-line-light: rgba(255, 255, 255, 0.17);
+    --ix-container: 1280px;
+    --ix-radius: 18px;
+    --ix-radius-sm: 11px;
+    --ix-shadow-soft: 0 18px 54px rgba(12, 29, 40, 0.08);
+    --ix-shadow-card: 0 26px 70px rgba(12, 29, 40, 0.12);
+    --ix-shadow-dark: 0 30px 80px rgba(4, 17, 24, 0.28);
+    color: var(--ix-ink);
+    background: var(--ix-paper);
+    overflow: clip;
+    --ix-red: #d20b2d;
+    --ix-red-dark: #aa071f;
+    --ix-red-deep: #780316;
+    --ix-ink: #14232e;
+    --ix-navy: #102936;
+    --ix-navy-deep: #071b25;
+    --ix-paper: #fffdf9;
+    --ix-ivory: #f6f1e7;
+    --ix-soft: #f1f4f5;
+    --ix-line: rgba(20, 35, 46, 0.14);
+}
+.public-container {
+    margin: 0 auto;
+}
+.public-main {
+    flex: 1;
+}
+.public-main section[id] {
+    scroll-margin-top: 6rem;
+}
+.public-actions {
+    display: flex;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.public-actions .ui-button {
+    min-height: 3.2rem;
+    padding: 0.9rem 1.2rem;
+}

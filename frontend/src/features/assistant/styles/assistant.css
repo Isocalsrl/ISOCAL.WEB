@@ -1,0 +1,844 @@
+.public-site-shell .co-floating-tools {
+    z-index: 140;
+}
+
+.public-site-shell .ix-assistant-launcher-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.public-site-shell .ix-assistant-launcher {
+    display: flex;
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: linear-gradient(145deg, #d41031 0%, #b80f2d 100%);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 50%;
+    box-shadow: 0 14px 34px rgba(112, 12, 36, 0.28), 0 0 0 5px rgba(212, 16, 49, 0.08);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.public-site-shell .ix-assistant-launcher:hover,
+.public-site-shell .ix-assistant-launcher:focus-visible {
+    background: linear-gradient(145deg, #e0163a 0%, #c61233 100%);
+    box-shadow: 0 18px 40px rgba(112, 12, 36, 0.34), 0 0 0 6px rgba(212, 16, 49, 0.11);
+    outline: none;
+    transform: translateY(-2px) scale(1.025);
+}
+
+.public-site-shell .ix-assistant-launcher.is-open {
+    background: linear-gradient(135deg, #102b3a 0%, #16384b 100%);
+    box-shadow: 0 14px 34px rgba(7, 22, 31, 0.26);
+}
+
+.public-site-shell .ix-assistant-launcher > svg:not(.ix-assistant-robot-icon) {
+    width: 19px;
+    height: 19px;
+}
+
+.public-site-shell .ix-assistant-robot-icon {
+    width: 31px;
+    height: 31px;
+    display: block;
+    margin: 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.public-site-shell .ix-assistant-brand-icon .ix-assistant-robot-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.public-site-shell .ix-assistant-nudge {
+    position: absolute;
+    right: 72px;
+    bottom: 4px;
+    display: grid;
+    width: max-content;
+    max-width: min(255px, calc(100vw - 115px));
+    gap: 2px;
+    padding: 10px 13px;
+    background: #fff;
+    border: 1px solid rgba(16, 43, 58, 0.12);
+    border-radius: 13px;
+    box-shadow: 0 12px 30px rgba(7, 22, 31, 0.14);
+    color: #173544;
+    pointer-events: none;
+    animation: ixAssistantNudgeIn 260ms ease-out both;
+}
+
+.public-site-shell .ix-assistant-nudge::after {
+    position: absolute;
+    right: -6px;
+    bottom: 17px;
+    width: 11px;
+    height: 11px;
+    background: #fff;
+    border-top: 1px solid rgba(16, 43, 58, 0.12);
+    border-right: 1px solid rgba(16, 43, 58, 0.12);
+    content: "";
+    transform: rotate(45deg);
+}
+
+.public-site-shell .ix-assistant-nudge strong {
+    position: relative;
+    z-index: 1;
+    font-size: 0.77rem;
+    font-weight: 850;
+    line-height: 1.25;
+}
+
+.public-site-shell .ix-assistant-nudge span {
+    position: relative;
+    z-index: 1;
+    color: #63737c;
+    font-size: 0.64rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+@keyframes ixAssistantNudgeIn {
+    from { opacity: 0; transform: translateX(8px) translateY(3px); }
+    to { opacity: 1; transform: translateX(0) translateY(0); }
+}
+
+.public-site-shell .ix-assistant-panel {
+    position: fixed;
+    right: 24px;
+    bottom: 98px;
+    z-index: 2;
+    display: grid;
+    width: min(418px, calc(100vw - 32px));
+    height: min(660px, calc(100dvh - 120px));
+    min-height: 460px;
+    grid-template-rows: auto minmax(0, 1fr) auto auto auto;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at top right, rgba(212, 16, 49, 0.08), transparent 34%),
+        linear-gradient(180deg, #fcfaf4 0%, #f6f2e8 100%);
+    border: 1px solid rgba(13, 39, 53, 0.12);
+    border-radius: 22px;
+    box-shadow: 0 28px 80px rgba(5, 19, 28, 0.28);
+    color: #162d3b;
+    animation: ixAssistantEnter 180ms ease-out both;
+}
+
+@keyframes ixAssistantEnter {
+    from { opacity: 0; transform: translateY(12px) scale(0.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.public-site-shell .ix-assistant-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 18px;
+    background: linear-gradient(135deg, #0d2938 0%, #11384a 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.public-site-shell .ix-assistant-brand {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 12px;
+}
+
+.public-site-shell .ix-assistant-brand-icon {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 auto;
+    place-items: center;
+    background: linear-gradient(180deg, #d41031 0%, #b50d29 100%);
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.public-site-shell .ix-assistant-brand > div {
+    display: grid;
+    gap: 4px;
+}
+
+.public-site-shell .ix-assistant-brand strong {
+    font-size: 0.9rem;
+    font-weight: 850;
+    letter-spacing: -0.015em;
+}
+
+.public-site-shell .ix-assistant-brand span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #cdd8dd;
+    font-size: 0.66rem;
+    font-weight: 650;
+}
+
+.public-site-shell .ix-assistant-brand i {
+    width: 6px;
+    height: 6px;
+    background: #6bd29a;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(107, 210, 154, 0.12);
+}
+
+.public-site-shell .ix-assistant-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.public-site-shell .ix-assistant-header-actions button {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 10px;
+    color: #d7e0e4;
+    cursor: pointer;
+}
+
+.public-site-shell .ix-assistant-header-actions button:hover,
+.public-site-shell .ix-assistant-header-actions button:focus-visible {
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+.public-site-shell .ix-assistant-header-actions button span {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.public-site-shell .ix-assistant-messages {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 14px 14px 10px;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(16, 43, 58, 0.22) transparent;
+}
+
+.public-site-shell .ix-assistant-message {
+    display: grid;
+    max-width: 100%;
+    margin-bottom: 14px;
+    gap: 6px;
+}
+
+.public-site-shell .ix-assistant-message.is-user {
+    margin-left: auto;
+    justify-items: end;
+}
+
+.public-site-shell .ix-assistant-message-topline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.public-site-shell .ix-assistant-message-role {
+    color: #6d7d85;
+    font-size: 0.61rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.public-site-shell .ix-assistant-confidence-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.public-site-shell .ix-assistant-confidence-pill svg {
+    width: 12px;
+    height: 12px;
+}
+
+.public-site-shell .ix-assistant-confidence-pill.is-high {
+    background: rgba(69, 154, 110, 0.12);
+    color: #1f734c;
+}
+
+.public-site-shell .ix-assistant-confidence-pill.is-medium {
+    background: rgba(200, 148, 34, 0.13);
+    color: #8a6110;
+}
+
+.public-site-shell .ix-assistant-confidence-pill.is-low {
+    background: rgba(159, 21, 48, 0.11);
+    color: #8d2036;
+}
+
+.public-site-shell .ix-assistant-bubble {
+    display: grid;
+    gap: 10px;
+    padding: 12px 13px;
+    background: #fff;
+    border: 1px solid rgba(16, 43, 58, 0.1);
+    border-radius: 6px 18px 18px 18px;
+    box-shadow: 0 9px 24px rgba(16, 43, 58, 0.05);
+    font-size: 0.75rem;
+    line-height: 1.55;
+}
+
+.public-site-shell .ix-assistant-message.is-user .ix-assistant-bubble {
+    max-width: 90%;
+    background: linear-gradient(180deg, #102b3a 0%, #14374a 100%);
+    border-color: #102b3a;
+    border-radius: 18px 6px 18px 18px;
+    box-shadow: none;
+    color: #fff;
+}
+
+.public-site-shell .ix-assistant-bubble p {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.public-site-shell .ix-assistant-bubble p + p,
+.public-site-shell .ix-assistant-bubble ul,
+.public-site-shell .ix-assistant-bubble ol {
+    margin-top: 0.65rem;
+}
+
+.public-site-shell .ix-assistant-bubble ul,
+.public-site-shell .ix-assistant-bubble ol {
+    margin-bottom: 0;
+    padding-left: 1.1rem;
+}
+
+.public-site-shell .ix-assistant-bubble li + li {
+    margin-top: 0.3rem;
+}
+
+.public-site-shell .ix-assistant-bubble strong {
+    color: #132f3f;
+    font-weight: 850;
+}
+
+.public-site-shell .ix-assistant-message.is-user .ix-assistant-bubble strong {
+    color: inherit;
+}
+
+.public-site-shell .ix-assistant-facts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.public-site-shell .ix-assistant-fact-pill {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 9px 10px;
+    background: #f8f6f1;
+    border: 1px solid rgba(16, 43, 58, 0.08);
+    border-radius: 12px;
+}
+
+.public-site-shell .ix-assistant-fact-icon {
+    display: grid;
+    width: 26px;
+    height: 26px;
+    flex: 0 0 auto;
+    place-items: center;
+    background: rgba(159, 21, 48, 0.08);
+    border-radius: 9px;
+    color: #9f1530;
+}
+
+.public-site-shell .ix-assistant-fact-pill small,
+.public-site-shell .ix-assistant-fact-pill strong {
+    display: block;
+}
+
+.public-site-shell .ix-assistant-fact-pill small {
+    color: #73838b;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.public-site-shell .ix-assistant-fact-pill strong {
+    margin-top: 2px;
+    color: #123041;
+    font-size: 0.68rem;
+    line-height: 1.35;
+    word-break: break-word;
+}
+
+.public-site-shell .ix-assistant-resource-list {
+    display: grid;
+    gap: 8px;
+}
+
+.public-site-shell .ix-assistant-resource-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.public-site-shell .ix-assistant-resource-card-main {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px;
+    background: #f9f8f4;
+    border: 1px solid rgba(16, 43, 58, 0.08);
+    border-radius: 14px;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.public-site-shell .ix-assistant-resource-card:hover .ix-assistant-resource-card-main,
+.public-site-shell .ix-assistant-resource-card:focus-visible .ix-assistant-resource-card-main {
+    background: #fff;
+    border-color: rgba(159, 21, 48, 0.22);
+    transform: translateY(-1px);
+}
+
+.public-site-shell .ix-assistant-resource-card-media {
+    display: grid;
+    width: 68px;
+    height: 68px;
+    place-items: center;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 43, 58, 0.08);
+}
+
+.public-site-shell .ix-assistant-resource-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.public-site-shell .ix-assistant-resource-card-media.is-fallback {
+    background: linear-gradient(180deg, #fbfaf6 0%, #f0ece2 100%);
+    color: #9f1530;
+}
+
+.public-site-shell .ix-assistant-resource-card-copy {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+}
+
+.public-site-shell .ix-assistant-resource-card-eyebrow {
+    color: #9f1530;
+    font-size: 0.56rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.public-site-shell .ix-assistant-resource-card-copy strong {
+    color: #102c3b;
+    font-size: 0.74rem;
+    line-height: 1.28;
+}
+
+.public-site-shell .ix-assistant-resource-card-copy p {
+    display: -webkit-box;
+    overflow: hidden;
+    color: #607078;
+    font-size: 0.64rem;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.public-site-shell .ix-assistant-resource-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.public-site-shell .ix-assistant-resource-card-footer small {
+    color: #7b8a91;
+    font-size: 0.56rem;
+    line-height: 1.3;
+}
+
+.public-site-shell .ix-assistant-resource-card-footer span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #173544;
+    font-size: 0.6rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.public-site-shell .ix-assistant-resource-card-footer svg {
+    width: 12px;
+    height: 12px;
+}
+
+.public-site-shell .ix-assistant-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.public-site-shell .ix-assistant-links a {
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: #fff;
+    border: 1px solid rgba(16, 43, 58, 0.14);
+    border-radius: 10px;
+    color: #173544;
+    font-size: 0.63rem;
+    font-weight: 800;
+    line-height: 1.25;
+    text-decoration: none;
+}
+
+.public-site-shell .ix-assistant-links a.is-primary {
+    background: #9f1530;
+    border-color: #9f1530;
+    color: #fff;
+}
+
+.public-site-shell .ix-assistant-links svg {
+    width: 14px;
+    height: 14px;
+}
+
+.public-site-shell .ix-assistant-thinking {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 4px;
+    margin: 2px 0 14px;
+    padding: 11px 13px;
+    background: #fff;
+    border: 1px solid rgba(16, 43, 58, 0.1);
+    border-radius: 6px 14px 14px 14px;
+}
+
+.public-site-shell .ix-assistant-thinking span {
+    width: 5px;
+    height: 5px;
+    background: #8f9ca2;
+    border-radius: 50%;
+    animation: ixAssistantDot 900ms ease-in-out infinite;
+}
+
+.public-site-shell .ix-assistant-thinking span:nth-child(2) { animation-delay: 120ms; }
+.public-site-shell .ix-assistant-thinking span:nth-child(3) { animation-delay: 240ms; }
+
+@keyframes ixAssistantDot {
+    0%, 65%, 100% { opacity: 0.35; transform: translateY(0); }
+    35% { opacity: 1; transform: translateY(-3px); }
+}
+
+.public-site-shell .ix-assistant-suggestions {
+    display: grid;
+    gap: 9px;
+    padding: 10px 14px 12px;
+    border-top: 1px solid rgba(16, 43, 58, 0.08);
+    background: rgba(255, 255, 255, 0.68);
+}
+
+.public-site-shell .ix-assistant-suggestions-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #607078;
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.public-site-shell .ix-assistant-suggestions-title svg {
+    width: 14px;
+    height: 14px;
+    color: #9f1530;
+}
+
+.public-site-shell .ix-assistant-suggestions-list {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.public-site-shell .ix-assistant-suggestions-list::-webkit-scrollbar { display: none; }
+
+.public-site-shell .ix-assistant-suggestions button {
+    flex: 0 0 auto;
+    max-width: 260px;
+    padding: 8px 12px;
+    background: #fdfbf6;
+    border: 1px solid rgba(159, 21, 48, 0.18);
+    border-radius: 999px;
+    color: #7f1830;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.65rem;
+    font-weight: 760;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.public-site-shell .ix-assistant-suggestions button:hover,
+.public-site-shell .ix-assistant-suggestions button:focus-visible {
+    background: #fff;
+    border-color: rgba(159, 21, 48, 0.42);
+    outline: none;
+}
+
+.public-site-shell .ix-assistant-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 9px;
+    padding: 12px 12px 10px;
+    background: #fff;
+    border-top: 1px solid rgba(16, 43, 58, 0.1);
+}
+
+.public-site-shell .ix-assistant-form-field {
+    display: grid;
+    gap: 6px;
+}
+
+.public-site-shell .ix-assistant-form input {
+    width: 100%;
+    min-height: 44px;
+    padding: 11px 12px;
+    background: #f5f5f1;
+    border: 1px solid #d6dddf;
+    border-radius: 12px;
+    color: #183442;
+    font: inherit;
+    font-size: 0.74rem;
+    outline: none;
+}
+
+.public-site-shell .ix-assistant-form input:focus {
+    background: #fff;
+    border-color: #8d2036;
+    box-shadow: 0 0 0 3px rgba(157, 21, 48, 0.08);
+}
+
+.public-site-shell .ix-assistant-form input::placeholder {
+    color: #8b989e;
+}
+
+.public-site-shell .ix-assistant-form-field small {
+    color: #879399;
+    font-size: 0.57rem;
+    line-height: 1.3;
+}
+
+.public-site-shell .ix-assistant-form > button {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    align-self: start;
+    place-items: center;
+    padding: 0;
+    background: linear-gradient(180deg, #a11430 0%, #861127 100%);
+    border: 0;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.public-site-shell .ix-assistant-form > button:disabled {
+    background: #c7ced1;
+    cursor: default;
+}
+
+.public-site-shell .ix-assistant-footer {
+    padding: 0 14px 12px;
+    background: #fff;
+    color: #879399;
+    font-size: 0.56rem;
+    line-height: 1.35;
+    text-align: center;
+}
+
+@media (max-width: 650px) {
+    .public-site-shell .co-floating-tools {
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .public-site-shell .ix-assistant-launcher {
+        width: 54px;
+        height: 54px;
+        flex-basis: 54px;
+    }
+
+    .public-site-shell .ix-assistant-nudge {
+        right: 66px;
+        max-width: min(220px, calc(100vw - 96px));
+        padding: 9px 11px;
+    }
+
+    .public-site-shell .ix-assistant-panel {
+        right: 8px;
+        bottom: 76px;
+        width: calc(100vw - 16px);
+        height: min(720px, calc(100dvh - 88px));
+        min-height: 0;
+        border-radius: 18px;
+    }
+
+    .public-site-shell .ix-assistant-message,
+    .public-site-shell .ix-assistant-message.is-user {
+        max-width: 100%;
+    }
+
+    .public-site-shell .ix-assistant-facts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .public-site-shell .ix-assistant-resource-card-main {
+        grid-template-columns: 64px minmax(0, 1fr);
+    }
+
+    .public-site-shell .ix-assistant-resource-card-media {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+@media (max-height: 620px) and (min-width: 651px) {
+    .public-site-shell .ix-assistant-panel {
+        bottom: 78px;
+        height: calc(100dvh - 90px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .public-site-shell .ix-assistant-panel,
+    .public-site-shell .ix-assistant-thinking span,
+    .public-site-shell .ix-assistant-launcher,
+    .public-site-shell .ix-assistant-nudge,
+    .public-site-shell .ix-assistant-resource-card-main {
+        animation: none;
+        scroll-behavior: auto;
+        transition: none;
+    }
+}
+
+/* Deliberate assistant response state ------------------------------------- */
+.public-site-shell .ix-assistant-thinking {
+    gap: 9px;
+    min-width: 152px;
+    padding: 9px 12px 9px 9px;
+}
+
+.public-site-shell .ix-assistant-thinking-avatar {
+    display: grid;
+    width: 28px !important;
+    height: 28px !important;
+    flex: 0 0 28px;
+    place-items: center;
+    color: #fff;
+    background: linear-gradient(145deg, #d41031 0%, #b80f2d 100%) !important;
+    border-radius: 9px !important;
+    animation: none !important;
+}
+
+.public-site-shell .ix-assistant-thinking-avatar .ix-assistant-robot-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.public-site-shell .ix-assistant-thinking-copy {
+    display: grid;
+    min-width: 0;
+    gap: 4px;
+}
+
+.public-site-shell .ix-assistant-thinking-copy small {
+    color: #687880;
+    font-size: 0.58rem;
+    font-weight: 760;
+    letter-spacing: 0.02em;
+}
+
+.public-site-shell .ix-assistant-thinking-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    min-height: 7px;
+}
+
+.public-site-shell .ix-assistant-thinking-dots span {
+    width: 5px;
+    height: 5px;
+    background: #8f9ca2;
+    border-radius: 50%;
+    animation: ixAssistantDot 900ms ease-in-out infinite;
+}
+
+.public-site-shell .ix-assistant-thinking-dots span:nth-child(2) { animation-delay: 120ms; }
+.public-site-shell .ix-assistant-thinking-dots span:nth-child(3) { animation-delay: 240ms; }
+
+.public-site-shell .ix-assistant-message {
+    transform-origin: 20px bottom;
+    animation: ixAssistantMessageIn 240ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+}
+
+.public-site-shell .ix-assistant-message.is-user {
+    transform-origin: calc(100% - 20px) bottom;
+}
+
+@keyframes ixAssistantMessageIn {
+    from {
+        opacity: 0;
+        transform: translateY(7px) scale(0.985);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .public-site-shell .ix-assistant-message,
+    .public-site-shell .ix-assistant-thinking-dots span {
+        animation: none !important;
+    }
+}

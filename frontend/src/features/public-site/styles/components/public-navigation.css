@@ -1,0 +1,34 @@
+.co-partners {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+.co-partners > div {
+    padding: 30px;
+    border: 1px solid #e4e9ef;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+}
+.co-partners img {
+    width: 100%;
+    max-width: 145px;
+    height: 65px;
+    object-fit: contain;
+}
+.co-service-nav {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 27px 0;
+}
+.co-service-nav a span {
+    color: #cf1534;
+    font-size: 20px;
+}
+.co-notice {
+    padding: 30px;
+    background: #f5f7fa;
+    border: 1px solid #e0e6ec;
+    border-radius: 9px;
+}

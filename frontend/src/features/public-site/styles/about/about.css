@@ -1,0 +1,382 @@
+.public-site-shell .ix-about-page,
+.public-site-shell .ix-services-page {
+    background: #fff;
+}
+.public-site-shell .ix-about-page .ix-kicker,
+.public-site-shell .ix-services-page .ix-kicker {
+    letter-spacing: 0.16em;
+}
+.public-site-shell .ix-about-page .ix-kicker::before,
+.public-site-shell .ix-services-page .ix-kicker::before {
+    width: 22px;
+}
+.public-site-shell .ix-about-page .ix-about-hero-final {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background: var(--ix-red);
+    border-bottom: 5px solid #a8001a;
+}
+.public-site-shell .ix-about-page .ix-about-hero-final::after,
+.public-site-shell .ix-about-page .ix-about-hero-final::before {
+    display: none;
+    background: none;
+}
+.public-site-shell .ix-about-page .ix-about-hero-grid {
+    grid-template-columns: minmax(340px, 0.82fr) minmax(0, 1.18fr);
+}
+.public-site-shell .ix-about-page .ix-about-hero-copy {
+    position: relative;
+    z-index: 2;
+    padding: 4.9rem clamp(2.5rem, 5vw, 5.75rem) 3.5rem 0;
+}
+.public-site-shell .ix-about-page .ix-about-hero-copy h1 {
+    max-width: 590px;
+    margin-bottom: 1.45rem;
+    color: #fff;
+    font-weight: 800;
+}
+.public-site-shell .ix-about-page .ix-about-hero-copy h1 span {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.38);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.13em;
+}
+.public-site-shell .ix-about-page .ix-about-hero-copy > p:last-of-type {
+    max-width: 455px;
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-size: 0.96rem;
+    line-height: 1.7;
+}
+.public-site-shell .ix-about-page .ix-about-hero-index {
+    display: flex;
+    width: fit-content;
+    margin-top: auto;
+    padding-top: 1.35rem;
+    align-items: center;
+    gap: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.public-site-shell .ix-about-page .ix-about-hero-index span:first-child {
+    color: #fff;
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+}
+.public-site-shell .ix-about-page .ix-about-hero-media {
+    position: relative;
+    margin: 0 calc(-0.5 * (100vw - min(var(--ix-container), 100vw - 64px))) 0 0;
+    overflow: hidden;
+    box-shadow: none;
+}
+.public-site-shell .ix-about-page .ix-about-hero-media::after,
+.public-site-shell .ix-about-page .ix-about-hero-media::before {
+    display: none;
+}
+.public-site-shell .ix-about-page .ix-about-hero-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 44%;
+    filter: contrast(1.015) saturate(0.97);
+}
+.public-site-shell .ix-about-page .ix-about-hero-media figcaption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    min-width: min(330px, 82%);
+    padding: 0.95rem 1.2rem;
+    gap: 0.22rem;
+    color: #fff;
+    background: #102638;
+    border-top: 3px solid var(--ix-red);
+}
+.public-site-shell .ix-about-page .ix-about-hero-media figcaption span {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.61rem;
+    font-weight: 750;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+.public-site-shell .ix-about-page .ix-about-hero-media figcaption strong {
+    font-size: 0.77rem;
+    font-weight: 700;
+}
+.public-site-shell .ix-about-page .ix-about-overview {
+    padding-block: clamp(4.5rem, 7vw, 7.2rem);
+}
+.public-site-shell .ix-about-page .ix-about-overview-grid {
+    grid-template-columns: minmax(0, 0.88fr) minmax(320px, 0.92fr);
+    gap: clamp(3rem, 8vw, 8.5rem);
+}
+.public-site-shell .ix-about-page .ix-about-overview-media {
+    position: relative;
+    overflow: hidden;
+}
+.public-site-shell .ix-about-page .ix-about-overview-media img {
+    aspect-ratio: 0.9;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    object-position: 26% center;
+}
+.public-site-shell .ix-about-page .ix-image-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0.78rem 0.95rem;
+    color: #fff;
+    background: var(--ix-red);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.public-site-shell .ix-about-page .ix-about-overview-copy h2 {
+    max-width: 560px;
+    margin-bottom: 1.55rem;
+}
+.public-site-shell .ix-about-page .ix-about-overview-prose {
+    display: grid;
+    gap: 1rem;
+    max-width: 585px;
+    padding-left: 1.15rem;
+    border-left: 3px solid var(--ix-red);
+}
+.public-site-shell .ix-about-page .ix-about-overview-prose p {
+    margin: 0;
+    color: #596771;
+    font-size: 0.94rem;
+}
+.public-site-shell .ix-about-page .ix-stat-ledger {
+    gap: 0;
+    margin-top: 2.3rem;
+    border-top: 1px solid #bfc8cd;
+    border-bottom: 1px solid #bfc8cd;
+}
+.public-site-shell .ix-about-page .ix-stat-ledger div {
+    padding: 1rem 0.85rem 1rem 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+.public-site-shell .ix-about-page .ix-stat-ledger div + div {
+    padding-left: 0.85rem;
+    border-left: 1px solid #d8dfe3;
+}
+.public-site-shell .ix-about-page .ix-stat-ledger strong {
+    color: var(--ix-red);
+    font-size: 2rem;
+}
+.public-site-shell .ix-about-page .ix-stat-ledger span:last-child {
+    color: #586771;
+    font-size: 0.66rem;
+}
+.public-site-shell .ix-about-page .ix-about-purpose-final {
+    position: relative;
+    padding-block: clamp(4.25rem, 7vw, 6.75rem);
+    overflow: hidden;
+    background: #eef1f2;
+    border: 0;
+}
+.public-site-shell .ix-about-page .ix-about-purpose-final::after {
+    display: none;
+}
+.public-site-shell .ix-about-page .ix-about-purpose-heading {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.public-site-shell .ix-about-page .ix-about-purpose-heading > p:last-child {
+    margin: 0;
+    color: #7a878e;
+    font-size: 0.63rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+.public-site-shell .ix-about-page .ix-purpose-grid {
+    gap: 0;
+    margin-top: 0;
+    border: 1px solid #cdd6db;
+}
+.public-site-shell .ix-about-page .ix-purpose-grid > div,
+.public-site-shell .ix-about-page .ix-purpose-grid > div + div {
+    min-height: 310px;
+    padding: clamp(2rem, 4.2vw, 4.25rem);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.public-site-shell .ix-about-page .ix-purpose-grid > div + div {
+    border-left: 1px solid #cdd6db;
+}
+.public-site-shell .ix-about-page .ix-purpose-mission {
+    background: #fff;
+}
+.public-site-shell .ix-about-page .ix-purpose-vision {
+    background: var(--ix-red);
+}
+.public-site-shell .ix-about-page .ix-purpose-grid > div > span {
+    display: block;
+    margin-bottom: 4.6rem;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+}
+.public-site-shell .ix-about-page .ix-purpose-mission > span {
+    color: var(--ix-red);
+}
+.public-site-shell .ix-about-page .ix-purpose-vision > span {
+    color: rgba(255, 255, 255, 0.7);
+}
+.public-site-shell .ix-about-page .ix-purpose-grid h2 {
+    max-width: 500px;
+    margin: 0 0 0.95rem;
+    color: inherit;
+    font-size: clamp(2.25rem, 3.7vw, 3.6rem) !important;
+    line-height: 0.96;
+}
+.public-site-shell .ix-about-page .ix-purpose-mission h2 {
+    color: #14283c;
+}
+.public-site-shell .ix-about-page .ix-purpose-vision h2,
+.public-site-shell .ix-about-page .ix-purpose-vision p {
+    color: #fff;
+}
+.public-site-shell .ix-about-page .ix-purpose-grid p {
+    max-width: 540px;
+    font-size: 0.9rem;
+    line-height: 1.72;
+}
+.public-site-shell .ix-about-page .ix-purpose-mission p {
+    color: #5d6a72;
+}
+.public-site-shell .ix-about-page .ix-about-network-final {
+    padding-block: clamp(4.5rem, 7vw, 7rem);
+    background: var(--ix-red);
+}
+.public-site-shell .ix-about-page .ix-about-network-final::after {
+    display: none;
+}
+.public-site-shell .ix-about-page .ix-about-network-grid {
+    grid-template-columns: minmax(0, 0.78fr) minmax(410px, 1.22fr);
+    gap: clamp(3rem, 7vw, 7rem);
+}
+.public-site-shell .ix-about-page .ix-about-network h2 {
+    margin-bottom: 1rem;
+}
+.public-site-shell .ix-about-page .ix-about-network p:not(.ix-kicker) {
+    color: rgba(255, 255, 255, 0.86) !important;
+}
+.public-site-shell .ix-about-page .ix-network-scope {
+    margin-top: 1.35rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.42);
+    font-size: 0.73rem;
+    font-weight: 650;
+}
+.public-site-shell .ix-about-page .ix-about-network-panel {
+    padding: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 0;
+    box-shadow: none;
+}
+.public-site-shell .ix-about-page .ix-network-panel-head {
+    padding: 0.7rem 0.45rem 1.05rem;
+}
+.public-site-shell .ix-about-page .ix-about-network-logos {
+    gap: 0;
+    border-top: 1px solid #dce2e5;
+    border-left: 1px solid #dce2e5;
+}
+.public-site-shell .ix-about-page .ix-about-network-logos div {
+    min-height: 114px;
+    border: 0;
+    border-right: 1px solid #dce2e5;
+    border-bottom: 1px solid #dce2e5;
+    border-radius: 0;
+    box-shadow: none;
+}
+.public-site-shell .ix-about-page .ix-about-network-logos div:hover {
+    transform: none;
+    background: #f8f9f9;
+    box-shadow: none;
+}
+.public-site-shell .ix-about-page .ix-policy-final {
+    background: #fff;
+}
+.public-site-shell .ix-about-page .ix-policy-grid {
+    gap: clamp(3.5rem, 8vw, 8rem);
+}
+.public-site-shell .ix-about-page .ix-policy-intro figure {
+    position: relative;
+    margin: 2rem 0 0;
+}
+.public-site-shell .ix-about-page .ix-policy-intro img {
+    display: block;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.public-site-shell .ix-about-page .ix-policy-intro figcaption {
+    padding-top: 0.65rem;
+    color: #758189;
+    border-top: 2px solid var(--ix-red);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.public-site-shell .ix-about-page .ix-policy-ledger {
+    display: block;
+    border-top: 2px solid #14283c;
+}
+.public-site-shell .ix-about-page .ix-policy-row {
+    min-height: 0;
+    padding: 1.5rem 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #d5dde1;
+    border-radius: 0;
+    box-shadow: none;
+}
+.public-site-shell .ix-about-page .ix-policy-row:hover {
+    padding-left: 0.75rem;
+    background: #f6f8f8;
+    border-color: #d5dde1;
+    transform: none;
+}
+.public-site-shell .ix-about-page .ix-policy-row > span {
+    padding-top: 0.15rem;
+    font-size: 0.73rem;
+}
+.public-site-shell .ix-about-page .ix-policy-row h3 {
+    font-size: 1.18rem !important;
+}
+.public-site-shell .ix-about-page .ix-policy-row p {
+    font-size: 0.86rem;
+}
+.public-site-shell .ix-about-page .ix-policy-note {
+    padding: 1.35rem 0 0 4.35rem;
+    color: #53626c !important;
+    border-top: 3px solid var(--ix-red);
+    font-size: 0.82rem;
+    font-style: normal;
+}
+.public-site-shell .ix-about-page .ix-compact-cta {
+    background: #102638;
+    border-top: 4px solid var(--ix-red);
+}
+.public-site-shell .ix-about-page .ix-compact-cta::after {
+    display: none;
+}
