@@ -1,0 +1,379 @@
+.public-site-shell .ix-about-hero-final,
+.public-site-shell .ix-services-hero-final {
+    min-height: 500px;
+}
+.public-site-shell .ix-about-hero-final,
+.public-site-shell .ix-services-hero-final,
+.public-site-shell .ix-utility-hero {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background: var(--ix-navy-deep);
+    border: 0;
+}
+.public-site-shell .ix-about-hero-grid,
+.public-site-shell .ix-services-hero-grid {
+    display: flex;
+    position: relative;
+    z-index: 2;
+    min-height: 500px;
+    align-items: center;
+}
+.public-site-shell .ix-about-hero-copy,
+.public-site-shell .ix-services-hero-grid > div {
+    position: relative;
+    z-index: 3;
+    width: min(640px, 58%);
+    padding-block: 4rem;
+}
+.public-site-shell .ix-about-hero-media,
+.public-site-shell .ix-services-hero-media {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.public-site-shell .ix-about-hero-media::after,
+.public-site-shell .ix-services-hero-media::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(7, 24, 34, 0.97),
+        rgba(7, 24, 34, 0.83) 43%,
+        rgba(7, 24, 34, 0.26) 72%,
+        rgba(7, 24, 34, 0.06)
+    );
+    content: "";
+}
+.public-site-shell .ix-about-hero-media img,
+.public-site-shell .ix-services-hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.public-site-shell .ix-about-hero-media figcaption,
+.public-site-shell .ix-services-hero-media figcaption {
+    position: absolute;
+    right: max(24px, 0.5 * (100vw - var(--ix-container)));
+    bottom: 32px;
+    z-index: 3;
+    display: grid;
+    max-width: 330px;
+    gap: 0.2rem;
+    padding: 0.85rem 1rem;
+    color: #fff;
+    background: rgba(8, 26, 36, 0.74);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-left: 3px solid var(--ix-red);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+.public-site-shell .ix-about-hero-media figcaption span,
+.public-site-shell .ix-services-hero-media figcaption span {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.56rem;
+    font-weight: 780;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.public-site-shell .ix-about-hero h1,
+.public-site-shell .ix-services-hero h1 {
+    margin: 0.45rem 0 1rem;
+    color: #fff;
+    font-size: clamp(3rem, 5.8vw, 6.3rem);
+    line-height: 0.88;
+    letter-spacing: -0.07em;
+}
+.public-site-shell .ix-utility-hero h1 {
+    margin: 0.45rem 0 1rem;
+    color: #fff;
+}
+.public-site-shell .ix-about-hero h1 span,
+.public-site-shell .ix-services-hero h1 span {
+    color: #fff;
+}
+.public-site-shell .ix-about-hero-copy > p:not(.ix-breadcrumb):not(.ix-kicker),
+.public-site-shell .ix-services-hero-grid > div > p:not(.ix-breadcrumb):not(.ix-kicker) {
+    max-width: 560px;
+    color: rgba(255, 255, 255, 0.72);
+}
+.public-site-shell .ix-breadcrumb,
+.public-site-shell .ix-breadcrumb a {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.66rem;
+}
+.public-site-shell .ix-breadcrumb a:hover {
+    color: #fff;
+}
+.public-site-shell .co-service-nav {
+    position: sticky;
+    top: 66px;
+    z-index: 35;
+    background: rgba(255, 253, 249, 0.95);
+    border-bottom: 1px solid var(--ix-line);
+    box-shadow: 0 12px 30px rgba(9, 25, 35, 0.05);
+    backdrop-filter: blur(14px);
+}
+.public-site-shell .co-service-nav .public-container,
+.public-site-shell .co-service-nav > div {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.public-site-shell .co-service-nav a {
+    display: inline-flex;
+    min-height: 62px;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0 1rem;
+    color: var(--ix-ink);
+    border-right: 1px solid var(--ix-line);
+    font-size: 0.7rem;
+    font-weight: 760;
+    text-decoration: none;
+}
+.public-site-shell .co-service-nav a:hover {
+    color: var(--ix-red);
+    background: #fff;
+}
+.public-site-shell .ix-services-advisor {
+    padding: 5rem 0;
+    background: var(--ix-ivory);
+}
+.public-site-shell .ix-services-advisor-shell {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.5fr) minmax(0, 1.5fr);
+    gap: 2rem;
+    align-items: start;
+}
+.public-site-shell .ix-services-advisor-intro {
+    position: sticky;
+    top: 150px;
+    padding: 2rem;
+    color: #fff;
+    background: var(--ix-navy);
+    border-radius: 18px;
+}
+.public-site-shell .ix-services-advisor-intro h2 {
+    margin: 0.4rem 0 0.9rem;
+    color: #fff;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+}
+.public-site-shell .ix-services-advisor-intro p {
+    color: rgba(255, 255, 255, 0.66);
+}
+.public-site-shell .ix-services-advisor-intro .ix-inline-link {
+    color: #fff;
+}
+.public-site-shell .ix-services-advisor-workbench {
+    padding: 1.2rem;
+    background: #fff;
+    border: 1px solid rgba(16, 36, 49, 0.1);
+    border-radius: 18px;
+    box-shadow: var(--ix-shadow-soft);
+}
+.public-site-shell .co-calibration-explorer {
+    display: grid;
+    grid-template-columns: minmax(230px, 0.42fr) minmax(0, 1.58fr);
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--ix-ivory);
+    border-radius: 20px;
+}
+.public-site-shell .co-calibration-detail,
+.public-site-shell .co-calibration-options {
+    background: #fff;
+    border: 1px solid rgba(16, 36, 49, 0.1);
+    border-radius: 15px;
+}
+.public-site-shell .co-calibration-options {
+    padding: 0.65rem;
+}
+.public-site-shell .co-calibration-buttons {
+    display: grid;
+    gap: 0.3rem;
+}
+.public-site-shell .co-calibration-buttons button {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    gap: 0.55rem;
+    align-items: center;
+    min-height: 48px;
+    padding: 0.5rem 0.65rem;
+    color: var(--ix-ink);
+    background: transparent;
+    border: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 720;
+}
+.public-site-shell .co-calibration-buttons button:hover,
+.public-site-shell .co-calibration-buttons button[aria-pressed="true"] {
+    color: #fff;
+    background: var(--ix-red);
+}
+.public-site-shell .co-calibration-detail {
+    padding: clamp(1.5rem, 3vw, 2.7rem);
+}
+.public-site-shell .co-calibration-detail-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.public-site-shell .co-calibration-detail h3 {
+    margin: 0.3rem 0 0;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+}
+.public-site-shell .co-calibration-detail ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem 1.2rem;
+    padding: 0;
+    list-style: none;
+}
+.public-site-shell .co-calibration-detail li {
+    position: relative;
+    padding: 0.65rem 0 0.65rem 1.1rem;
+    color: #4c5a63;
+    border-bottom: 1px solid var(--ix-line);
+    font-size: 0.76rem;
+}
+.public-site-shell .co-calibration-detail li::before {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    background: var(--ix-red);
+    border-radius: 50%;
+    content: "";
+}
+.public-site-shell .ix-about-network-grid,
+.public-site-shell .ix-about-overview-grid,
+.public-site-shell .ix-policy-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: center;
+}
+.public-site-shell .ix-about-overview-media,
+.public-site-shell .ix-policy-intro figure {
+    overflow: hidden;
+    border-radius: 20px;
+}
+.public-site-shell .ix-about-overview-media img,
+.public-site-shell .ix-policy-intro figure img {
+    width: 100%;
+    min-height: 450px;
+    object-fit: cover;
+}
+.public-site-shell .ix-about-purpose-final {
+    padding-block: 6rem;
+    background: var(--ix-ivory);
+}
+.public-site-shell .ix-purpose-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+.public-site-shell .ix-purpose-mission,
+.public-site-shell .ix-purpose-vision {
+    min-height: 330px;
+    padding: clamp(2rem, 4vw, 4rem);
+    border-radius: 20px;
+}
+.public-site-shell .ix-purpose-mission {
+    color: #fff;
+    background: var(--ix-navy);
+}
+.public-site-shell .ix-purpose-vision {
+    color: #fff;
+    background: var(--ix-red);
+}
+.public-site-shell .ix-purpose-mission h2,
+.public-site-shell .ix-purpose-mission p,
+.public-site-shell .ix-purpose-vision h2,
+.public-site-shell .ix-purpose-vision p {
+    color: #fff;
+}
+.public-site-shell .ix-purpose-mission > span,
+.public-site-shell .ix-purpose-vision > span {
+    display: block;
+    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.7rem;
+    font-weight: 850;
+}
+.public-site-shell .ix-about-network-final {
+    padding-block: 6rem;
+    color: #fff;
+    background: var(--ix-navy-deep);
+}
+.public-site-shell .ix-about-network-final h2 {
+    color: #fff;
+}
+.public-site-shell .ix-about-network-final p {
+    color: rgba(255, 255, 255, 0.66);
+}
+.public-site-shell .ix-about-network-panel {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+}
+.public-site-shell .ix-about-network-logos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+}
+.public-site-shell .ix-about-network-logos > div {
+    display: flex;
+    min-height: 100px;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 12px;
+}
+.public-site-shell .ix-about-network-logos img {
+    max-width: 120px;
+    max-height: 48px;
+}
+.public-site-shell .ix-policy-final {
+    background: #fff;
+}
+.public-site-shell .ix-policy-ledger {
+    border-top: 1px solid var(--ix-line);
+}
+.public-site-shell .ix-policy-row {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--ix-line);
+}
+.public-site-shell .ix-policy-row > span {
+    color: var(--ix-red);
+    font-size: 0.67rem;
+    font-weight: 850;
+}
+.public-site-shell .ix-policy-row h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+}
+.public-site-shell .ix-policy-row p {
+    margin: 0;
+    font-size: 0.78rem;
+}

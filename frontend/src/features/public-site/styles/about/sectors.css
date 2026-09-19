@@ -1,0 +1,35 @@
+.public-site-shell .ix-about-page .ix-about-sectors {
+    background: #fff;
+}
+.public-site-shell .ix-about-page .ix-about-sector-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+.public-site-shell .ix-about-page .ix-about-sector-card {
+    min-height: 220px;
+    padding: 1.55rem;
+    background: #fff;
+    border: 1px solid #d5dde1;
+}
+.public-site-shell .ix-about-page .ix-about-pillar-head span,
+.public-site-shell .ix-about-page .ix-about-sector-card span {
+    color: var(--ix-red);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+}
+.public-site-shell .ix-about-page .ix-about-pillar-card h3,
+.public-site-shell .ix-about-page .ix-about-sector-card h3 {
+    margin: 0.85rem 0 0.7rem;
+    color: #112537;
+    font-size: 1.5rem;
+    line-height: 1.08;
+}
+.public-site-shell .ix-about-page .ix-about-pillar-card p,
+.public-site-shell .ix-about-page .ix-about-sector-card p {
+    margin: 0;
+    color: #596771;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}

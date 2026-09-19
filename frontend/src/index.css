@@ -1,0 +1,98 @@
+@import "./shared/styles/theme.css";
+
+:root {
+    color: var(--color-ink);
+    background: var(--color-page-background);
+    font-family: var(--font-family-base);
+    font-synthesis: none;
+    text-rendering:
+        optimizeLegibility;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    min-height: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline:
+        3px solid
+        rgba(201, 0, 28, 0.28);
+    outline-offset: 2px;
+}
+
+.eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--color-brand);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+.ix-progressive-image {
+    opacity: 0;
+    transition: opacity 320ms ease, filter 420ms ease;
+    filter: saturate(0.88) contrast(0.98);
+}
+
+.ix-progressive-image.is-ready {
+    opacity: 1;
+    filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ix-progressive-image {
+        opacity: 1;
+        transition: none;
+        filter: none;
+    }
+}

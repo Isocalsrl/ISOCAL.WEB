@@ -1,0 +1,41 @@
+.brand-mark {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    width: fit-content;
+    flex-direction: column;
+    color: inherit;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.brand-mark-image {
+    display: block;
+    width: auto;
+    height: 2.5rem;
+    object-fit: contain;
+}
+
+.brand-word {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: -0.055em;
+}
+
+.brand-chevrons {
+    font-size: 1.25em;
+    letter-spacing: -0.25em;
+    transform:
+        translateY(-0.04em);
+}
+
+.brand-subtitle {
+    margin-top: 0.3rem;
+    font-size: 0.48rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}

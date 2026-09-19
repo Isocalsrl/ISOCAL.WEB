@@ -1,0 +1,423 @@
+@media (max-width: 1100px) {
+    .public-site-shell .ix-nav {
+        gap: 1rem;
+    }
+    .public-site-shell .ix-nav > a,
+    .public-site-shell .ix-nav-service-title > a {
+        font-size: 0.7rem;
+    }
+    .public-site-shell .ix-nav-quote {
+        padding-inline: 0.85rem;
+        font-size: 0.68rem;
+    }
+    .public-site-shell .ix-home-hero-copy {
+        width: min(650px, 72vw);
+    }
+    .public-site-shell .ix-assurance-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .public-site-shell .ix-assurance-card:nth-child(n) {
+        grid-column: auto;
+    }
+    .public-site-shell .ix-service-story {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .public-site-shell .ix-service-story-row:last-child {
+        grid-column: 1/-1;
+        min-height: 470px;
+    }
+    .public-site-shell .ix-service-story-row:last-child .ix-service-story-media img {
+        height: 300px;
+    }
+    .public-site-shell .ix-home-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .public-site-shell .ix-footer-main {
+        grid-template-columns: minmax(260px, 1.2fr) repeat(2, minmax(150px, 0.6fr));
+    }
+    .public-site-shell .ix-footer-column:nth-of-type(4),
+    .public-site-shell .ix-footer-help {
+        grid-column: auto;
+    }
+}
+@media (max-width: 900px) {
+    .public-site-shell .public-container {
+        width: min(100% - 32px, var(--ix-container));
+    }
+    .public-site-shell .ix-topbar > div > span {
+        display: none;
+    }
+    .public-site-shell .ix-topbar .public-container {
+        justify-content: center;
+    }
+    .public-site-shell .ix-header-scrolled .ix-logo img,
+    .public-site-shell .ix-logo img {
+        width: 132px;
+    }
+    .public-site-shell .ix-menu-button {
+        display: inline-flex;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        color: var(--ix-ink);
+        background: transparent;
+        border: 1px solid rgba(16, 36, 49, 0.14);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .public-site-shell .ix-nav {
+        display: grid;
+        position: absolute;
+        top: 100%;
+        right: 16px;
+        left: 16px;
+        z-index: 50;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        margin: 0;
+        border: 1px solid transparent;
+        border-radius: 0 0 16px 16px;
+        box-shadow: none;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+            max-height 220ms ease,
+            opacity 180ms ease;
+    }
+    .public-site-shell .ix-nav.ix-nav-open {
+        max-height: 80vh;
+        overflow-y: auto;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .public-site-shell .ix-header-scrolled .ix-nav > a,
+    .public-site-shell .ix-header-scrolled .ix-nav-service-title > a,
+    .public-site-shell .ix-nav > a,
+    .public-site-shell .ix-nav-service-title > a {
+        min-height: 52px;
+        padding-inline: 1rem;
+        border-bottom: 1px solid var(--ix-line);
+    }
+    .public-site-shell .ix-nav > a::after,
+    .public-site-shell .ix-nav-service-title > a::after {
+        display: none;
+    }
+    .public-site-shell .ix-nav-services {
+        display: grid;
+    }
+    .public-site-shell .ix-nav-service-title {
+        display: grid;
+        grid-template-columns: 1fr 48px;
+    }
+    .public-site-shell .ix-nav-service-title button {
+        width: 48px;
+        border-bottom: 1px solid var(--ix-line);
+    }
+    .public-site-shell .ix-services-menu {
+        display: none;
+        position: static;
+        width: 100%;
+        padding: 0.5rem;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+    }
+    .public-site-shell .ix-nav-services.is-open .ix-services-menu {
+        display: grid;
+    }
+    .public-site-shell .ix-nav-services:focus-within .ix-services-menu {
+        display: grid;
+    }
+    .public-site-shell .ix-nav-services:hover .ix-services-menu {
+        display: none;
+    }
+    .public-site-shell .ix-nav-services.is-open:hover .ix-services-menu {
+        display: grid;
+    }
+    .public-site-shell .ix-nav-quote,
+    .public-site-shell .ix-services-menu-heading {
+        display: none;
+    }
+    .public-site-shell .ix-header-search-inner {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    .public-site-shell .ix-header-search-copy {
+        display: none;
+    }
+    .public-site-shell .ix-home-hero-media img {
+        object-position: 68% center;
+    }
+    .public-site-shell .ix-home-hero-overlay {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(7, 24, 34, 0.96),
+                rgba(7, 24, 34, 0.84) 56%,
+                rgba(7, 24, 34, 0.38)
+            ),
+            linear-gradient(0deg, rgba(4, 16, 23, 0.48), transparent 50%);
+    }
+    .public-site-shell .ix-home-hero-caption {
+        display: none;
+    }
+    .public-site-shell .co-calibration-explorer,
+    .public-site-shell .ix-about-network-grid,
+    .public-site-shell .ix-about-overview-grid,
+    .public-site-shell .ix-capability-preview-grid,
+    .public-site-shell .ix-compact-cta-grid,
+    .public-site-shell .ix-contact-guidance-grid,
+    .public-site-shell .ix-home-about-grid,
+    .public-site-shell .ix-home-advisor-grid,
+    .public-site-shell .ix-home-final-cta-grid,
+    .public-site-shell .ix-home-search-dock-inner,
+    .public-site-shell .ix-network-ribbon-grid,
+    .public-site-shell .ix-policy-grid,
+    .public-site-shell .ix-quotation-grid,
+    .public-site-shell .ix-section-intro-split,
+    .public-site-shell .ix-service-final-cta-grid,
+    .public-site-shell .ix-services-advisor-shell {
+        grid-template-columns: 1fr;
+    }
+    .public-site-shell .ix-home-search-dock-inner {
+        gap: 1.1rem;
+    }
+    .public-site-shell .ix-capability-copy,
+    .public-site-shell .ix-services-advisor-intro {
+        position: static;
+    }
+    .public-site-shell .ix-home-advisor-media {
+        min-height: 340px;
+    }
+    .public-site-shell .ix-home-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .public-site-shell .ix-about-hero-grid,
+    .public-site-shell .ix-services-hero-grid {
+        min-height: 460px;
+    }
+    .public-site-shell .ix-about-hero-copy,
+    .public-site-shell .ix-services-hero-grid > div {
+        width: min(650px, 82%);
+    }
+    .public-site-shell .ix-contact-aside {
+        order: 1;
+    }
+    .public-site-shell .ix-contact-form-panel {
+        order: 2;
+    }
+}
+@media (max-width: 650px) {
+    .public-site-shell .public-container {
+        width: min(100% - 24px, var(--ix-container));
+    }
+    .public-site-shell .ix-topbar {
+        height: 27px;
+    }
+    .public-site-shell .ix-topbar > div > div {
+        gap: 0.8rem;
+    }
+    .public-site-shell .ix-topbar a {
+        font-size: 0.58rem;
+    }
+    .public-site-shell .ix-topbar a:first-child {
+        display: none;
+    }
+    .public-site-shell .ix-header-scrolled .ix-nav-row,
+    .public-site-shell .ix-nav-row {
+        min-height: 62px;
+        gap: 0.5rem;
+    }
+    .public-site-shell .ix-nav-actions {
+        margin-left: auto;
+    }
+    .public-site-shell .favorites-header-link,
+    .public-site-shell .ix-menu-button,
+    .public-site-shell .ix-nav-search-link {
+        width: 38px;
+        min-width: 38px;
+        height: 38px;
+    }
+    .public-site-shell .ix-home-hero-media img {
+        object-position: 73% center;
+    }
+    .public-site-shell .ix-home-hero-overlay {
+        background: linear-gradient(
+            90deg,
+            rgba(7, 24, 34, 0.97),
+            rgba(7, 24, 34, 0.83) 76%,
+            rgba(7, 24, 34, 0.52)
+        );
+    }
+    .public-site-shell .ix-home-hero-copy {
+        width: 100%;
+    }
+    .public-site-shell .ix-home-hero-copy .ix-lead {
+        max-width: 92%;
+        font-size: 0.92rem;
+    }
+    .public-site-shell .ix-home-search-dock {
+        margin-top: -34px;
+    }
+    .public-site-shell .ix-home-search-dock-inner {
+        padding: 1.1rem;
+        border-radius: 16px;
+    }
+    .public-site-shell .technical-search-bar {
+        grid-template-columns: auto minmax(0, 1fr);
+        border-radius: 13px !important;
+    }
+    .public-site-shell .technical-search-bar button {
+        grid-column: 1/-1;
+        width: 100%;
+        border-radius: 10px !important;
+    }
+    .public-site-shell .ix-sector-strip {
+        padding-top: 3.5rem;
+    }
+    .public-site-shell .ix-about-network-logos,
+    .public-site-shell .ix-assurance-grid,
+    .public-site-shell .ix-contact-hints,
+    .public-site-shell .ix-home-category-grid,
+    .public-site-shell .ix-purpose-grid,
+    .public-site-shell .ix-service-story {
+        grid-template-columns: 1fr;
+    }
+    .public-site-shell .ix-service-story-row,
+    .public-site-shell .ix-service-story-row:last-child {
+        min-height: 0;
+        grid-column: auto;
+    }
+    .public-site-shell .ix-service-story-media,
+    .public-site-shell .ix-service-story-media img,
+    .public-site-shell .ix-service-story-row:last-child .ix-service-story-media img {
+        min-height: 220px;
+        height: 220px;
+    }
+    .public-site-shell .ix-capability-row {
+        grid-template-columns: 30px 1fr auto;
+    }
+    .public-site-shell .ix-capability-row small {
+        display: none;
+    }
+    .public-site-shell .ix-home-advisor-grid {
+        min-height: 0;
+        border-radius: 16px;
+    }
+    .public-site-shell .ix-home-stats,
+    .public-site-shell .ix-stat-ledger {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+        border-top: 0;
+    }
+    .public-site-shell .co-stat,
+    .public-site-shell .co-stat + .co-stat {
+        display: grid;
+        grid-template-columns: 74px 1fr;
+        gap: 0.8rem;
+        align-items: center;
+        padding: 0.8rem 0;
+        border-top: 1px solid var(--ix-line);
+        border-left: 0;
+    }
+    .public-site-shell .co-stat strong {
+        margin: 0;
+    }
+    .public-site-shell .ix-network-ribbon-grid {
+        gap: 2rem;
+    }
+    .public-site-shell .ix-network-logo-group > div {
+        width: 150px;
+        height: 82px;
+        flex-basis: 150px;
+    }
+    .public-site-shell .ix-brand-line {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    .public-site-shell .ix-testimonial {
+        width: 84vw;
+        min-width: 84vw;
+    }
+    .public-site-shell .ix-about-hero-final,
+    .public-site-shell .ix-about-hero-grid,
+    .public-site-shell .ix-services-hero-final,
+    .public-site-shell .ix-services-hero-grid {
+        min-height: 430px;
+    }
+    .public-site-shell .ix-about-hero-copy,
+    .public-site-shell .ix-services-hero-grid > div {
+        width: 100%;
+    }
+    .public-site-shell .ix-about-hero h1,
+    .public-site-shell .ix-services-hero h1 {
+        font-size: clamp(2.8rem, 14vw, 4.5rem);
+    }
+    .public-site-shell .ix-about-hero-media figcaption,
+    .public-site-shell .ix-services-hero-media figcaption {
+        display: none;
+    }
+    .public-site-shell .co-calibration-detail ul {
+        grid-template-columns: 1fr;
+    }
+    .public-site-shell .ix-contact-aside,
+    .public-site-shell .ix-contact-form-panel {
+        border-radius: 15px;
+    }
+    .public-site-shell .ix-footer-main {
+        grid-template-columns: 1fr 1fr;
+    }
+    .public-site-shell .ix-footer-brand,
+    .public-site-shell .ix-footer-help {
+        grid-column: 1/-1;
+    }
+    .public-site-shell .ix-footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-block: 1rem;
+    }
+    .public-site-shell .ix-footer-bottom > div {
+        flex-wrap: wrap;
+    }
+}
+@media (max-width: 430px) {
+    .public-site-shell .ix-home-advisor-actions,
+    .public-site-shell .ix-home-hero-copy .ix-actions {
+        display: grid;
+        width: 100%;
+    }
+    .public-site-shell .ix-home-advisor-actions .ix-button,
+    .public-site-shell .ix-home-hero-copy .ix-button {
+        width: 100%;
+    }
+    .public-site-shell .ix-footer-main {
+        grid-template-columns: 1fr;
+    }
+    .public-site-shell .ix-footer-brand,
+    .public-site-shell .ix-footer-help {
+        grid-column: auto;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .public-site-shell *,
+    .public-site-shell *::after,
+    .public-site-shell *::before {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .public-site-shell .ix-home-hero-copy > * {
+        opacity: 1;
+        transform: none;
+    }
+    .public-site-shell .ix-brand-marquee-track,
+    .public-site-shell .ix-network-logos-track {
+        animation: none !important;
+    }
+}

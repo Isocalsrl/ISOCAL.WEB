@@ -1,0 +1,42 @@
+{
+  "name": "@isocal/backend",
+  "version": "1.0.0",
+  "description": "ISOCAL HTTP API",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc && node scripts/copy-runtime-assets.cjs",
+    "start": "node dist/database/commands/prepare-deployment.js && node dist/database/commands/seed.js && node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "tsx src/database/commands/migrate.ts",
+    "db:seed": "tsx src/database/commands/seed.ts",
+    "db:seed:portfolio": "tsx src/database/commands/seed-portfolio.ts",
+    "db:prepare": "tsx src/database/commands/prepare-deployment.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.3.0",
+    "pdfkit": "^0.20.2",
+    "resend": "^6.27.0",
+    "mysql2": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.2.0",
+    "@types/node": "^26.5.0",
+    "@types/pdfkit": "^0.17.6",
+    "@types/supertest": "^7.2.1",
+    "supertest": "^7.2.2",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0"
+  },
+  "private": true
+}

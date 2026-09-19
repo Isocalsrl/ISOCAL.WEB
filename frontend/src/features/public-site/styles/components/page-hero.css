@@ -1,0 +1,63 @@
+.co-page-hero {
+    position: relative;
+    isolation: isolate;
+    background: #192e44;
+    color: #fff;
+    overflow: hidden;
+    padding: 36px 0 58px;
+    min-height: 335px;
+}
+.co-page-hero > img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 58%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -3;
+}
+.co-page-hero:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(90deg, #65172bef, #80203ae8 34%, #222e45a8 61%, #172c4010);
+}
+.co-page-hero:after {
+    position: absolute;
+    content: "»";
+    font-size: 470px;
+    color: #ffffff07;
+    top: -165px;
+    left: 35%;
+    z-index: -1;
+    font-weight: 900;
+}
+.co-page-hero .co-eyebrow {
+    color: #ffb8c5;
+}
+.co-page-hero h1 {
+    font-size: clamp(33px, 3.5vw, 49px);
+    letter-spacing: -1.8px;
+    line-height: 1.15;
+    margin: 19px 0;
+    max-width: 710px;
+}
+.co-page-hero h1 em {
+    color: #ff8699;
+}
+.co-page-hero p {
+    color: #e0dce3 !important;
+    max-width: 520px;
+    font-size: 13px;
+}
+.co-page-hero .co-breadcrumb {
+    font-size: 10px;
+    margin: 0 0 28px;
+    display: flex;
+    gap: 12px;
+}
+.co-breadcrumb a {
+    color: #eee;
+}

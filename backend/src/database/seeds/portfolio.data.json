@@ -1,0 +1,258 @@
+{
+  "source": "PORTAFOLIO_ISOCAL_2025.pdf",
+  "categories": [
+    {
+      "slug": "electricidad",
+      "name": "Electricidad",
+      "description": "Instrumentos y componentes para medición y aplicaciones eléctricas."
+    },
+    {
+      "slug": "seguridad",
+      "name": "Seguridad industrial",
+      "description": "Equipos de protección y seguridad industrial incluidos en el portafolio."
+    },
+    {
+      "slug": "dimensional",
+      "name": "Medición dimensional",
+      "description": "Instrumentos para medición dimensional y torque."
+    },
+    {
+      "slug": "industrial",
+      "name": "Herramientas industriales",
+      "description": "Herramientas y equipos para aplicaciones industriales."
+    },
+    {
+      "slug": "laboratorio",
+      "name": "Laboratorio",
+      "description": "Equipamiento e instrumentación para trabajo de laboratorio."
+    },
+    {
+      "slug": "monitoreo",
+      "name": "Monitoreo y control",
+      "description": "Instrumentos y componentes para monitoreo, análisis y control."
+    },
+    {
+      "slug": "alquiler",
+      "name": "Alquiler de equipos",
+      "description": "Equipos disponibles para alquiler según disponibilidad."
+    }
+  ],
+  "products": [
+    {
+      "name": "Multímetro digital Sonel",
+      "slug": "multimetro-digital-sonel",
+      "categorySlug": "electricidad",
+      "description": "Multímetro digital Sonel para medición eléctrica. Consulta el modelo disponible según tu aplicación.",
+      "sourcePage": 25,
+      "image": "multimetro-digital-sonel.png"
+    },
+    {
+      "name": "Pinza amperimétrica Sonel",
+      "slug": "pinza-amperimetrica-sonel",
+      "categorySlug": "electricidad",
+      "description": "Pinza amperimétrica de la línea Sonel para medición eléctrica. Consulta el modelo disponible.",
+      "sourcePage": 25,
+      "image": "pinza-amperimetrica-sonel.png"
+    },
+    {
+      "name": "Instrumentos de medición eléctrica Sonel",
+      "slug": "instrumentos-de-medicion-electrica-sonel",
+      "categorySlug": "electricidad",
+      "description": "Equipos Sonel para medición eléctrica en aplicaciones industriales. Consulta la configuración disponible.",
+      "sourcePage": 25,
+      "image": "instrumentos-de-medicion-electrica-sonel.png"
+    },
+    {
+      "name": "Arnés de seguridad MSA",
+      "slug": "arnes-de-seguridad-msa",
+      "categorySlug": "seguridad",
+      "description": "Arneses MSA para protección contra caídas. Consulta modelo, talla y aplicación.",
+      "sourcePage": 26,
+      "image": "arnes-de-seguridad-msa.png"
+    },
+    {
+      "name": "Línea retráctil MSA",
+      "slug": "linea-retractil-msa",
+      "categorySlug": "seguridad",
+      "description": "Líneas retráctiles MSA para sistemas de protección contra caídas.",
+      "sourcePage": 26,
+      "image": "linea-retractil-msa.png"
+    },
+    {
+      "name": "Línea de vida MSA",
+      "slug": "linea-de-vida-msa",
+      "categorySlug": "seguridad",
+      "description": "Líneas de vida MSA para sistemas de protección contra caídas.",
+      "sourcePage": 26,
+      "image": "linea-de-vida-msa.png"
+    },
+    {
+      "name": "Detectores portátiles de gases MSA",
+      "slug": "detectores-portatiles-de-gases-msa",
+      "categorySlug": "seguridad",
+      "description": "Detectores portátiles MSA para venta o alquiler. La configuración de sensores se define según el requerimiento.",
+      "sourcePage": 27,
+      "image": "detectores-portatiles-de-gases-msa.png"
+    },
+    {
+      "name": "Equipo de respiración autónoma MSA",
+      "slug": "equipo-de-respiracion-autonoma-msa",
+      "categorySlug": "seguridad",
+      "description": "Equipo de respiración autónoma MSA. Consulta configuración y accesorios disponibles.",
+      "sourcePage": 27,
+      "image": "equipo-de-respiracion-autonoma-msa.png"
+    },
+    {
+      "name": "Calibradores y micrómetros Mitutoyo",
+      "slug": "calibradores-y-micrometros-mitutoyo",
+      "categorySlug": "dimensional",
+      "description": "Calibradores, micrómetros, relojes comparadores, rugosímetros, proyectores y durómetros Mitutoyo.",
+      "sourcePage": 28,
+      "image": "calibradores-y-micrometros-mitutoyo.png"
+    },
+    {
+      "name": "Herramientas de medición LTF",
+      "slug": "herramientas-de-medicion-ltf",
+      "categorySlug": "dimensional",
+      "description": "Reglas biseladas, escuadras, compases y calibradores de profundidad y soldadura LTF.",
+      "sourcePage": 28,
+      "image": "herramientas-de-medicion-ltf.png"
+    },
+    {
+      "name": "Niveles de precisión Roeckle",
+      "slug": "niveles-de-precision-roeckle",
+      "categorySlug": "dimensional",
+      "description": "Niveles de precisión cuadrados y horizontales Roeckle para aplicaciones industriales.",
+      "sourcePage": 28,
+      "image": "niveles-de-precision-roeckle.png"
+    },
+    {
+      "name": "Torquímetros Norbar",
+      "slug": "torquimetros-norbar",
+      "categorySlug": "dimensional",
+      "description": "Torquímetros industriales y multiplicadores de torque Norbar.",
+      "sourcePage": 28,
+      "image": "torquimetros-norbar.png"
+    },
+    {
+      "name": "Herramientas Greenlee",
+      "slug": "herramientas-greenlee",
+      "categorySlug": "industrial",
+      "description": "Dobladoras de conductos, engarzadoras, cortadores de cable y kits sacabocados Greenlee.",
+      "sourcePage": 28,
+      "image": "herramientas-greenlee.png"
+    },
+    {
+      "name": "Equipos hidráulicos Mega",
+      "slug": "equipos-hidraulicos-mega",
+      "categorySlug": "industrial",
+      "description": "Grúas, gatas, prensas, dobladoras de tubos y equipos oleoneumáticos Mega.",
+      "sourcePage": 28,
+      "image": "equipos-hidraulicos-mega.png"
+    },
+    {
+      "name": "Herramientas eléctricas DeWalt",
+      "slug": "herramientas-electricas-dewalt",
+      "categorySlug": "industrial",
+      "description": "Sierras, taladros, esmeriles, pulidoras y rotomartillos DeWalt.",
+      "sourcePage": 29,
+      "image": "herramientas-electricas-dewalt.png"
+    },
+    {
+      "name": "Herramientas Milwaukee",
+      "slug": "herramientas-milwaukee",
+      "categorySlug": "industrial",
+      "description": "Herramientas eléctricas, equipamiento MX Fuel, iluminación y almacenamiento Milwaukee.",
+      "sourcePage": 29,
+      "image": "herramientas-milwaukee.png"
+    },
+    {
+      "name": "Herramientas Ridgid",
+      "slug": "herramientas-ridgid",
+      "categorySlug": "industrial",
+      "description": "Llaves y herramientas Ridgid para roscado, ranurado, doblado y corte de tubos.",
+      "sourcePage": 29,
+      "image": "herramientas-ridgid.png"
+    },
+    {
+      "name": "Herramientas Toptul",
+      "slug": "herramientas-toptul",
+      "categorySlug": "industrial",
+      "description": "Llaves mixtas, dados de impacto, llaves de impacto y herramientas de 1000 V Toptul.",
+      "sourcePage": 29,
+      "image": "herramientas-toptul.png"
+    },
+    {
+      "name": "Equipos de limpieza Kärcher",
+      "slug": "equipos-de-limpieza-karcher",
+      "categorySlug": "industrial",
+      "description": "Hidrolavadoras, aspiradoras y equipos de limpieza a vapor Kärcher.",
+      "sourcePage": 29,
+      "image": "equipos-de-limpieza-karcher.png"
+    },
+    {
+      "name": "Medidor de pH de mesa Apera",
+      "slug": "medidor-de-ph-de-mesa-apera",
+      "categorySlug": "laboratorio",
+      "description": "Medidores de pH de mesa Apera para laboratorio. Consulta sensores y accesorios disponibles.",
+      "sourcePage": 30,
+      "image": "medidor-de-ph-de-mesa-apera.png"
+    },
+    {
+      "name": "Equipamiento de laboratorio Drawell",
+      "slug": "equipamiento-de-laboratorio-drawell",
+      "categorySlug": "laboratorio",
+      "description": "Incubadoras, autoclaves, conservadoras y estufas Drawell para laboratorio e industria.",
+      "sourcePage": 30,
+      "image": "equipamiento-de-laboratorio-drawell.png"
+    },
+    {
+      "name": "Equipos de análisis de agua Hach",
+      "slug": "equipos-de-analisis-de-agua-hach",
+      "categorySlug": "monitoreo",
+      "description": "Colorímetros, turbidímetros y multiparámetros Hach para análisis de agua.",
+      "sourcePage": 31,
+      "image": "equipos-de-analisis-de-agua-hach.png"
+    },
+    {
+      "name": "Medidor de pH portátil Apera",
+      "slug": "medidor-de-ph-portatil-apera",
+      "categorySlug": "monitoreo",
+      "description": "Medidores de pH portátiles Apera. Consulta configuración y electrodo disponible.",
+      "sourcePage": 31,
+      "image": "medidor-de-ph-portatil-apera.png"
+    },
+    {
+      "name": "Componentes eléctricos Jayelect",
+      "slug": "componentes-electricos-jayelect",
+      "categorySlug": "electricidad",
+      "description": "Medidores digitales monofásicos, disyuntores solares e interruptores MCB y MCCB Jayelect.",
+      "sourcePage": 32,
+      "image": "componentes-electricos-jayelect.png"
+    },
+    {
+      "name": "Sensores y control Honeywell",
+      "slug": "sensores-y-control-honeywell",
+      "categorySlug": "monitoreo",
+      "description": "Sensores, controladores, actuadores, dámperes, humidificadores y humidistatos Honeywell.",
+      "sourcePage": 32,
+      "image": "sensores-y-control-honeywell.png"
+    },
+    {
+      "name": "Alquiler de sonómetro",
+      "slug": "alquiler-de-sonometro",
+      "categorySlug": "alquiler",
+      "description": "Sonómetro integrador para medición de ruido y análisis de frecuencia. Consulta disponibilidad y periodo de alquiler.",
+      "sourcePage": 33,
+      "image": "alquiler-de-sonometro.png"
+    },
+    {
+      "name": "Alquiler de luxómetro",
+      "slug": "alquiler-de-luxometro",
+      "categorySlug": "alquiler",
+      "description": "Luxómetro para medición de iluminación. Consulta disponibilidad y periodo de alquiler.",
+      "sourcePage": 33,
+      "image": "alquiler-de-luxometro.png"
+    }
+  ]
+}
