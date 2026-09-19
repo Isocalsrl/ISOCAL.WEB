@@ -26,7 +26,7 @@
     "docker:logs": "docker compose logs -f backend frontend",
     "env:check": "node scripts/validate-env.mjs",
     "check:architecture": "node scripts/check-architecture.mjs",
-    "start": "npm run start -w @isocal/backend"
+    "start": "node server.js"
   },
   "engines": {
     "node": ">=22"
