@@ -27,4 +27,4 @@ RUN mkdir -p /app/storage \
 USER node
 EXPOSE 3000
 
-CMD ["sh", "-c", "node dist/database/commands/prepare-deployment.js && node dist/database/commands/seed.js && exec node dist/server.js"]
+CMD ["node", "dist/server.js"]
