@@ -8,13 +8,13 @@ const PAGE = { width: 595.28, height: 841.89, headerHeight: 95, footerHeight: 57
 const COLORS = { gray: "#8c8c8c", dark: "#50515b", blue: "#17479e", lightBlue: "#d6e2f3", green: "#00b050", border: "#222222" };
 const assets = join(__dirname, "assets");
 
-export interface CommercialQuotePdfItem extends QuoteDetail["items"][number] {
+export type CommercialQuotePdfItem = QuoteDetail["items"][number] & {
     image?: Buffer | null;
-}
+};
 
-export interface CommercialQuotePdfInput extends Omit<QuoteDetail, "items"> {
+export type CommercialQuotePdfInput = Omit<QuoteDetail, "items"> & {
     items: CommercialQuotePdfItem[];
-}
+};
 
 function asset(name: string): string {
     const path = join(assets, name);

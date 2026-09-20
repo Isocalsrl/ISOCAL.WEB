@@ -1,0 +1,10 @@
+diff --git a/package.json b/package.json
+--- a/package.json
++++ b/package.json
+@@ -7,6 +7,7 @@
+   ],
+   "scripts": {
++    "postinstall": "npm run build",
+     "dev": "npm run db:setup && npm run dev:app",
+     "dev:app": "node scripts/dev.mjs",
+     "dev:fresh": "npm run db:reset && npm run dev:app",
