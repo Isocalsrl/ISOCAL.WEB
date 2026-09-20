@@ -9,7 +9,7 @@
     "dev": "npm run db:setup && npm run dev:app",
     "dev:app": "node scripts/dev.mjs",
     "dev:fresh": "npm run db:reset && npm run dev:app",
-    "build": "npm run build -w @isocal/frontend && npm run build -w @isocal/backend && node scripts/copy-frontend-build.mjs",
+    "build": "npm run build -w @isocal/frontend && npm run build -w @isocal/backend && node scripts/copy-frontend-build.mjs && node scripts/verify-production-build.mjs",
     "typecheck": "npm run typecheck -w @isocal/backend && npm run typecheck -w @isocal/frontend",
     "lint": "npm run lint -w @isocal/frontend",
     "test": "npm run test -w @isocal/backend && npm run test -w @isocal/frontend",
@@ -26,7 +26,7 @@
     "docker:logs": "docker compose logs -f backend frontend",
     "env:check": "node scripts/validate-env.mjs",
     "check:architecture": "node scripts/check-architecture.mjs",
-    "start": "node server.js"
+    "start": "node backend/dist/server.js"
   },
   "engines": {
     "node": ">=22"

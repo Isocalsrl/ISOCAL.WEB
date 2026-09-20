@@ -1,0 +1,319 @@
+diff --git a/backend/package.json b/backend/package.json
+index 341d512..3c7d74b 100644
+--- a/backend/package.json
++++ b/backend/package.json
+@@ -5,12 +5,11 @@
+   "scripts": {
+     "dev": "tsx watch src/server.ts",
+     "build": "tsc && node scripts/copy-runtime-assets.cjs",
+-    "start": "node dist/database/commands/prepare-deployment.js && node dist/database/commands/seed.js && node dist/server.js",
++    "start": "node dist/server.js",
+     "typecheck": "tsc --noEmit",
+     "db:migrate": "tsx src/database/commands/migrate.ts",
+     "db:seed": "tsx src/database/commands/seed.ts",
+     "db:seed:portfolio": "tsx src/database/commands/seed-portfolio.ts",
+-    "db:prepare": "tsx src/database/commands/prepare-deployment.ts",
+     "test": "vitest run",
+     "test:watch": "vitest"
+   },
+diff --git a/backend/src/database/commands/prepare-deployment.ts b/backend/src/database/commands/prepare-deployment.ts
+deleted file mode 100644
+index 85f56b3..0000000
+--- a/backend/src/database/commands/prepare-deployment.ts
++++ /dev/null
+@@ -1,37 +0,0 @@
+-import { seedConfiguredSuperAdmin } from "../../modules/auth/auth.seed.js";
+-import { db } from "../db.js";
+-import { runMigrations } from "../migrationRunner.js";
+-
+-async function migrate(): Promise<void> {
+-    const client = await db.connect();
+-    try {
+-        await runMigrations(client);
+-    } finally {
+-        client.release();
+-    }
+-}
+-
+-async function prepareDeployment(): Promise<void> {
+-    try {
+-        await migrate();
+-        const result = await seedConfiguredSuperAdmin();
+-        if (result === "skipped") {
+-            throw new Error(
+-                "No se configuraron BOOTSTRAP_SUPER_ADMIN_NAME, BOOTSTRAP_SUPER_ADMIN_EMAIL y BOOTSTRAP_SUPER_ADMIN_PASSWORD.",
+-            );
+-        }
+-        console.log(
+-            result === "created"
+-                ? "Superadministrador inicial creado."
+-                : "Superadministrador inicial ya existente.",
+-        );
+-        console.log("Base de datos preparada para iniciar la aplicación.");
+-    } finally {
+-        await db.end();
+-    }
+-}
+-
+-prepareDeployment().catch((error) => {
+-    console.error("No se pudo preparar la base de datos para despliegue.", error);
+-    process.exitCode = 1;
+-});
+diff --git a/backend/src/database/migrations/012_create_app_bootstrap_steps.sql b/backend/src/database/migrations/012_create_app_bootstrap_steps.sql
+new file mode 100644
+index 0000000..50d6c57
+--- /dev/null
++++ b/backend/src/database/migrations/012_create_app_bootstrap_steps.sql
+@@ -0,0 +1,4 @@
++CREATE TABLE IF NOT EXISTS app_bootstrap_steps (
++    step_key VARCHAR(100) PRIMARY KEY,
++    completed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
++) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+diff --git a/backend/src/server.ts b/backend/src/server.ts
+index 0727eea..b6206ec 100644
+--- a/backend/src/server.ts
++++ b/backend/src/server.ts
+@@ -1,32 +1,59 @@
++import type { Server } from "node:http";
+ import app from "./app.js";
+ import { env } from "./config/env.js";
+ import { db } from "./database/db.js";
+-const server = app.listen(env.port, () => {
+-    console.log(`API corriendo en el puerto ${env.port}`);
+-});
++import { prepareApplication } from "./startup/prepareApplication.js";
++
++let server: Server | null = null;
+ let isShuttingDown = false;
+-async function shutdown(signal: NodeJS.Signals): Promise<void> {
+-    if (isShuttingDown) {
+-        return;
++
++async function start(): Promise<void> {
++    try {
++        await prepareApplication();
++        server = app.listen(env.port, () => {
++            console.log(`API corriendo en el puerto ${env.port}`);
++        });
++    } catch (error) {
++        console.error("No se pudo iniciar ISOCAL.", error);
++        await db.end().catch(() => undefined);
++        process.exit(1);
+     }
++}
++
++async function shutdown(signal: NodeJS.Signals): Promise<void> {
++    if (isShuttingDown) return;
+     isShuttingDown = true;
++
+     console.log(`${signal} recibido. Cerrando API...`);
+-    server.close(async () => {
+-        try {
+-            await db.end();
+-        }
+-        finally {
+-            process.exit(0);
+-        }
++
++    const closeDatabaseAndExit = async (): Promise<void> => {
++        await db.end().catch((error) => {
++            console.error("No se pudo cerrar el pool de base de datos limpiamente.", error);
++        });
++        process.exit(0);
++    };
++
++    if (!server) {
++        await closeDatabaseAndExit();
++        return;
++    }
++
++    server.close(() => {
++        void closeDatabaseAndExit();
+     });
++
+     setTimeout(() => {
+         console.error("Cierre forzado: la API no terminó dentro del tiempo esperado.");
+         process.exit(1);
+     }, 10000).unref();
+ }
++
+ process.on("SIGTERM", () => {
+     void shutdown("SIGTERM");
+ });
++
+ process.on("SIGINT", () => {
+     void shutdown("SIGINT");
+ });
++
++void start();
+diff --git a/backend/src/startup/prepareApplication.ts b/backend/src/startup/prepareApplication.ts
+new file mode 100644
+index 0000000..ee8bc62
+--- /dev/null
++++ b/backend/src/startup/prepareApplication.ts
+@@ -0,0 +1,80 @@
++import { db } from "../database/db.js";
++import { runMigrations } from "../database/migrationRunner.js";
++import { runContentSeeds } from "../database/seeds/development.seed.js";
++import { seedConfiguredSuperAdmin } from "../modules/auth/auth.seed.js";
++
++const initialContentStep = "initial-content-v1";
++const initialContentLock = "isocal_initial_content_seed";
++
++async function runPendingMigrations(): Promise<void> {
++    const client = await db.connect();
++    try {
++        await runMigrations(client);
++    } finally {
++        client.release();
++    }
++}
++
++async function ensureConfiguredSuperAdmin(): Promise<void> {
++    const result = await seedConfiguredSuperAdmin();
++
++    if (result === "created") {
++        console.log("Superadministrador inicial creado.");
++        return;
++    }
++
++    if (result === "already-exists") {
++        console.log("Superadministrador inicial listo.");
++        return;
++    }
++
++    console.warn(
++        "Superadministrador inicial omitido: no se configuraron BOOTSTRAP_SUPER_ADMIN_NAME, BOOTSTRAP_SUPER_ADMIN_EMAIL y BOOTSTRAP_SUPER_ADMIN_PASSWORD.",
++    );
++}
++
++async function ensureInitialContent(): Promise<void> {
++    const client = await db.connect();
++    let lockAcquired = false;
++
++    try {
++        const lock = await client.query<{ acquired: number }>(
++            "SELECT GET_LOCK($1, 30) AS acquired",
++            [initialContentLock],
++        );
++        lockAcquired = Number(lock.rows[0]?.acquired) === 1;
++
++        if (!lockAcquired) {
++            throw new Error("No se pudo obtener el bloqueo del bootstrap de contenido.");
++        }
++
++        const existing = await client.query<{ step_key: string }>(
++            "SELECT step_key FROM app_bootstrap_steps WHERE step_key = $1 LIMIT 1",
++            [initialContentStep],
++        );
++
++        if (existing.rowCount > 0) {
++            console.log("Contenido inicial ya preparado.");
++            return;
++        }
++
++        await runContentSeeds();
++        await client.query(
++            "INSERT INTO app_bootstrap_steps (step_key) VALUES ($1)",
++            [initialContentStep],
++        );
++        console.log("Contenido inicial preparado.");
++    } finally {
++        if (lockAcquired) {
++            await client.query("SELECT RELEASE_LOCK($1)", [initialContentLock]).catch(() => undefined);
++        }
++        client.release();
++    }
++}
++
++export async function prepareApplication(): Promise<void> {
++    await runPendingMigrations();
++    await ensureConfiguredSuperAdmin();
++    await ensureInitialContent();
++    console.log("ISOCAL preparado para iniciar.");
++}
+diff --git a/package.json b/package.json
+index 3d929ca..311d6a8 100644
+--- a/package.json
++++ b/package.json
+@@ -9,7 +9,7 @@
+     "dev": "npm run db:setup && npm run dev:app",
+     "dev:app": "node scripts/dev.mjs",
+     "dev:fresh": "npm run db:reset && npm run dev:app",
+-    "build": "npm run build -w @isocal/frontend && npm run build -w @isocal/backend && node scripts/copy-frontend-build.mjs",
++    "build": "npm run build -w @isocal/frontend && npm run build -w @isocal/backend && node scripts/copy-frontend-build.mjs && node scripts/verify-production-build.mjs",
+     "typecheck": "npm run typecheck -w @isocal/backend && npm run typecheck -w @isocal/frontend",
+     "lint": "npm run lint -w @isocal/frontend",
+     "test": "npm run test -w @isocal/backend && npm run test -w @isocal/frontend",
+@@ -26,7 +26,7 @@
+     "docker:logs": "docker compose logs -f backend frontend",
+     "env:check": "node scripts/validate-env.mjs",
+     "check:architecture": "node scripts/check-architecture.mjs",
+-    "start": "node server.js"
++    "start": "node backend/dist/server.js"
+   },
+   "engines": {
+     "node": ">=22"
+diff --git a/scripts/verify-production-build.mjs b/scripts/verify-production-build.mjs
+new file mode 100644
+index 0000000..ee4b000
+--- /dev/null
++++ b/scripts/verify-production-build.mjs
+@@ -0,0 +1,30 @@
++import { access, readdir } from "node:fs/promises";
++import { constants } from "node:fs";
++import { dirname, resolve } from "node:path";
++import { fileURLToPath } from "node:url";
++
++const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
++const requiredFiles = [
++    "backend/dist/server.js",
++    "backend/dist/public/index.html",
++];
++
++for (const relativePath of requiredFiles) {
++    const absolutePath = resolve(root, relativePath);
++    try {
++        await access(absolutePath, constants.R_OK);
++    } catch {
++        throw new Error(`Build de producción incompleto: falta ${relativePath}.`);
++    }
++}
++
++const migrationsDirectory = resolve(root, "backend/dist/database/migrations");
++const migrationFiles = (await readdir(migrationsDirectory)).filter((file) => file.endsWith(".sql"));
++
++if (migrationFiles.length === 0) {
++    throw new Error("Build de producción incompleto: no se copiaron las migraciones SQL.");
++}
++
++console.log(
++    `Build de producción verificado: servidor, frontend y ${migrationFiles.length} migraciones listos.`,
++);
+diff --git a/server.js b/server.js
+deleted file mode 100644
+index 651e28e..0000000
+--- a/server.js
++++ /dev/null
+@@ -1,21 +0,0 @@
+-const { spawnSync } = require("node:child_process");
+-
+-function run(script) {
+-    const result = spawnSync(process.execPath, [script], {
+-        stdio: "inherit",
+-        env: process.env,
+-    });
+-
+-    if (result.error) {
+-        throw result.error;
+-    }
+-
+-    if (result.status !== 0) {
+-        process.exit(result.status ?? 1);
+-    }
+-}
+-
+-run("./backend/dist/database/commands/prepare-deployment.js");
+-run("./backend/dist/database/commands/seed.js");
+-
+-require("./backend/dist/server.js");
