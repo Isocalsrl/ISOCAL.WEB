@@ -6,6 +6,7 @@
     "frontend"
   ],
   "scripts": {
+    "postinstall": "npm run build",
     "dev": "npm run db:setup && npm run dev:app",
     "dev:app": "node scripts/dev.mjs",
     "dev:fresh": "npm run db:reset && npm run dev:app",
